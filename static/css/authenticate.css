@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* login page styling below */
+
+p{
+    font-size: .9rem;
+}
+
+.title{
+    color: #DA8067;
+    padding: .5rem 1rem;
+    font-family: 'Great Vibes', cursive;
+}
+
+.headings{
+    font-weight: bolder;
+    color: rgb(91, 89, 89);
+}
+
+.login-content-container{
+    /* border: 2px solid red; */
+    
+    background-color: #fff;
+    font-family: 'Montserrat', sans-serif;
+
+    letter-spacing: .1rem;
+    padding: 1rem;
+    width: 30%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    /* box-shadow: 0 0 13px 0 rgba(84, 80, 80, 0.332); */
+}
+
+.Oauth-login,.local-login{
+    margin: 1rem;
+}
+
+.Oauth-login a{
+    padding: .7rem;
+    font-size: 1.5rem;
+    margin: .5rem .3rem .7rem;
+    display: inline-block;
+    color: #EBAF81;
+}
+
+fieldset{
+    border: none;
+    margin-top: 1.5rem;
+}
+
+.text-feilds{
+    display: block;
+    width: 100%;
+    padding: .7rem;
+    margin-bottom: 1rem;
+    outline: none;
+    border: 1px solid #DA8067;
+    border-radius: 10px;
+}
+
+.submit-btn{
+    width: 40%;
+    margin-top: 1rem;
+    padding: .7rem;
+    border: none;
+    letter-spacing: .1rem;
+    background-color: #DA8067;
+    font-weight: bold;
+    color: #F7E39C;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 10px;
+    transition:all 300ms linear;
+}
+
+.submit-btn:hover{
+    background-color: #EBAF81;
+    color: #DA8067;
+}
+
+.ask{
+    letter-spacing: .1rem;
+    margin: 2rem 0 3rem;
+}
+
+.ask a{
+    text-decoration: none;
+}
+
+
+/* making from responsive */
+@media screen and (max-width:750px) {
+    .login-content-container{
+        width: 85%;
+    }
+}
+
+@media screen and (min-width:751px ) and (max-width:1300px) {
+    .login-content-container{
+        width:70%;
+    }
+}

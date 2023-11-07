@@ -17,6 +17,9 @@ Auth::set_fallback_route(ROOT."/login");
 /*
     ROUTES WHICH HANDLE AUTHENTICATION
 */
+// this route returns whether username exists or not
+Router::add_route("POST", ROOT . "/checkValidUserName", [AuthController::class, 'checkValidUserName']);
+
 Router::add_route(["GET", "POST"], ROOT."/login", [AuthController::class, 'login']);
 Router::add_route(["GET", "POST"], ROOT . "/signup", [AuthController::class, 'signup']);
 Router::add_route("GET", ROOT . "/logout", [AuthController::class, 'logout']);

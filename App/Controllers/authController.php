@@ -20,7 +20,37 @@ require_once __DIR__ . "/../Models/models.php";
     THIS CLASS (CONTROLLER) HANDLES USER AUTHENTICATION
 */
 class AuthController {
+
+    // this method returns where a given username
+    // is already in the database or not
+    public function checkValidUserName($request) {
+        $username = $request->formData('username');
+
+        if ($username == '')
+            $resp = [
+                'isValid' => 'NO'
+            ];
+        
+        else
+            $db = new DB();
+            // check if there is one in the database
+            if ($db->getUser(NULL, $username)) {
+                $resp = [
+                    'isValid' => 'NO'
+                ];
+            }
+            else {
+                $resp = [
+                    'isValid' => 'YES'
+                ];
+            }
+
+        header("Content-Type: application/json");
+        echo json_encode($resp);
+    }
+    
     public function login($request) {
+
         if ($request->method() == "GET")
             VIEW::init("login.html");
 
@@ -104,6 +134,13 @@ class AuthController {
 
                 // get password hash
                 $passhash = hash("sha256", $password);
+
+                // check if username is duplicate
+                if ($db->getUser(NULL, $username)) {
+                    HelperFuncs::redirect(ROOT . "/signup?error=Username not available!");
+                    exit();
+                }
+
                 // add the user to db
                 if ($db->addUser($username, $first_name, $last_name, $email, $passhash, $phone)) {
 
@@ -153,10 +190,39 @@ class GoogleOauthController {
 
         $user = $oauth->getUserInfo();
         if ($user) {
-            Auth::login($user);
+            // add user to the db
+            $db = new DB();
+
+            $username = explode(' ', $user['username'])[0];
+            $email = $user['email'];
+
+            // check if user already exists in the database
+            if ($db->getUser($email)) {
+
+                // login the user
+                $user = $db->getUser($email);
+                Auth::login($user);
+
+                HelperFuncs::redirect(ROOT . "/");
+                exit();
+            }
+
+            // otherwise add the user to database
+            else if ($db->addUser($username, '', '', $email, '', '')) {
+
+                // grab the user and log in
+                $user = $db->getUser($email);
+                Auth::login($user);
+
+                HelperFuncs::redirect(ROOT . "/");
+                exit();
+            }
+
             HelperFuncs::redirect(ROOT . "/");
         }
+
         else {
+
             HelperFuncs::redirect(ROOT . "/login");
         }
     }

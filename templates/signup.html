@@ -34,6 +34,7 @@
             <fieldset>
                 <form action="<?= ROOT; ?>/signup" method="post">
                     <input type="text" class="text-feilds" placeholder="Username" name="username">
+                    <p class="username-validation"></p>
                     <input type="text" class="text-feilds" placeholder="First Name" name="first_name">
                     <input type="text" class="text-feilds" placeholder="Last name" name="last_name">
                     <input type="email" class="text-feilds" placeholder="Email" name="email">
@@ -50,5 +51,8 @@
         
     </div>
 
+
+    <!-- validation script -->
+    <script src="<?= ROOT; ?>/static/js/validation.js"></script>
 </body>
 </html>

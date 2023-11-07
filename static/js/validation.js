@@ -16,7 +16,7 @@ const message_box = document.querySelector('.username-validation');
 username.addEventListener('focusout', (event) => {
     let userName = username.value;
 
-    if (userName) {
+    if (userName && userName.length >= 5) {
 
         // make an API call
         fetch("/Ecommer/checkValidUserName", {
@@ -46,6 +46,9 @@ username.addEventListener('focusout', (event) => {
                 message_box.textContent = "The username is not available";
             }
         });
+    }
+    else if (userName.length >= 1 || userName.length < 5) {
+        message_box.textContent = "Username should be of minimum 5 characters";
     }
     else {
         // clear the message, if field is empty

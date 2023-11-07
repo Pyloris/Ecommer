@@ -8,6 +8,7 @@ use sirJuni\Framework\Middleware\Auth;
 
 // load all the controllers
 require_once __DIR__ . "/../Controllers/authController.php";
+require_once __DIR__ . "/../Controllers/OAuthController.php";
 require_once __DIR__ . "/../Controllers/homeController.php";
 
 

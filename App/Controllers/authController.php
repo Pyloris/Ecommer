@@ -3,17 +3,12 @@ require_once __DIR__ . "/../../vendor/autoload.php";
 
 
 use sirJuni\Framework\View\VIEW;
-use sirJuni\Framework\Components\Oauth;
 use sirJuni\Framework\Middleware\Auth;
 use sirJuni\Framework\Helper\HelperFuncs;
-
-// use the Abrahm client for oauth.
-use Abraham\TwitterOAuth\TwitterOAuth;
 
 
 // import models
 require_once __DIR__ . "/../Models/models.php";
-
 
 
 /*
@@ -114,20 +109,20 @@ class AuthController {
             $error = 0;
 
             // validate username
-            if (!preg_match('/^[a-zA-Z0-9_]+$/', $username))
+            if (!preg_match('/^[a-zA-Z0-9_]{5,}$/', $username))
                 $error = 1;
             
             if (!preg_match('/^[a-zA-Z]+$/', $first_name) and !preg_match('/^[a-zA-Z]+$/', $last_name))
-                $error = 1;
+                $error = 2;
 
             if (!preg_match('/^[a-zA-Z][a-zA-Z0-9\.\+]+@[a-zA-Z0-9]+\.[a-zA-Z]{,3}$', $email))
-                $error = 1;
+                $error = 3;
             
-            if (!preg_match('/[a-zA-Z0-9\_@\!\|\\\$\^\&\*\%]+/', $password) and !preg_match('/^[0-9]{,10}$/', $phone))
-                $error = 1;
+            if (!preg_match('/[a-zA-Z0-9\_@\!\|\\\$\^\&\*\%]{8,}/', $password) and !preg_match('/^[0-9]{,10}$/', $phone))
+                $error = 4;
 
             // if all the fields are set, add the user to the database
-            if ($error) {
+            if (!$error) {
 
                 // get a database instance
                 $db = new DB();
@@ -163,7 +158,7 @@ class AuthController {
             }
             else {
                 // if a field is missing
-                HelperFuncs::redirect(ROOT . "/signup?error=One or More fields are missing");
+                HelperFuncs::redirect(ROOT . "/signup?error=One or More fields are missing&code=$error");
             }
         }
     }
@@ -174,109 +169,5 @@ class AuthController {
     }
 }
 
-
-
-/*
-    THIS CLASS IS RESPONSIBLE FOR HANDLING GOOGLE OAUTH
-*/
-class GoogleOauthController {
-
-    public function init($request) {
-        $oauth = new Oauth(__DIR__ . '/secret.json', "https://shoaibwani.serveo.net" . ROOT . "/oauth/google/callback", ['userinfo.email', 'userinfo.profile']);
-    }
-
-    public function callback($request) {
-        $oauth = new Oauth(__DIR__ . '/secret.json', "https://shoaibwani.serveo.net" . ROOT . "/oauth/google/callback", ['userinfo.email', 'userinfo.profile']);
-
-        $user = $oauth->getUserInfo();
-        if ($user) {
-            // add user to the db
-            $db = new DB();
-
-            $username = explode(' ', $user['username'])[0];
-            $email = $user['email'];
-
-            // check if user already exists in the database
-            if ($db->getUser($email)) {
-
-                // login the user
-                $user = $db->getUser($email);
-                Auth::login($user);
-
-                HelperFuncs::redirect(ROOT . "/");
-                exit();
-            }
-
-            // otherwise add the user to database
-            else if ($db->addUser($username, '', '', $email, '', '')) {
-
-                // grab the user and log in
-                $user = $db->getUser($email);
-                Auth::login($user);
-
-                HelperFuncs::redirect(ROOT . "/");
-                exit();
-            }
-
-            HelperFuncs::redirect(ROOT . "/");
-        }
-
-        else {
-
-            HelperFuncs::redirect(ROOT . "/login");
-        }
-    }
-}
-
-
-/*
-    THIS CONTROLLER IS REPONSIBLE FOR FACEBOOK OAUTH
-*/
-class FacebookOauthController {
-    public function init($request) {
-        //
-    }
-
-    public function callback($request) {
-        //
-    }
-}
-
-
-/*
-    THIS CONTROLLER IS RESPONSIBLE FOR X OAUTH
-*/
-// require_once __DIR__ . "/../config/Xconfig.php";
-class XOauthController {
-    public function init($request) {
-        $oauth = new TwitterOAuth(API_KEY, API_SECRET);
-
-        $token = $oauth->oauth('oauth/request_token', ['oauth_callback' => CALLBACK_URL]);
-
-        // store tokens in session
-        if (session_status == PHP_SESSION_NONE)
-            session_start();
-
-        $_SESSION['oauth_token'] = $token['oauth_token'];
-        $_SESSION['oauth_token_secret'] = $token['oauth_token_secret'];
-
-        // get auth url
-        $url = $oauth->url('oauth/authorize', ['auth_token' => $token['auth_token']]);
-
-        // redirect
-        HelperFuncs::redirect($url);
-    }
-
-    public function callback($request) {
-        $oauth = new TwitterOAuth(API_KEY, API_SECRET);
-
-        $access_token = $connection->oauth('oauth/access_token', array('oauth_verifier' => $_GET['oauth_verifier']));
-
-        // Use the access token to make Twitter API requests
-        $user = $connection->get('account/verify_credentials');
-
-        var_dump($user);
-    }
-}
 
 ?>

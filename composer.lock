@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20e59a57d74497f02c71749dd175100b",
+    "content-hash": "bca6b5b3438e22b1bd371af39b9cbd55",
     "packages": [
         {
             "name": "firebase/php-jwt",
@@ -1350,22 +1350,25 @@
         },
         {
             "name": "shoaib/sir-juni",
-            "version": "1.0",
+            "version": "2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Pyloris/sirJuni.git",
-                "reference": "d7ec41855a38afba0e96e9849f412a78d4b1e221"
+                "reference": "1908a945375016bf1f77d12935548c776112c3ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Pyloris/sirJuni/zipball/d7ec41855a38afba0e96e9849f412a78d4b1e221",
-                "reference": "d7ec41855a38afba0e96e9849f412a78d4b1e221",
+                "url": "https://api.github.com/repos/Pyloris/sirJuni/zipball/1908a945375016bf1f77d12935548c776112c3ec",
+                "reference": "1908a945375016bf1f77d12935548c776112c3ec",
                 "shasum": ""
             },
             "require": {
                 "google/apiclient": "^2.15.0",
                 "php": ">=7.4",
                 "razorpay/razorpay": "2.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5"
             },
             "type": "project",
             "autoload": {
@@ -1387,9 +1390,9 @@
             "description": "A simple mini-php framework to build backends.",
             "support": {
                 "issues": "https://github.com/Pyloris/sirJuni/issues",
-                "source": "https://github.com/Pyloris/sirJuni/tree/v1.0"
+                "source": "https://github.com/Pyloris/sirJuni/tree/v2.0.0"
             },
-            "time": "2023-10-29T06:58:00+00:00"
+            "time": "2023-11-06T10:56:00+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",

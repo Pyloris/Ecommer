@@ -3,56 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/Ecommer/static/css/authenticate.css">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="/static/css/authenticate.css">
     <!-- font awesome link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- adding script file -->
+    <script src="<?= ROOT; ?>/static/js/authenticate.js" defer></script>
+    <script src="<?= ROOT; ?>/static/js/validation.js" defer></script>
 </head>
 <body>
-
-    <!-- heading -->
-    <div class="title">
-        <h1>ZephyrBay</h1>
-    </div>
 
     <!-- login form starts -->
     <div class="login-content-container">
 
-        <!-- Oauth login-->
+        <!-- Oauth signup-->
         <div class="Oauth-login">
             <h4 class="headings">Continue with</h4>
             <div class="links-container">
-                <a href="<?= ROOT; ?>/oauth/google"><i class="fa-brands fa-google"></i></a>
-                <!-- <a href="<?= ROOT; ?>/oauth/facebook"><i class="fa-brands fa-facebook-f"></i></a> -->
-                <!-- <a href="<?= ROOT; ?>/oauth/X"><i class="fa-brands fa-x-twitter"></i></a> -->
+                <a href="#"><i class="fa-brands fa-google"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
         </div>
 
-        <!-- login with email-->
+        <!-- Signup with email-->
         <div class="local-login">
             <h4 class="headings">Signup with Email</h4>
             <fieldset>
                 <form action="<?= ROOT; ?>/signup" method="post">
-                    <input type="text" class="text-feilds" placeholder="Username" name="username">
+                    <input type="text" class="text-feilds" placeholder="Username" required>
                     <p class="username-validation"></p>
-                    <input type="text" class="text-feilds" placeholder="First Name" name="first_name">
-                    <input type="text" class="text-feilds" placeholder="Last name" name="last_name">
-                    <input type="email" class="text-feilds" placeholder="Email" name="email">
-                    <input type="password" class="text-feilds" placeholder="Password" name="password">
-                    <input type="password" class="text-feilds" placeholder="Confirm Password" name="cpassword">
-                    <input type="tel" class="text-feilds" placeholder="Phone Number" name="phone">
+                    <input type="email" class="text-feilds" placeholder="Email" required>
+                    <input type="password" class="text-feilds pwd" placeholder="Password" required>
+                    <!-- password verification -->
+                    <div class="verify-pwd">
+                        <p> <span class="circle"> <input type="checkbox" class="check1"><span class="tick"></span></span> Length is greater than 8</p>
+                        <p> <span class="circle"><input type="checkbox" class="check2"><span class="tick"></span></span> At least 1 Uppercase Letter</p>
+                        <p> <span class="circle"><input type="checkbox" class="check3"> <span class="tick"></span> </span> At least 1 Lowercase Letter</p>
+                        <p> <span class="circle"><input type="checkbox" class="check4"><span class="tick"></span></span> At least 1 Number</p>
+                        <p> <span class="circle"><input type="checkbox" class="check5"><span class="tick"></span></span> At least 1 Special Character</p>     
+                    </div>
+                    <!-- ------------------------ -->
+
+                    <input type="password" class="text-feilds cPwd" placeholder="Confirm Password" required>
+
+                    <!-- ------------------------------------------ -->
+                    <div class="verify-pwd cp">
+                        <p> <span class="circle"><input type="checkbox" class="check6"> <span class="tick"></span></span> Password matches</p>
+                    </div>
+                    <!-- ------------------------------- -->
+
                     <input type="submit" class="submit-btn" value="Signup">
                 </form>
             </fieldset>
         </div>
 
         <!-- register  -->
-        <p class="ask">Already have an Account?<a href="<?= ROOT; ?>/login"> Login</a></p>
+        <p class="ask">Already have an account?<a href="login.html"> Login</a></p>
         
     </div>
 
-
-    <!-- validation script -->
-    <script src="<?= ROOT; ?>/static/js/validation.js"></script>
 </body>
 </html>

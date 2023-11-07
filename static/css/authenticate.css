@@ -27,7 +27,6 @@ p{
 
 .login-content-container{
     /* border: 2px solid red; */
-    
     background-color: #fff;
     font-family: 'Montserrat', sans-serif;
 
@@ -102,12 +101,75 @@ fieldset{
 /* making from responsive */
 @media screen and (max-width:750px) {
     .login-content-container{
-        width: 85%;
+        width: 80%;
     }
 }
 
 @media screen and (min-width:751px ) and (max-width:1300px) {
     .login-content-container{
-        width:70%;
+        width:70%; 
     }
+}
+
+
+/* register form styling */
+
+.verify-pwd{
+    text-align: left;
+    padding-left: 1rem;
+    font-weight:bold;
+    color: rgb(66, 63, 63);
+    margin-bottom: 1rem;
+    display: none;
+}
+
+.verify-pwd p{
+    font-size: .7rem;
+    margin-bottom: .4rem;
+    display: flex; 
+    align-items: center;
+}
+
+input[type="checkbox"]{
+    position: absolute;
+    display: none;
+}
+
+.circle{
+    border: 1px solid #DA8067;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: .3rem;
+    position: relative;
+    border-radius: 50%;
+}
+
+.tick{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    position:absolute;
+    border-radius: 50%;
+}
+
+input[type="checkbox"]:checked + .tick{
+    background-color:#EBAF81;
+} 
+  
+.show{
+    display: block;
+}
+
+.username-validation{
+    font-size: .7rem;
+    color: rgb(66, 63, 63);
+    text-align: left;
+    font-weight: 500;
+    padding-left: .5rem;
+    margin-bottom: 1rem;
+}
+
+.text-feilds:first-child{
+    margin-bottom: .2rem;
 }

@@ -26,12 +26,12 @@ Router::add_route("GET", ROOT."/oauth/google", [GoogleOauthController::class, 'i
 Router::add_route("GET", ROOT."/oauth/google/callback", [GoogleOauthController::class, 'callback']);
 
 // handle oauth facebook
-Router::add_route("GET", ROOT . "/oauth/facebook", [FacebookOauthController::class, 'init']);
-Router::add_route("GET", ROOT . "/oauth/facebook/callback", [FacebookOauthController::class, 'callback']);
+// Router::add_route("GET", ROOT . "/oauth/facebook", [FacebookOauthController::class, 'init']);
+// Router::add_route("GET", ROOT . "/oauth/facebook/callback", [FacebookOauthController::class, 'callback']);
 
 // handle oauth X
-Router::add_route("GET", ROOT . "/oauth/X", [XOauthController::class, 'init']);
-Router::add_route("GET", ROOT . "/oauth/X/callback", [XOauthController::class, 'callback']);
+// Router::add_route("GET", ROOT . "/oauth/X", [XOauthController::class, 'init']);
+// Router::add_route("GET", ROOT . "/oauth/X/callback", [XOauthController::class, 'callback']);
 
 
 /*

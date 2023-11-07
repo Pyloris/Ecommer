@@ -180,10 +180,7 @@ class FacebookOauthController {
 /*
     THIS CONTROLLER IS RESPONSIBLE FOR X OAUTH
 */
-require_once __DIR__ . "/../config/Xconfig.php";
-
-
-
+// require_once __DIR__ . "/../config/Xconfig.php";
 class XOauthController {
     public function init($request) {
         $oauth = new TwitterOAuth(API_KEY, API_SECRET);

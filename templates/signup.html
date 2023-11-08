@@ -30,13 +30,19 @@
         <div class="local-login">
             <h4 class="headings">Signup with Email</h4>
             <fieldset>
-                <form action="<?= ROOT; ?>/signup" method="post">
-                    <input type="text" class="text-feilds" placeholder="Username" name="username" required>
-                    <p class="username-validation"></p>
-                    <input type="text" class="text-feilds" placeholder="First Name" name="first_name" required>
-                    <input type="text" class="text-feilds" placeholder="Last Name" name="last_name" required>
-                    <input type="email" class="text-feilds" placeholder="Email" name="email" required>
-                    <input type="password" class="text-feilds pwd" placeholder="Password" name="password" required>
+                <form action="" method="post">
+                    <input type="text" class="text-feilds" placeholder="First Name" required>
+                    <input type="text" class="text-feilds" placeholder="Last Name" required>
+                    <input type="text" class="text-feilds" placeholder="Userame" required>
+
+                    <input type="text" class="text-feilds email" placeholder="Email" required>
+                    <input type="text" class="text-feilds phone" placeholder="Phone" required>
+
+                    <div class="password-container">
+                        <input type="password" class="text-feilds pwd" placeholder="Password" required>
+                        <button class="eye-button b1" onclick="togglePasswordVisibility('pwd','b1')">👁️
+                        </button>
+                    </div>
                     <!-- password verification -->
                     <div class="verify-pwd">
                         <p> <span class="circle"> <input type="checkbox" class="check1"><span class="tick"></span></span> Length is greater than 8</p>
@@ -47,8 +53,12 @@
                     </div>
                     <!-- ------------------------ -->
 
-                    <input type="password" class="text-feilds cPwd" placeholder="Confirm Password" name="cpassword" required>
-
+                    <div class="password-container">
+                        <input type="password" class="text-feilds cPwd" placeholder="Confirm Password" required>
+                        <button class="eye-button b2" onclick="togglePasswordVisibility('cPwd','b2')">👁️
+                        </button>
+                    </div>
+                    
                     <!-- ------------------------------------------ -->
                     <div class="verify-pwd cp">
                         <p> <span class="circle"><input type="checkbox" class="check6"> <span class="tick"></span></span> Password matches</p>

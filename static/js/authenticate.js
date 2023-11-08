@@ -1,3 +1,36 @@
+// the below code will check if all the validation if fullfilled.
+const submitBtn = document.querySelector(".submit-btn");
+
+function checkValidation() {
+    const checks = document.querySelectorAll('.icon');
+    const allChecksPassed = Array.from(checks).every((check) => check.classList.contains('tick'));
+
+    if (allChecksPassed) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove("disabled");
+    } else {
+        submitBtn.disabled = true;
+        submitBtn.classList.add("disabled");
+    }
+}
+
+// password visibility
+function togglePasswordVisibility(inputId,buttonId) {
+    const passwordInput = document.querySelector(`.${inputId}`);
+    // const eyeButton = document.querySelector(".eye-button");
+    const eyeButton = document.querySelector(`.${buttonId}`);
+
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeButton.innerHTML = "🙈"; 
+        
+    } else {
+        passwordInput.type = "password";
+        eyeButton.innerHTML = "👁️";
+    }
+}
+
 // password validation code starts
 const password = document.querySelector('.pwd');
 var inputValue;

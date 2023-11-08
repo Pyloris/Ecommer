@@ -15,13 +15,15 @@ function checkValidation() {
 }
 
 // password visibility
-function togglePasswordVisibility(inputId) {
+function togglePasswordVisibility(inputId,buttonId) {
     const passwordInput = document.querySelector(`.${inputId}`);
-    const eyeButton = document.querySelector(".eye-button");
+    // const eyeButton = document.querySelector(".eye-button");
+    const eyeButton = document.querySelector(`.${buttonId}`);
+
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        eyeButton.innerHTML = "🙈"; /* Unicode for open eye icon */
+        eyeButton.innerHTML = "🙈"; 
         
     } else {
         passwordInput.type = "password";

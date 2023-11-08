@@ -105,7 +105,7 @@ class AuthController {
             $password = $request->formData('password');
             $phone = $request->formData('phone');
 
-            // this will be 1 if any validation fails
+            // this will be non zero if any validation fails
             $error = 0;
 
             // validate username
@@ -115,7 +115,7 @@ class AuthController {
             if (!preg_match('/^[a-zA-Z]+$/', $first_name) and !preg_match('/^[a-zA-Z]+$/', $last_name))
                 $error = 2;
 
-            if (!preg_match('/^[a-zA-Z][a-zA-Z0-9\.\+]+@[a-zA-Z0-9]+\.[a-zA-Z]{,3}$', $email))
+            if (!preg_match('/^[a-zA-Z][a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{0,4}$/', $email))
                 $error = 3;
             
             if (!preg_match('/[a-zA-Z0-9\_@\!\|\\\$\^\&\*\%]{8,}/', $password) and !preg_match('/^[0-9]{,10}$/', $phone))
@@ -149,7 +149,7 @@ class AuthController {
                         Auth::login($user);
                     }
 
-                    HelperFuncs::redirect(ROOT . "/");
+                    HelperFuncs::redirect(ROOT . "/login/otp");
                     exit();
                 }
                 else {

@@ -1,6 +1,7 @@
 {
     "require": {
         "shoaib/sir-juni": "^2.0",
-        "abraham/twitteroauth": "^6.2"
+        "abraham/twitteroauth": "^6.2",
+        "phpmailer/phpmailer": "^6.8"
     }
 }

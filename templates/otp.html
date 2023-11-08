@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <title>Verify Email</title>
+    <link rel="stylesheet" href="<?= ROOT; ?>/static/css/otp.css" />
+    <!-- Boxicons CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script src="<?= ROOT; ?>/static/js/otp.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <i class="bx bxs-check-shield"></i>
+      </header>
+      <p>OTP was sent to <?php echo "sh***@**.com"; ?></p>
+      <h4>Enter OTP Code</h4>
+      <form action="<?= ROOT; ?>/login/verify" method="POST">
+        <div class="input-field">
+          <input type="text" name="n1"/>
+          <input type="text" name="n2"/>
+          <input type="text" name="n3"/>
+          <input type="text" name="n4"/>
+        </div>
+        <button>Verify OTP</button>
+      </form>
+    </div> 
+  </body>
+</html>

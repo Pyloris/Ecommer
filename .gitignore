@@ -2,3 +2,4 @@
 .gitignore
 /App/Controllers/secret.json
 /App/config/*
+/App/config.php

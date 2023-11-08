@@ -10,6 +10,7 @@ use sirJuni\Framework\Middleware\Auth;
 require_once __DIR__ . "/../Controllers/authController.php";
 require_once __DIR__ . "/../Controllers/OAuthController.php";
 require_once __DIR__ . "/../Controllers/homeController.php";
+require_once __DIR__ . "/../Controllers/EmailOTPController.php";
 
 
 // set the fallback route for Auth middleware
@@ -28,6 +29,10 @@ Router::add_route("GET", ROOT . "/logout", [AuthController::class, 'logout']);
 // handle Oauth google
 Router::add_route("GET", ROOT."/oauth/google", [GoogleOauthController::class, 'init']);
 Router::add_route("GET", ROOT."/oauth/google/callback", [GoogleOauthController::class, 'callback']);
+
+// handle email OTP validation
+Router::add_route("GET", ROOT."/login/otp", [EmailOTPController::class, 'send_otp']);
+Router::add_route("POST", ROOT."/login/verify", [EmailOTPController::class, 'verify_otp']);
 
 // handle oauth facebook
 // Router::add_route("GET", ROOT . "/oauth/facebook", [FacebookOauthController::class, 'init']);

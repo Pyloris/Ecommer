@@ -30,26 +30,40 @@
         <div class="local-login">
             <h4 class="headings">Signup with Email</h4>
             <fieldset>
-                <form action="<?= ROOT; ?>/signup" method="post">
-                    <input type="text" class="text-feilds" placeholder="Username" required>
-                    <p class="username-validation"></p>
-                    <input type="email" class="text-feilds" placeholder="Email" required>
-                    <input type="password" class="text-feilds pwd" placeholder="Password" required>
+                <form action="" method="post">
+                    <input type="text" class="text-feilds" placeholder="First Name" required>
+                    <input type="text" class="text-feilds" placeholder="Last Name" required>
+                    <input type="text" class="text-feilds" placeholder="Userame" required>
+
+                    <input type="text" class="text-feilds email" placeholder="Email" required>
+                    <input type="text" class="text-feilds phone" placeholder="Phone" required>
+
+                    <div class="password-container">
+                        <input type="password" class="text-feilds pwd" placeholder="Password" required>
+                        <button class="eye-button" onclick="togglePasswordVisibility('pwd')">👁️
+                        </button>
+                    </div>
                     <!-- password verification -->
                     <div class="verify-pwd">
-                        <p> <span class="circle"> <input type="checkbox" class="check1"><span class="tick"></span></span> Length is greater than 8</p>
-                        <p> <span class="circle"><input type="checkbox" class="check2"><span class="tick"></span></span> At least 1 Uppercase Letter</p>
-                        <p> <span class="circle"><input type="checkbox" class="check3"> <span class="tick"></span> </span> At least 1 Lowercase Letter</p>
-                        <p> <span class="circle"><input type="checkbox" class="check4"><span class="tick"></span></span> At least 1 Number</p>
-                        <p> <span class="circle"><input type="checkbox" class="check5"><span class="tick"></span></span> At least 1 Special Character</p>     
+                        <p> <span class="circle"><span class="icon icon1"></span></span> Length is greater than 8</p>
+                        <p> <span class="circle"><span class="icon icon2"></span></span> At least 1 Uppercase Letter</p>
+                        <p> <span class="circle"><span class="icon icon3"></span> </span> At least 1 Lowercase Letter</p>
+                        <p> <span class="circle"><span class="icon icon4"></span></span> At least 1 Number</p>
+                        <p> <span class="circle"><span class="icon icon5"></span></span> At least 1 Special Character</p>     
                     </div>
                     <!-- ------------------------ -->
+                    
+                    <!-- <input type="text" class="text-feilds cPwd" placeholder="Confirm Password" required> -->
 
-                    <input type="password" class="text-feilds cPwd" placeholder="Confirm Password" required>
-
+                    <div class="password-container">
+                        <input type="password" class="text-feilds cPwd" placeholder="Confirm Password" required>
+                        <button class="eye-button" onclick="togglePasswordVisibility('cPwd')">👁️
+                        </button>
+                    </div>
+                    
                     <!-- ------------------------------------------ -->
                     <div class="verify-pwd cp">
-                        <p> <span class="circle"><input type="checkbox" class="check6"> <span class="tick"></span></span> Password matches</p>
+                        <p> <span class="circle"><span class="icon icon6"></span></span> Password matches</p>
                     </div>
                     <!-- ------------------------------- -->
 

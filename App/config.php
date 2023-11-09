@@ -16,6 +16,6 @@ const BRAND_LOGO = ROOT . "/static/images/logos/logo.png";
 
 
 // email config
-const APP_PASSWORD = "fgkc memy ngcg xxon";
+const APP_PASSWORD = "rfea ztmd dmpc dqof";
 
 ?>

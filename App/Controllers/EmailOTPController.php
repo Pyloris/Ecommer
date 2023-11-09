@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../vendor/autoload.php";
-
+require_once __DIR__ . "/../Helpers/functions.php";
 
 use sirJuni\Framework\View\VIEW;
 use sirJuni\Framework\Middleware\Auth;
@@ -23,42 +23,51 @@ class EmailOTPController {
         // otherwise shows error and sends back to signup
 
         // check if validate OTP is set
-        if ($request->sessionData('validate_OTP')) {
+        // echo($request->sessionData('validate_OTP'));
+        try{ 
+            if ($request->sessionData('validate_OTP')) {
 
-            // get the phone number from the session
-            $email = $request->sessionData('email');
-            $username = $request->sessionData('username');
+                // get the phone number from the session
+                $email = $request->sessionData('email');
+                $username = $request->sessionData('username');
 
-            // generate random 4 digit number
-            $random = rand(1000, 9999);
+                // generate random 4 digit number
+                $random = rand(1000, 9999);
 
-            // start mail server
-            $mail = new PHPMailer(true);
+                // start mail server
+                $mail = new PHPMailer(true);
 
-            $mail->isSMTP();
-            $mail->Host = "smtp.google.com";
-            $mail->SMTPAuth = true;
+                $mail->isSMTP();
+                $mail->Host = "smtp.gmail.com";
+                $mail->SMTPAuth = true;
 
-            $mail->Username = "fashionsanta@gmail.com";
-            $mail->Password = APP_PASSWORD;
-            $mail->Port = 465;
-            $mail->SMTPSecure = 'ssl';
+                $mail->Username = "fashionsantahere@gmail.com";
+                $mail->Password = APP_PASSWORD;
+                $mail->Port = 465;
+                $mail->SMTPSecure = 'ssl';
 
-            // sender info
-            $mail->setFrom("fashionsanta@gmail.com", "ECOMMER");
+                $mail->Timeout = 10;
 
-            // reciever
-            $mail->addAddress($email, $username);
+                // sender info
+                $mail->setFrom("fashionsanta@gmail.com", "ECOMMER");
 
-            $mail->isHTML(true);
+                // reciever
+                $mail->addAddress($email, $username);
 
-            $expiry = time() + 120;  // 2 minute valid
-            // bind the token and email
-            if ($db->addOTPWithEmail($email, $random, $expiry)) {
+                $mail->isHTML(true);
+
+                $expiry = time() + 120;  // 2 minute valid
+                
+                // store otp in session
+                if (session_status() == PHP_SESSION_NONE)
+                    session_start(); 
+                $_SESSION['otp'] = $random;
+                $_SESSION['expiry'] = $expiry;
+                session_write_close();
 
                 // add message body
                 $mail->Subject = "OTP for Email verification";
-
+                
                 $mail->Body = <<<DOC
                 <h2> OTP </h2>
                 <h5> Below is the OTP for Email verification </h5>
@@ -72,23 +81,82 @@ class EmailOTPController {
                     exit();
                 }
                 else {
-                    
+                    $mail->smtpClose();
                     // render verification page
                     VIEW::init("otp.html", ["email" => $email]);
+                    exit();
                 }
             }
             else {
-                HelperFuncs::redirect(ROOT . "/signup?error=DB error");
+                session_destroy();
+                unset_session(array_keys($_SESSION));
+                session_write_close();
+                HelperFuncs::redirect(ROOT . "/signup?error=session was invalid");
             }
         }
-        else {
-            echo("INVALID SESSION, SIGNUP AGAIN");
+        catch (Exception $e) {
+            VIEW::init("status.html", ['message' => 'THERE WAS AN ERROR IN SENDING EMAIL. Please try again later!']);
         }
     }
 
+    
     public function verify_otp($request) {
 
-        
+        $n1 = (int) $request->formData('n1');
+        $n2 = (int) $request->formData('n2');
+        $n3 = (int) $request->formData('n3');
+        $n4 = (int) $request->formData('n4');
+
+        $sum = $n1 + $n2 + $n3 + $n4;
+        // check if they are all numbers and defined
+        if (!preg_match('/^[0-9]{1,2}$/', "$sum")) {
+            echo("Please provides numbers as input");
+        }
+
+        $otp = $n1 * 1000 + $n2 * 100 + $n3 * 10 + $n4;
+
+        // get the email from the session
+        $email = $request->sessionData('email');
+
+        if ($request->sessionData('otp')) {
+            // check if OTP is expired
+            $expiry = (float) $request->sessionData('expiry');
+
+            if (time() > $expiry or $request->sessionData('count') == 3) {
+                // unset the OTP
+                unset_session(['otp', 'expiry', 'count']);
+                session_write_close();
+
+                HelperFuncs::redirect(ROOT . "/signup?error=otp expired");
+                exit();
+            }
+            else {
+                
+                // check if OTP is valid
+                if ($otp == (int) $request->sessionData('otp')) {
+                    unset_session(['otp', 'expiry', 'count']);
+                    // set the session variable
+                    // verified_with_otp = TRUE;
+                    $_SESSION['verified_with_otp'] = TRUE;
+                    session_write_close();
+                    // redirect to register
+                    HelperFuncs::redirect(ROOT . "/signup");
+                }
+                else {
+                    session_start();
+                    if ($request->sessionData('count')){
+                        $_SESSION['count'] += 1;
+                    }
+                    else {
+                        $_SESSION['count'] = 1; 
+                    }
+                    HelperFuncs::redirect(ROOT . "/signup/verify?error=wrong otp 2 tries remain");
+                }
+            }
+        }
+        else {
+            echo("Please try signing up again");
+        }
     }
 }
 

@@ -31,15 +31,15 @@
             <h4 class="headings">Signup with Email</h4>
             <fieldset>
                 <form action="" method="post">
-                    <input type="text" class="text-feilds" placeholder="First Name" required>
-                    <input type="text" class="text-feilds" placeholder="Last Name" required>
-                    <input type="text" class="text-feilds" placeholder="Userame" required>
-
-                    <input type="text" class="text-feilds email" placeholder="Email" required>
-                    <input type="text" class="text-feilds phone" placeholder="Phone" required>
+                    <input type="text" class="text-feilds" placeholder="First Name" name="first_name" required>
+                    <input type="text" class="text-feilds" placeholder="Last Name" name="last_name" required>
+                    <input type="text" class="text-feilds" placeholder="Userame" name="username" required>
+                    <p class="username-validation"></p>
+                    <input type="email" class="text-feilds email" placeholder="Email" name="email" required>
+                    <input type="text" class="text-feilds phone" placeholder="Phone" name="phone" required>
 
                     <div class="password-container">
-                        <input type="password" class="text-feilds pwd" placeholder="Password" required>
+                        <input type="password" class="text-feilds pwd" placeholder="Password" name="password" required>
                         <button class="eye-button b1" onclick="togglePasswordVisibility('pwd','b1')">👁️
                         </button>
                     </div>
@@ -64,8 +64,6 @@
                         <p> <span class="circle"><input type="checkbox" class="check6"> <span class="tick"></span></span> Password matches</p>
                     </div>
                     <!-- ------------------------------- -->
-
-                    <input type="tel" class="text-feilds" placeholder="Phone" name="phone" required>
                     <input type="submit" class="submit-btn" value="Signup">
                 </form>
             </fieldset>

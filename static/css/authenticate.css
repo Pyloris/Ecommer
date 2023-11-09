@@ -63,10 +63,27 @@ fieldset{
     display: block;
     width: 100%;
     padding: .7rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     outline: none;
     border: 1px solid #DA8067;
     border-radius: 10px;
+}
+
+.username-validation {
+    position: relative;
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 3px;
+    font-size: 1.2ch;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.valid {
+    color: green;
+}
+
+.not-valid {
+    color: red;
 }
 
 .submit-btn{
@@ -107,7 +124,7 @@ fieldset{
 
 @media screen and (min-width:751px ) and (max-width:1300px) {
     .login-content-container{
-        width:70%; 
+        width:60%; /*88888888888888888888888888888888888888 */
     }
 }
 
@@ -116,7 +133,7 @@ fieldset{
 
 .verify-pwd{
     text-align: left;
-    padding-left: 1rem;
+    padding-left: .5rem;
     font-weight:bold;
     color: rgb(66, 63, 63);
     margin-bottom: 1rem;
@@ -124,7 +141,7 @@ fieldset{
 }
 
 .verify-pwd p{
-    font-size: .7rem;
+    font-size: .65rem;
     margin-bottom: .4rem;
     display: flex; 
     align-items: center;
@@ -136,7 +153,6 @@ input[type="checkbox"]{
 }
 
 .circle{
-    border: 1px solid #DA8067;
     width: 15px;
     height: 15px;
     display: inline-block;
@@ -145,31 +161,67 @@ input[type="checkbox"]{
     border-radius: 50%;
 }
 
-.tick{
+/* .icon{
     display: inline-block;
     height: 100%;
     width: 100%;
     position:absolute;
     border-radius: 50%;
-}
+} */
 
-input[type="checkbox"]:checked + .tick{
-    background-color:#EBAF81;
-} 
-  
 .show{
     display: block;
 }
 
-.username-validation{
-    font-size: .7rem;
-    color: rgb(66, 63, 63);
-    text-align: left;
-    font-weight: 500;
-    padding-left: .5rem;
-    margin-bottom: 1rem;
+.disabled{
+    background-color: #EBAF81;
 }
 
-.text-feilds:first-child{
-    margin-bottom: .2rem;
+
+/* ------------------ */
+.tick::before {
+    content: '✔'; 
+    font-size: 12px; 
+    color: green; 
+    display: inline-block;
+    /* border: 1px solid green; */
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: .3rem;
+}
+
+.cross::before {
+    content: '✘';
+    font-size: 12px; 
+    color: red; 
+    display: inline-block;
+    /* border: 1px solid red; */
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: .3rem;
+}
+
+
+/* -------------------- */
+.password-container {
+    position: relative;
+}
+
+.text-feilds.cPwd {
+    width: 100%;
+    padding-right: 30px;
+}
+
+.eye-button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
 }

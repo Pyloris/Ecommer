@@ -92,18 +92,16 @@ class AuthController {
     }
 
     public function signup($request) {
-        if ($request->method() == "GET") {
-            VIEW::init("signup.html");
-        }
-        else if ($request->method() == "POST") {
+        
+        if ($request->method() == "POST" or $request->sessionData('verified_with_otp')) {
 
             // get all the fields
-            $username = $request->formData('username');
-            $first_name = $request->formData('first_name');
-            $last_name = $request->formData('last_name');
-            $email = $request->formData('email');
-            $password = $request->formData('password');
-            $phone = $request->formData('phone');
+            $username = $request->method() == "GET" ? $request->sessionData('username') : $request->formData('username');
+            $first_name = $request->method() == "GET" ? $request->sessionData('first_name') : $request->formData('first_name');
+            $last_name = $request->method() == "GET" ? $request->sessionData('last_name') : $request->formData('last_name');
+            $email = $request->method() == "GET" ? $request->sessionData('email') : $request->formData('email');
+            $password = $request->method() == "GET" ? $request->sessionData('password') : $request->formData('password');
+            $phone = $request->method() == "GET" ? $request->sessionData('phone') : $request->formData('phone');
 
             // this will be non zero if any validation fails
             $error = 0;
@@ -118,7 +116,7 @@ class AuthController {
             if (!preg_match('/^[a-zA-Z][a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{0,4}$/', $email))
                 $error = 3;
             
-            if (!preg_match('/[a-zA-Z0-9\_@\!\|\\\$\^\&\*\%]{8,}/', $password) and !preg_match('/^[0-9]{,10}$/', $phone))
+            if (!preg_match('/[a-zA-Z0-9\_@\!\|\\\$\^\&\*\%]{8,}/', $password) and !preg_match('/^[0-9]{0,10}$/', $phone))
                 $error = 4;
 
             // if all the fields are set, add the user to the database
@@ -132,34 +130,63 @@ class AuthController {
 
                 // check if username is duplicate
                 if ($db->getUser(NULL, $username)) {
-                    HelperFuncs::redirect(ROOT . "/signup?error=Username not available!");
+                    HelperFuncs::redirect(ROOT . "/signup?error=An account with this username already exists");
+                    exit();
+                }
+                else if ($db->getUser($email)) {
+                    HelperFuncs::redirect(ROOT . "/signup/?error=An account with this email already exists!");
                     exit();
                 }
 
                 // add the user to db
-                if ($db->addUser($username, $first_name, $last_name, $email, $passhash, $phone)) {
+                if ($request->sessionData('verified_with_otp')) {
 
                     // successfully added
                     // redirect to home
+                    if ($db->addUser($username, $first_name, $last_name, $email, $passhash, $phone)) {
                     
-                    // get user from db
-                    $user = $db->getUser($email);
+                        // get user from db
+                        $user = $db->getUser($email);
 
-                    if ($user) {
-                        Auth::login($user);
+                        if ($user) {
+                            Auth::login($user);
+                        }
+
+                        HelperFuncs::redirect(ROOT . "/");
+                        exit();
                     }
-
-                    HelperFuncs::redirect(ROOT . "/login/otp");
-                    exit();
+                    else {
+                        HelperFuncs::redirect(ROOT . "/signup?error=Could not create your account. try again");
+                        exit();
+                    }
                 }
                 else {
-                    HelperFuncs::redirect(ROOT . "/signup?error=This error was on our part. We are trying to fix it");
+
+                    // send user to the otp verification page
+                    // set the data in the session
+                    session_start();
+                    $_SESSION['email'] = $email;
+                    $_SESSION['username'] = $username;
+                    $_SESSION['first_name'] = $first_name;
+                    $_SESSION['last_name'] = $last_name;
+                    $_SESSION['password'] = $password;
+                    $_SESSION['phone'] = $phone;
+
+                    // send user to otp validation
+                    $_SESSION['validate_OTP'] = TRUE;
+                    session_write_close();
+
+                    HelperFuncs::redirect(ROOT . "/signup/otp");
+                    exit();
                 }
             }
             else {
                 // if a field is missing
-                HelperFuncs::redirect(ROOT . "/signup?error=One or More fields are missing&code=$error");
+                HelperFuncs::redirect(ROOT . "/signup?error=adhere to format&code=$error");
             }
+        }
+        else if ($request->method() == "GET") {
+            VIEW::init("signup.html");
         }
     }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7bd320fdee3ae3ed1e1194f5b60ef6c5",
+    "content-hash": "b5e9a7aaaf24c8e065796aa9133305a0",
     "packages": [
         {
             "name": "abraham/twitteroauth",
@@ -1568,16 +1568,16 @@
         },
         {
             "name": "shoaib/sir-juni",
-            "version": "2.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Pyloris/sirJuni.git",
-                "reference": "1908a945375016bf1f77d12935548c776112c3ec"
+                "reference": "852219bdf44466ca8b1c66b215c529bd1793a8fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Pyloris/sirJuni/zipball/1908a945375016bf1f77d12935548c776112c3ec",
-                "reference": "1908a945375016bf1f77d12935548c776112c3ec",
+                "url": "https://api.github.com/repos/Pyloris/sirJuni/zipball/852219bdf44466ca8b1c66b215c529bd1793a8fc",
+                "reference": "852219bdf44466ca8b1c66b215c529bd1793a8fc",
                 "shasum": ""
             },
             "require": {
@@ -1588,6 +1588,7 @@
             "require-dev": {
                 "phpunit/phpunit": "^9.5"
             },
+            "default-branch": true,
             "type": "project",
             "autoload": {
                 "files": [],
@@ -1608,9 +1609,9 @@
             "description": "A simple mini-php framework to build backends.",
             "support": {
                 "issues": "https://github.com/Pyloris/sirJuni/issues",
-                "source": "https://github.com/Pyloris/sirJuni/tree/v2.0.0"
+                "source": "https://github.com/Pyloris/sirJuni/tree/master"
             },
-            "time": "2023-11-06T10:56:00+00:00"
+            "time": "2023-11-08T15:15:05+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -1683,7 +1684,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "shoaib/sir-juni": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

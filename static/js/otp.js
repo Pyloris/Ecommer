@@ -1,50 +1,28 @@
- const inputs = document.querySelectorAll("input"),
-  button = document.querySelector("button");
-
-// iterate over all inputs
-inputs.forEach((input, index1) => {
-  input.addEventListener("keyup", (e) => {
-    // This code gets the current input element and stores it in the currentInput variable
-    // This code gets the next sibling element of the current input element and stores it in the nextInput variable
-    // This code gets the previous sibling element of the current input element and stores it in the prevInput variable
-    const currentInput = input,
-      nextInput = input.nextElementSibling,
-      prevInput = input.previousElementSibling;
-
-    // if the value has more than one character then clear it
-    if (currentInput.value.length > 1) {
-      currentInput.value = "";
-      return;
-    }
-    // if the next input is disabled and the current value is not empty
-    //  enable the next input and focus on it
-    if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
-      nextInput.removeAttribute("disabled");
-      nextInput.focus();
-    }
-
-    // if the backspace key is pressed
-    if (e.key === "Backspace") {
-      // iterate over all inputs again
-      inputs.forEach((input, index2) => {
-        // if the index1 of the current input is less than or equal to the index2 of the input in the outer loop
-        // and the previous element exists, set the disabled attribute on the input and focus on the previous element
-        if (index1 <= index2 && prevInput) {
-          input.setAttribute("disabled", true);
-          input.value = "";
-          prevInput.focus();
+function moveField(event, nextInputId, prevInputId) {
+    if (event) {
+        let currentInput = event.target;
+        let currentLen = currentInput.value.length;
+        if (event.inputType === "deleteContentBackward") {
+            if (currentLen === 0 || prevInputId) {
+                document.getElementById(prevInputId).focus();
+            }
+        } else if (currentLen === 1 && nextInputId) {
+            document.getElementById(nextInputId).focus();
         }
-      });
     }
-    //if the fourth input( which index number is 3) is not empty and has not disable attribute then
-    //add active class if not then remove the active class.
-    if (!inputs[3].disabled && inputs[3].value !== "") {
-      button.classList.add("active");
-      return;
-    }
-    button.classList.remove("active");
-  });
-});
+}
 
-//focus the first input which index is 0 on window load
-window.addEventListener("load", () => inputs[0].focus());
+let inputs = document.querySelectorAll('.otp-input');
+
+inputs.forEach(function(input, index, arr) {
+    let nextInputId = index < arr.length - 1 ? arr[index + 1].id : null;
+    let prevInputId = index > 0 ? arr[index - 1].id : null;
+
+    input.addEventListener('input', function(event) {
+        moveField(event, nextInputId, prevInputId);
+    });
+
+    input.addEventListener('focus', function() {
+        moveField(null, nextInputId, prevInputId);
+    });
+});

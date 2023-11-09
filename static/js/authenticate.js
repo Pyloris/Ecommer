@@ -65,7 +65,7 @@ function validatePwd(value) {
 function updateValidationStatus(elementId,isValid) {
     const element = document.querySelector(`.${elementId}`);
     // console.log(element);
-    console.log(isValid);
+
     if (isValid) {
         element.classList.add("tick");
         element.classList.remove("cross");

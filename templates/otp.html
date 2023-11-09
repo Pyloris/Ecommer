@@ -15,7 +15,7 @@
             <img src="<?= ROOT; ?>/static/images/open-email.png" alt="envelope image">
         </div>
 
-        <p class="otp-message">We have sent a verification code on <?= $email; ?></p>
+        <p class="otp-message">We have sent a verification code on <span><?= $email; ?></span><br/> Enter the verification code below.</p>
 
         <form action="<?= ROOT; ?>/signup/verify" method="post">
             <div id="otp-input">

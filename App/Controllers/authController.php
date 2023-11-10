@@ -183,11 +183,19 @@ class AuthController {
             else {
                 // if a field is missing
                 HelperFuncs::redirect(ROOT . "/signup?error=adhere to format&code=$error");
+                exit();
             }
         }
-        else if ($request->method() == "GET") {
+        else if ($request->method() == "GET" and $request->sessionData('validate_OTP')) {
+            session_destroy();
+            unset_session($request->sessionKeys());
+            session_write_close();
             VIEW::init("signup.html");
+            exit();
         }
+
+        // render the HTML if request is simple GET request
+        VIEW::init("signup.html");
     }
 
     public function logout($request) {

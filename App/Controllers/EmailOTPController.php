@@ -46,7 +46,7 @@ class EmailOTPController {
                 $mail->Port = 465;
                 $mail->SMTPSecure = 'ssl';
 
-                $mail->Timeout = 10;
+                $mail->Timeout = 60;
 
                 // sender info
                 $mail->setFrom("fashionsanta@gmail.com", "ECOMMER");
@@ -63,6 +63,7 @@ class EmailOTPController {
                     session_start(); 
                 $_SESSION['otp'] = $random;
                 $_SESSION['expiry'] = $expiry;
+                $_SESSION['count'] = 0;
                 session_write_close();
 
                 // add message body
@@ -95,7 +96,7 @@ class EmailOTPController {
             }
         }
         catch (Exception $e) {
-            VIEW::init("status.html", ['message' => 'THERE WAS AN ERROR IN SENDING EMAIL. Please try again later!']);
+            VIEW::init("status.html", ['message' => $e->getMessage()]);
         }
     }
 
@@ -124,10 +125,11 @@ class EmailOTPController {
 
             if (time() > $expiry or $request->sessionData('count') == 3) {
                 // unset the OTP
-                unset_session(['otp', 'expiry', 'count']);
+                session_destroy();
+                unset_session($request->sessionKeys());
                 session_write_close();
 
-                HelperFuncs::redirect(ROOT . "/signup?error=otp expired");
+                HelperFuncs::redirect(ROOT . "/signup?error=otp expired or max tries exceeded");
                 exit();
             }
             else {
@@ -143,19 +145,16 @@ class EmailOTPController {
                     HelperFuncs::redirect(ROOT . "/signup");
                 }
                 else {
-                    session_start();
                     if ($request->sessionData('count')){
                         $_SESSION['count'] += 1;
                     }
-                    else {
-                        $_SESSION['count'] = 1; 
-                    }
-                    HelperFuncs::redirect(ROOT . "/signup/verify?error=wrong otp 2 tries remain");
+                    HelperFuncs::redirect(ROOT . "/signup/verify?error=wrong otp {$request->sessionData('count')} tries remain");
                 }
             }
         }
         else {
-            echo("Please try signing up again");
+            unset_session($request->sessionKeys());
+            HelperFuncs::redirect(ROOT . "/signup"); 
         }
     }
 }

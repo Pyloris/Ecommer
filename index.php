@@ -5,6 +5,10 @@ use sirJuni\Framework\Application\Application;
 use sirJuni\Framework\View\VIEW;
 
 
+// start user session
+session_start();
+
+
 // define the application root
 // incase the project folder is not the one being served, but one of
 // its parent folders is

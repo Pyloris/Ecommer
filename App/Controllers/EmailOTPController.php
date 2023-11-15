@@ -76,6 +76,11 @@ class EmailOTPController {
                 <p> This OTP is valid for 2 minutes. </p>
                 DOC;
 
+                if ($request->queryData('resend')) {
+                    $mail->send();
+                    exit();
+                }
+
                 // send the email
                 if (!$mail->send()) {
                     HelperFuncs::redirect(ROOT . "/signup?error=Could not send email. Trying to fix");

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?= ROOT; ?>/templates/store/css/style.css">
+    <title>Store</title>
+</head>
+<body>
+<div class="container page-wrapper">
+  <div class="page-inner">
+    <?php foreach($products as $product) { ?>
+    
+    <?php
+        $img = explode(':', $product['imgs']);
+        $img = $img[0];
+    ?>
+    <div class="row">
+      <div class="el-wrapper">
+        <div class="box-up">
+          <img class="img" src="<?= ROOT; ?>/static/images/product_imgs/<?= $img; ?>">
+          <div class="img-info">
+            <div class="info-inner">
+              <span class="p-name"><?= $product['name']; ?></span>
+              <span class="p-company"><?= $product['category']; ?></span>
+            </div>
+            <!-- <div class="a-size">Available sizes : <span class="size">S , M , L , XL</span></div> -->
+          </div>
+        </div>
+
+        <div class="box-down">
+          <div class="h-bg">
+            <div class="h-bg-inner"></div>
+          </div>
+          
+          <form action="<?=ROOT;?>/cart", method="POST">
+            <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+
+          <button class="cart" href="<?= ROOT; ?>/cart?product=<?= $product['id'];?>">
+            <span class="price"><?= $product['SP']; ?></span>
+            <span class="add-to-cart">
+              <span class="txt">Add in cart</span>
+            </span>
+          </form>
+        </button>
+        </div>
+      </div>
+    </div>
+    <?php } ?>
+  </div>
+</div> 
+</body>
+</html>

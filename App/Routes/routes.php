@@ -11,6 +11,13 @@ require_once __DIR__ . "/../Controllers/authController.php";
 require_once __DIR__ . "/../Controllers/OAuthController.php";
 require_once __DIR__ . "/../Controllers/homeController.php";
 require_once __DIR__ . "/../Controllers/EmailOTPController.php";
+require_once __DIR__ . "/../Controllers/AdminController.php";
+require_once __DIR__ . "/../Controllers/OrderController.php";
+require_once __DIR__ . "/../Controllers/RZPWebhookController.php";
+
+
+// bring in custom middleware
+require_once __DIR__ . "/../Middleware/PaymentFlow.php";
 
 
 // set the fallback route for Auth middleware
@@ -34,6 +41,18 @@ Router::add_route("GET", ROOT."/oauth/google/callback", [GoogleOauthController::
 Router::add_route("GET", ROOT."/signup/otp", [EmailOTPController::class, 'send_otp']);
 Router::add_route(["GET", "POST"], ROOT."/signup/verify", [EmailOTPController::class, 'verify_otp']);
 
+
+
+// handle ADmin routes
+Router::add_route("GET", ROOT . "/admin", [AdminController::class, 'show'])->middleware(Auth::class);
+Router::add_route(["GET", "POST"], ROOT . "/admin/add_product", ['AdminController'::class, 'addProduct'])->middleware(Auth::class);
+
+
+
+// razorpay webhook handler
+Router::add_route("POST", ROOT . "/rzp_webhook", [RZPWebhookController::class, 'handle']);
+
+
 // handle oauth facebook
 // Router::add_route("GET", ROOT . "/oauth/facebook", [FacebookOauthController::class, 'init']);
 // Router::add_route("GET", ROOT . "/oauth/facebook/callback", [FacebookOauthController::class, 'callback']);
@@ -47,4 +66,6 @@ Router::add_route(["GET", "POST"], ROOT."/signup/verify", [EmailOTPController::c
     ROUTES WHICH HANDLE THE HOME PAGE
 */
 Router::add_route("GET", ROOT."/", [HomeController::class, 'show'])->middleware(Auth::class);
-?>
+Router::add_route(["GET", "POST"], ROOT. "/cart", [OrderController::class, 'cartHandler'])->middleware(Auth::class);
+Router::add_route("GET", ROOT. "/store/payment", [OrderController::class, 'createOrder'])->middleware(Auth::class)->middleware(PaymentFlow::class);
+?> 

@@ -35,11 +35,14 @@ function togglePasswordVisibility(inputId,buttonId) {
 const password = document.querySelector('.pwd');
 var inputValue;
 
-password.addEventListener("keyup",(e)=>{
+const validator = (e)=>{
     validatePwd(e.target.value);
     inputValue = e.target.value;
     checkValidation();
-});
+}
+
+password.addEventListener("keyup", validator);
+password.addEventListener("focusin", validator);
 
 password.addEventListener("focusin",(e)=>{
     document.querySelector('.verify-pwd').classList.add("show");
@@ -62,7 +65,7 @@ function validatePwd(value) {
 function updateValidationStatus(elementId,isValid) {
     const element = document.querySelector(`.${elementId}`);
     // console.log(element);
-    
+
     if (isValid) {
         element.classList.add("tick");
         element.classList.remove("cross");
@@ -74,17 +77,20 @@ function updateValidationStatus(elementId,isValid) {
 }
 
 // password match code
-confirmPassword = document.querySelector(".cPwd");
+let confirmPassword = document.querySelector(".cPwd");
 
-confirmPassword.addEventListener("keyup",(e)=>{
+const anon = (e)=>{
     pwd_matches(e.target.value);
     checkValidation();
-});
+}
+
+confirmPassword.addEventListener("keyup", anon);
+confirmPassword.addEventListener("focusin", anon);
 
 confirmPassword.addEventListener("focusin",(e)=>{
     document.querySelector('.cp').classList.add("show");
 });
 
 function pwd_matches(value){
-    updateValidationStatus("icon6", value===inputValue);
+    updateValidationStatus("icon6", value == inputValue);
 }

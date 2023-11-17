@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #image-preview > img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 2rem;
+        }
+    </style>
+    <title>Add Product</title>
+</head>
+<body>
+    <div id="image-preview"></div>
+
+    <script>
+        function previewImage(event) {
+            const input = event.target;
+            for (let img of input.files) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const imagePreview = document.getElementById('image-preview');
+                    imagePreview.innerHTML += '<img src="' + e.target.result + '" alt="Image Preview">';
+                };
+
+                reader.readAsDataURL(img);
+            }
+        }
+    </script>
+
+    <form action="<?= ROOT; ?>/admin/add_product" method="POST" enctype="multipart/form-data">
+        <pre>
+            <input type="file" name="imgs[]" multiple="multiple" accept=".png, .jpg, .jpeg" onchange="previewImage(event)" required>
+            <input type="text" name="name" placeholder="Enter product name" required>
+            <textarea name="description" id="" cols="30" rows="10" required></textarea>
+            <input type="text" name="MRP" placeholder="Enter MRP" required>
+            <input type="text" name="SP" placeholder="Enter selling price" required>
+            <input type="text" name="sku" placeholder="SKU of the product" required>
+            <input type="text" name="category" placeholder="Enter category of the product" required>
+            <input type="text" name="stock" placeholder="No. of items in Stock" required>
+            <input type="submit" value="submit">
+        </pre>
+    </form> 
+</body>
+</html>

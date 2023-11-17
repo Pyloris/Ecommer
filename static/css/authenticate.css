@@ -63,10 +63,27 @@ fieldset{
     display: block;
     width: 100%;
     padding: .7rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     outline: none;
     border: 1px solid #DA8067;
     border-radius: 10px;
+}
+
+.username-validation {
+    position: relative;
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 3px;
+    font-size: 1.2ch;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.valid {
+    color: green;
+}
+
+.not-valid {
+    color: red;
 }
 
 .submit-btn{
@@ -208,4 +225,3 @@ input[type="checkbox"]{
     border: none;
     cursor: pointer;
 }
-

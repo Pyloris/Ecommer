@@ -124,11 +124,18 @@
 
 
 .nav-bar{
-    justify-content: flex-start;
     white-space: nowrap;
     overflow-x: auto;    
     -webkit-overflow-scrolling: touch; 
 }
+
+/* responsive------------------------------------------- */
+@media screen and (max-width:960px) {
+    .nav-bar{
+        justify-content: flex-start;
+    }
+}
+/* ---------------------------------------------------------------------------------- */
 
 
 /* wrapper styling ---------------------------------- */

@@ -1,12 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- custom stylesheet link -->
+  <link rel="stylesheet" href="../static/css/product_listing.css">
+  <link rel="stylesheet" href="../static/css/home.css">
+  <!-- custom script file -->
+  <script src="../static/js/home.js" defer></script>
 </head>
+
 <body>
-    <h1>Hey, you logged in finally ha!</h1>
-    <a href="<?= ROOT; ?>/logout">Logout Now ?</a>
+
+
+
+  <!-- search and sort -->
+  <div class="heading">
+    <h1 class="title">ZephyrBay</h1>
+    <div class="searchbar">
+      <input type="text" placeholder="Seach Items here...">
+      <button><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <div class="header-links">
+      <a href="" class="style-anchor-tags"><i class="fa-regular fa-user"></i> <span>My Account</span></a>
+      <a href="" class="style-anchor-tags"><i class="fa-regular fa-heart"></i><span> Wishlist</span></a>
+      <a href="" class="style-anchor-tags"><i class="fa-solid fa-bag-shopping"></i> <span>My Cart</span></a>
+    </div>
+  </div>
+
+  <!-- navbar -->
+  <nav class="nav-bar">
+    <a href="" class="style-anchor-tags">Categories</a>
+    <a href="" class="style-anchor-tags">Hot Offers</a>
+    <a href="" class="style-anchor-tags">Gift Boxes</a>
+    <a href="" class="style-anchor-tags">Shop</a>
+  </nav>
+
+  <!-- different categories listings -->
+  <div class="catergories-listings">
+    <a href="" class="style-anchor-tags">Electronics</a>
+    <a href="" class="style-anchor-tags">Clothes And Wear</a>
+    <a href="" class="style-anchor-tags">Tools, Equipments</a>
+    <a href="" class="style-anchor-tags">Animal and Pets</a>
+    <a href="" class="style-anchor-tags">Home Interiors</a>
+    <a href="" class="style-anchor-tags">Computer and Tech</a>
+    <a href="" class="style-anchor-tags">Sports and outdoor</a>
+    <a href="" class="style-anchor-tags">Other products</a>
+  </div>
+
+
+  <!-- slider -->
+  <div class="slider-container">
+    <div class="slides">
+      <div class="slide">
+        <img src="https://cdn.pixabay.com/photo/2015/01/15/13/06/woman-600238_1280.jpg" alt="Slide 1">
+      </div>
+      <div class="slide">
+        <img src="https://cdn.pixabay.com/photo/2016/11/21/16/01/woman-1846127_1280.jpg"
+          alt="Slide 2">
+      </div>
+      <div class="slide">
+        <img
+          src="https://cdn.pixabay.com/photo/2016/11/29/11/12/rain-1869119_1280.jpg"
+          alt="Slide 3">
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="control-btn" onclick="prevSlide()">❮</button>
+      <button class="control-btn" onclick="nextSlide()">❯</button>
+    </div>
+
+    <div class="indicators"></div>
+  </div>
+
+
+  <!-- collections -->
+  <h3 class="section-heading">Our Collections</h3>
+  <div class="collections-container">
+
+    <div class="collection-card">
+      <img
+        src="https://products.shureweb.eu/shure_product_db/product_main_images/files/c25/16a/40-/original/ce632827adec4e1842caa762f10e643d.webp"
+        alt="">
+      <div class="collection-content">
+        <p>Collection Name</p>
+        <a href="" class="style-anchor-tags">─ ─ Shop Now</a>
+      </div>
+    </div>
+
+    <div class="collection-card">
+      <img
+        src="https://products.shureweb.eu/shure_product_db/product_main_images/files/c25/16a/40-/original/ce632827adec4e1842caa762f10e643d.webp"
+        alt="">
+      <div class="collection-content">
+        <p>Collection Name</p>
+        <a href="" class="style-anchor-tags">─ ─ Shop Now</a>
+      </div>
+    </div>
+
+    <div class="collection-card">
+      <img
+        src="https://products.shureweb.eu/shure_product_db/product_main_images/files/c25/16a/40-/original/ce632827adec4e1842caa762f10e643d.webp"
+        alt="">
+      <div class="collection-content">
+        <p>Collection Name</p>
+        <a href="" class="style-anchor-tags">─ ─ Shop Now</a>
+      </div>
+    </div>
+
+    <div class="collection-card">
+      <img
+        src="https://products.shureweb.eu/shure_product_db/product_main_images/files/c25/16a/40-/original/ce632827adec4e1842caa762f10e643d.webp"
+        alt="">
+      <div class="collection-content">
+        <p>Collection Name</p>
+        <a href="" class="style-anchor-tags">─ ─ Shop Now</a>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- Featured section -->
+  <h3 class="section-heading">Featured Products</h3>
+  <div class="feature-container">
+
+    <div class="feature-card">
+      <img
+        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4948095c2bd04bbcb5c2af1601154a02_9366/Stan_Smith_Lux_Shoes_White_HP2201_HM1.jpg"
+        alt="">
+      <div class="feature-card-details">
+        <p>product collection type</p>
+        <h5>product name</h5>
+        <h4>$345 - $467</h4>
+      </div>
+      <div class="hover">
+        <a href="" class="style-anchor-tags">Checkout</a>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <img
+        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4948095c2bd04bbcb5c2af1601154a02_9366/Stan_Smith_Lux_Shoes_White_HP2201_HM1.jpg"
+        alt="">
+      <div class="feature-card-details">
+        <p>product collection type</p>
+        <h5>product name</h5>
+        <h4>$345 - $467</h4>
+      </div>
+      <div class="hover">
+        <a href="" class="style-anchor-tags">Checkout</a>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <img
+        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4948095c2bd04bbcb5c2af1601154a02_9366/Stan_Smith_Lux_Shoes_White_HP2201_HM1.jpg"
+        alt="">
+      <div class="feature-card-details">
+        <p>product collection type</p>
+        <h5>product name</h5>
+        <h4>$345 - $467</h4>
+      </div>
+      <div class="hover">
+        <a href="" class="style-anchor-tags">Checkout</a>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <img
+        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4948095c2bd04bbcb5c2af1601154a02_9366/Stan_Smith_Lux_Shoes_White_HP2201_HM1.jpg"
+        alt="">
+      <div class="feature-card-details">
+        <p>product collection type</p>
+        <h5>product name</h5>
+        <h4>$345 - $467</h4>
+      </div>
+      <div class="hover">
+        <a href="" class="style-anchor-tags">Checkout</a>
+      </div>
+    </div>
+
+    <div class="feature-card">
+      <img
+        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4948095c2bd04bbcb5c2af1601154a02_9366/Stan_Smith_Lux_Shoes_White_HP2201_HM1.jpg"
+        alt="">
+      <div class="feature-card-details">
+        <p>product collection type</p>
+        <h5>product name</h5>
+        <h4>$345 - $467</h4>
+      </div>
+      <div class="hover">
+        <a href="" class="style-anchor-tags">Checkout</a>
+      </div>
+    </div>
+
+    <a href="" class="checkout-more">Load More <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+
+
+  <!-- shop by categories section -->
+  <h3 class="section-heading">Shop By Categories</h3>
+  <div class="shop-categories">
+
+    <div class="category-item">
+      <img
+        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
+        alt="">
+      <a href="" class="style-anchor-tags">Category Name</a>
+    </div>
+
+
+    <div class="category-item">
+      <img
+        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
+        alt="">
+      <a href="" class="style-anchor-tags">Category Name</a>
+    </div>
+
+    <div class="category-item">
+      <img
+        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
+        alt="">
+      <a href="" class="style-anchor-tags">Category Name</a>
+    </div>
+
+    <div class="category-item">
+      <img
+        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
+        alt="">
+      <a href="" class="style-anchor-tags">Category Name</a>
+    </div>
+
+    <div class="category-item">
+      <img
+        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
+        alt="">
+      <a href="" class="style-anchor-tags">Category Name</a>
+    </div>
+
+    <div class="category-item">
+      <img
+        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
+        alt="">
+      <a href="" class="style-anchor-tags">Category Name</a>
+    </div>
+
+    <div class="category-item">
+      <img
+        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
+        alt="">
+      <a href="" class="style-anchor-tags">Category Name</a>
+    </div>
+
+    <div class="category-item">
+      <img
+        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
+        alt="">
+      <a href="" class="style-anchor-tags">Category Name</a>
+    </div>
+
+    <div class="category-item">
+      <img
+        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
+        alt="">
+      <a href="" class="style-anchor-tags">Category Name</a>
+    </div>
+
+    <div class="category-item">
+      <img
+        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
+        alt="">
+      <a href="" class="style-anchor-tags">Category Name</a>
+    </div>
+
+  </div>
+
+
+  <!-- our best sellers -->
+  <h3 class="section-heading">Our Best Sellers</h3>
+  <div class="best-seller-container">
+
+      <div class="best-seller-card">
+        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
+        <div class="seller-card-content">
+          <p>product name</p>
+          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      
+      <div class="best-seller-card">
+        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
+        <div class="seller-card-content">
+          <p>product name</p>
+          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="best-seller-card">
+        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
+        <div class="seller-card-content">
+          <p>product name</p>
+          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="best-seller-card">
+        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
+        <div class="seller-card-content">
+          <p>product name</p>
+          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="best-seller-card">
+        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
+        <div class="seller-card-content">
+          <p>product name</p>
+          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="best-seller-card">
+        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
+        <div class="seller-card-content">
+          <p>product name</p>
+          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="best-seller-card">
+        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
+        <div class="seller-card-content">
+          <p>product name</p>
+          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="best-seller-card">
+        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
+        <div class="seller-card-content">
+          <p>product name</p>
+          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <a href="" class="checkout-more">Load More <i class="fa-solid fa-arrow-right"></i></a>
+
+  </div>
+  
+
+  <!-- famous brands -->
+  <div class="brands">
+
+    <a class="brand-list-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt-5VsBCVY4TwEw_NHvp9T8U5R17aL7x1l_1b6nOJFS04hmCa3NzAklvCIrbrRrPt6pvo&usqp=CAU" alt="">
+    </a>
+    
+
+    <a class="brand-list-item">
+      <img src="https://logos-world.net/wp-content/uploads/2020/04/Nike-Logo.png" alt="">
+    </a>
+
+    <a class="brand-list-item">
+      <img src="https://cdn.logojoy.com/wp-content/uploads/2018/05/30171154/944.png" alt="">
+    </a>
+
+    <a class="brand-list-item">
+      <img src="https://www.thelogocreative.co.uk/wp-content/uploads/rolex-min.jpg" alt="">
+    </a>
+
+    <a class="brand-list-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqsg4hKzsyNJXIEcJhjb3ZV1JXv5PbYjoXfqGC2dlgPmhXf3pUR1D8YDgN-1rmRF79Lps&usqp=CAU" alt="">
+    </a>
+
+    <a class="brand-list-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAGPMrJOBjj37-3d7QdU3TfCzb68p1aG_x7A&usqp=CAU" alt="">
+    </a>
+
+    <a class="brand-list-item">
+      <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_924+to_webp+ret_img/brandyuva.in/wp-content/uploads/2017/09/campus-shoe-logo.jpg" alt="">
+    </a>
+
+    <a class="brand-list-item">
+      <img src="https://www.pngitem.com/pimgs/m/508-5082031_clothes-brand-logo-png-transparent-png.png" alt="">
+    </a>
+    
+    <a class="brand-list-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGH-Qoz0Gy1u8YgwrffsW4Nq73ZL50FdNhHg&usqp=CAU" alt="">
+    </a>
+
+  </div>
+
+
+  <!-- footer section  -->
+  <footer>
+    <div class="box-1">
+      <h1 class="title">ZephyrBay</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo officiis sit reiciendis dignissimos. Quas laborum corrupti, magni error dolor incidunt esse consectetur quae obcaecati quos sit animi, expedita, sequi voluptas.</p>
+
+      <div class="links">
+        <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+        <a href=""><i class="fa-brands fa-twitter"></i></a>
+        <a href=""><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="box-2">
+
+      <div class="sub-box">
+        <h4>Pages</h4>
+        <a href="">Home</a>
+        <a href="">About</a>
+        <a href="">Store</a>
+        <a href="">Explore</a>
+        <a href="">Contact</a>
+      </div>
+
+      <div class="sub-box">
+        <h4>Features</h4>
+        <a href="">Shop</a>
+        <a href="">Cart</a>
+        <a href="">Notification</a>
+        <a href="">Sale</a>
+      </div>
+
+      <div class="sub-box">
+        <h4>Contact Us</h4>
+        <a href="">Privacy & Policy</a>
+        <a href="">+13937838447</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+  <p class="ending-message">Made by Zahira Khawaja and Shoaib Wani</p>
+
+
+  <!-- <h1>Hey, you logged in finally ha!</h1> -->
+  <!-- <a href="<?= ROOT; ?>/logout">Logout Now ?</a> -->
+
+
 </body>
+
 </html>

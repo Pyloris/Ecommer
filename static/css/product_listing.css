@@ -1,0 +1,346 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* common classes */
+.style-anchor-tags{
+    text-decoration: none;
+    font-size: .9rem;
+    padding: .5rem;
+    margin:0 .5rem;
+}
+
+/* styling heading --------------------------*/
+.heading{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: .5rem;
+}
+
+
+.title{
+    color: #DA8067;
+    font-family: 'Great Vibes', cursive;
+}
+
+.searchbar{
+    position: relative;
+    width: 40%;
+}
+
+.searchbar input{
+    width: 100%;
+    outline: none;
+    padding: .3rem;
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.searchbar button{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background:none;
+    border: none;
+    padding-right:.5rem;
+    color: gray;
+}
+
+.header-links a{
+    color: #DA8067;
+}
+
+.header-links a:hover{
+    color: #EBAF81;
+}
+
+/* make heading responsive----------------------------------- */
+@media screen and (max-width:960px) {
+
+    .heading{
+        row-gap:.6rem;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .title{
+        align-self: flex-start;
+        order: 1;
+    }
+
+    .header-links{
+        order: 2;
+        align-self: flex-end;
+        top: 14px;
+        position: absolute;
+    }
+    
+    .header-links a span{
+        display: none;
+
+    }
+
+    .header-links a{
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    .searchbar{
+        order: 3;
+        width: 95%;
+    }
+}
+/* ------------------------------------------------------------------------------ */
+
+
+/* styling navbar ----------------------------------------- */
+.nav-bar{
+    background-color: #EBAF81;
+    padding: .3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-bar a{
+    color: rgb(52, 50, 50);
+    letter-spacing: .1rem;
+}
+
+.show-navbar{
+    display: none;
+}
+
+.nav-bar div a:hover{
+    color: #DA8067;
+}
+
+
+.nav-bar{
+    justify-content: flex-start;
+    white-space: nowrap;
+    overflow-x: auto;    
+    -webkit-overflow-scrolling: touch; 
+}
+
+
+/* wrapper styling ---------------------------------- */
+.wrapper{
+    margin: 3rem 7%;
+    display: flex;
+    gap: 2rem;
+}
+
+.filter{
+    width:20%;
+}
+
+/* filter list styling ---------------------- */
+.filter-list-card{
+    max-height: 20vh; 
+    white-space: nowrap;
+    overflow-y:auto;    
+    -webkit-overflow-scrolling: touch; 
+    margin-bottom: 1.7rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-heading{
+    padding: .5rem;
+    border-left: 4px solid #DA8067;
+    margin-bottom: .7rem;
+    background-color: rgba(128, 128, 128, 0.237);
+    color:rgb(83, 79, 79);
+}
+
+.filter-items{
+    margin-bottom: .5rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding-left: .5rem;
+    font-size: .8rem;
+}
+
+.filter-items input[type="checkbox"]{
+    height: 15px;
+    width: 15px;
+}
+
+.colors-card,.price-btn{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    padding-left: .5rem;
+}
+
+.colors-card button{
+    border: none;
+    background: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+.price-btn button{
+    background:none;
+    border: 1px solid rgb(166, 164, 164);
+    border-radius: 10px;
+    padding:.1rem .3rem;
+    font-size: .7rem;
+}
+
+.filter-show-btn{
+    display: none;
+}
+
+/* responsive filter--------------------------------- */
+@media screen and (max-width:960px) {
+    .wrapper{
+        position: relative;
+        padding-top: 4rem;
+    }
+
+    .filter-show-btn{
+        display: block;
+        background:none;
+        color: #DA8067;
+        border: 1px solid #EBAF81;
+        padding: .2rem .7rem;
+        margin-top: .5rem;
+        position: absolute;
+        top: 0;
+        right: .5rem;
+        z-index: 9999;
+    }
+
+    .filter{
+        width: 100%;
+        top: 4rem;
+        z-index: 999;
+        background-color: #fff;
+        position: absolute;
+        display: none;
+    }
+
+    .filter-display{
+        display: block;
+    }
+
+}
+/* -------------------------------------------------------------------- */
+
+
+/* product list styling------------------------ */
+.products-container{
+    width: 80%;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 4rem;
+    height: fit-content;
+}
+
+.product-card{
+    /* border: 2px solid gainsboro; */
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 33vh;
+    gap:1rem;
+    position: relative;
+    color: gray;
+}
+
+.product-img{
+    height: 65%;
+    width: 100%;
+    object-fit: cover;
+    background-color: black;
+}
+
+.product-content{
+    text-align: center;
+    font-size: .85rem;
+    line-height: 1.5;
+}
+
+.reviews-star{
+    color: rgb(255, 170, 0);
+}
+
+.product-content h4{
+    color: #DA8067;
+}
+
+.wishlist-card-btn{
+    position: absolute;
+    font-size: 1.2rem;
+    top: 5px;
+    color: #ffffffb8;
+    right: 5px;
+}
+
+.checkout-product-btn{
+    position: absolute;
+    top: 0;
+    background-color: #ffffffa4;
+    padding: .3rem .7rem;
+    margin: 0;
+    letter-spacing: .1rem;
+    color: #000;
+    opacity: 0;
+    left: -30px;
+    transition: all 500ms linear;
+}
+
+.show{
+    left: 0;
+    opacity: 1;
+}
+
+.checkout-product-btn:hover{
+    color: #DA8067;
+}
+
+.load-more{
+    color: #DA8067;
+    position: absolute;
+    bottom: 1rem;
+}
+
+.load-more:hover{
+    color: #EBAF81;
+}
+
+
+/* responsive product list--------------------------------- */
+@media screen and (max-width:960px) {
+
+    .wrapper{
+        margin:auto;
+        width: 100%;
+        align-items: center;
+        justify-content: none;
+    }
+
+    .products-container{
+        align-items: center;
+        width: 100%;
+        gap:.5rem
+    }
+
+    .product-card{
+        width: 47%;
+    }
+}
+/* --------------------------------------------------------------------

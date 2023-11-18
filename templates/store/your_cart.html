@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZephyrBay</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- custom stylesheet -->
+    <link rel="stylesheet" href="/static/css/product_listing.css">
+    <link rel="stylesheet" href="./css/your_cart.css">
+</head>
+
+<body>
+
+    <!-- search and sort -->
+    <div class="heading">
+        <h1 class="title">ZephyrBay</h1>
+        <div class="searchbar">
+            <input type="text" placeholder="Seach Items here...">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="header-links">
+            <a href="" class="style-anchor-tags"><i class="fa-regular fa-user"></i> <span>My Account</span></a>
+            <a href="" class="style-anchor-tags"><i class="fa-regular fa-heart"></i><span> Wishlist</span></a>
+            <a href="" class="style-anchor-tags"><i class="fa-solid fa-bag-shopping"></i><span> My Cart</span></a>
+        </div>
+    </div>
+
+    <!-- navbar -->
+    <nav class="nav-bar">
+        <a href="" class="style-anchor-tags">Categories</a>
+        <a href="" class="style-anchor-tags">Hot Offers</a>
+        <a href="" class="style-anchor-tags">Gift Boxes</a>
+        <a href="" class="style-anchor-tags">Shop</a>
+        <button class="show-navbar"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+
+    <!-- your cart section starts -->
+    <h2 id="your-cart-heading">Your Cart</h2>
+    <div class="cart-wrapper">
+
+        <!-- shopping cart  -->
+        <div class="shopping-cart">
+
+            <div class="cart-item-card">
+                <div class="cart-item-detail">
+                    <img src="https://cdn.pixabay.com/photo/2016/03/25/09/04/t-shirt-1278404_640.jpg" alt="">
+                    <div>
+                        <p>Category</p>
+                        <h4>Item Name 1</h4>
+                    </div>
+                </div>
+
+                <div class="item-other-details">
+                    <div>
+                        <button onclick="decrement()"><i class="fa-solid fa-minus"></i></button>
+                        <input type="number" id="myNumber" value="1" readonly>
+                        <button onclick="increment()"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <h5>$34</h5>
+                    <button class="delete-item"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+
+            <div class="cart-item-card">
+                <div class="cart-item-detail">
+                    <img src="https://cdn.pixabay.com/photo/2016/03/25/09/04/t-shirt-1278404_640.jpg" alt="">
+                    <div>
+                        <p>Category</p>
+                        <h4>Item Name 2</h4>
+                    </div>
+                </div>
+
+                <div class="item-other-details">
+                    <div>
+                        <button onclick="decrement()"><i class="fa-solid fa-minus"></i></button>
+                        <input type="number" id="myNumber" value="1" readonly>
+                        <button onclick="increment()"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <h5>$34</h5>
+                    <button class="delete-item"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+
+            <div class="cart-item-card">
+                <div class="cart-item-detail">
+                    <img src="https://cdn.pixabay.com/photo/2016/03/25/09/04/t-shirt-1278404_640.jpg" alt="">
+                    <div>
+                        <p>Category</p>
+                        <h4>Item Name 3</h4>
+                    </div>
+                </div>
+
+                <div class="item-other-details">
+                    <div>
+                        <button onclick="decrement()"><i class="fa-solid fa-minus"></i></button>
+                        <input type="number" id="myNumber" value="1" readonly>
+                        <button onclick="increment()"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <h5>$34</h5>
+                    <button class="delete-item"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- cart summary-->
+        <div class="cart-summary">
+
+            <h3>Order Summary</h3>
+            <div class="order-detail">
+
+                <div class="format-div">
+                    <p>Items</p>
+                    <p>3</p>
+                </div>
+
+                <div class="format-div">
+                    <p>Subtotal</p>
+                    <p>$432</p>
+                </div>
+
+                <div class="format-div">
+                    <p>Shipping</p>
+                    <p>Free</p>
+                </div>
+
+                <a href="">Add coupon code <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="cart-total format-div">
+                <p>Total</p>
+                <p>$432</p>
+            </div>
+
+            <button id="checkout-btn">Proceed To Checkout</button>
+
+        </div>
+    </div>
+
+    <!-- link to go back -->
+    <a href="" class="link-to-go-back"><i class="fa-solid fa-arrow-left"></i> Continue shopping</a>
+
+    <script>
+        function increment() {
+            var inputElement = document.getElementById("myNumber");
+            var currentValue = parseInt(inputElement.value, 10);
+            inputElement.value = currentValue + 1;
+        }
+
+        function decrement() {
+            var inputElement = document.getElementById("myNumber");
+            var currentValue = parseInt(inputElement.value, 10);
+            if (currentValue > 1) {
+                inputElement.value = currentValue - 1;
+            }
+        }
+        
+        const deleteBtn = document.querySelectorAll(".delete-item");
+        const cartItem = document.querySelectorAll(".cart-item-card");
+        deleteBtn.forEach(btn => {
+            btn.addEventListener('click',()=>{
+                btn.parentElement.parentElement.style.display='none';
+            });
+        });
+    </script>
+
+</body>
+
+</html>

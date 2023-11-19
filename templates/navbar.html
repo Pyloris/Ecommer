@@ -1,0 +1,18 @@
+<!-- search and sort -->
+<div class="heading">
+<h1 class="title">ZephyrBay</h1>
+<div class="searchbar">
+    <input type="text" placeholder="Seach Items here...">
+    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+</div>
+<div class="header-links">
+    <?php if (isset($_SESSION['id'])) { ?>
+    <a href="<?= ROOT; ?>/account" class="style-anchor-tags"><i class="fa-regular fa-user"></i> <span>My Account</span></a>
+    <a href="<?= ROOT; ?>/wishlist" class="style-anchor-tags"><i class="fa-regular fa-heart"></i><span> Wishlist</span></a>
+    <a href="<?= ROOT; ?>/cart" class="style-anchor-tags"><i class="fa-solid fa-bag-shopping"></i> <span>My Cart</span></a>
+    <?php } else { ?>
+    <a href="<?= ROOT; ?>/login" class="style-anchor-tags"><i class="fa-solid fa-arrow-right-to-bracket"></i> <span>Login</span></a>
+    <?php } ?>
+    
+</div>
+</div>

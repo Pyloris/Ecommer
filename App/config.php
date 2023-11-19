@@ -15,6 +15,9 @@ const BRAND_NAME = "ECOMMER";
 const BRAND_LOGO = ROOT . "/static/images/logos/logo.png";
 
 
+// site wise config
+const CURRENCY = "₹";
+
 // email config
 const APP_PASSWORD = "rfea ztmd dmpc dqof";
 

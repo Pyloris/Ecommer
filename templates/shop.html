@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZephyrBay</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="<?= ROOT; ?>/static/css/home.css">
+    <!-- custom stylesheet -->
+    <link rel="stylesheet" href="<?= ROOT; ?>/static/css/product_listing.css">
+</head>
+
+<body>
+
+    <?= $navbar; ?>
+
+    <!-- navbar -->
+    <nav class="nav-bar">
+            <a href="<?= ROOT; ?>/" class="style-anchor-tags">Home</a>
+            <a href="" class="style-anchor-tags">Hot Offers</a>
+            <a href="" class="style-anchor-tags">Gift Boxes</a>
+            <a href="<?= ROOT; ?>/shop" class="style-anchor-tags">Shop</a>
+        <button class="show-navbar"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+
+    
+    <!-- wrapper -->
+    <div class="wrapper">
+        <button class="filter-show-btn">Filter <i class="fa-solid fa-arrows-up-down"></i></button>
+
+        <!-- filter list -->
+        <div class="filter">
+            
+            <div class="filter-list-card">
+                <h5 class="filter-heading">Product Type</h5>
+                <div class="filter-items">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Jeans</label>
+                </div>
+                <div class="filter-items">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Shoes</label>
+                </div>
+                <div class="filter-items">
+                    <input type="checkbox" name="" id="">
+                    <label for="">Jwellery</label>
+                </div>
+            </div>
+            
+            <div class="filter-list-card">
+                <h5 class="filter-heading">Size</h5>
+                <div class="filter-items">
+                    <input type="checkbox" name="" id="">
+                    <label for="">XXS</label>
+                </div>
+                <div class="filter-items">
+                    <input type="checkbox" name="" id="">
+                    <label for="">S</label>
+                </div>
+                <div class="filter-items">
+                    <input type="checkbox" name="" id="">
+                    <label for="">M</label>
+                </div>
+            </div>
+            
+            <div class="filter-list-card">
+                <h5 class="filter-heading">Price Range</h5>
+                <div class="price-btn">
+                    <button><?= CURRENCY; ?>300-400</button>
+                    <button><?= CURRENCY; ?>400-500</button>
+                    <button><?= CURRENCY; ?>500-600</button>
+                </div>
+            </div>
+            
+            <div class="filter-list-card">
+                <h5 class="filter-heading">Color</h5>
+                <div class="colors-card">
+                    <button style="background-color: red;"></button>
+                    <button style="background-color:black ;"></button>
+                    <button style="background-color: blue;"></button>
+                    <button style="background-color: pink;"></button>
+                </div>
+
+            </div>
+
+            <div class="filter-list-card">
+                <h5 class="filter-heading">Brands</h5>
+                <div class="filter-items">
+                    <input type="checkbox" name="" id="">
+                    <label for="">AIDO</label>
+                </div>
+                <div class="filter-items">
+                    <input type="checkbox" name="" id="">
+                    <label for="">2nd Day</label>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- products -->
+        <div class="products-container">
+            
+            <?php
+                $count = 0;
+                foreach($products as $product) { ?>
+                <?php
+                if ($count == 12) {
+                break;
+                }
+                $count += 1;
+                $img = (explode(":", $product['imgs']))[0];
+            ?>
+            <div href="" class="product-card">
+                <img src="<?= ROOT; ?>/static/images/product_imgs/<?= $img; ?>" alt="" class="product-img">
+                
+                <div class="product-content">
+                    <a href="" class="reviews-star">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </a>
+                    <p class="product-name"><?= $product['name']; ?></p>
+                    <h4><?= CURRENCY; ?> <?= $product['SP']; ?></h4>
+                </div>
+                <a href="" class="wishlist-card-btn"><i class="fa-regular fa-heart"></i></a>
+                <a href="" class="checkout-product-btn style-anchor-tags ">Checkout <i class="fa-solid fa-arrow-right-long"></i></a>
+            </div>
+
+            <?php }?>
+
+            <a href="" class="load-more style-anchor-tags">Load More <i class="fa-solid fa-arrow-right-long"></i></a>
+        </div>
+
+
+    </div>
+
+
+    <?= $footer; ?>
+
+    <script>
+
+        const filterBtn = document.querySelector(".filter-show-btn");
+        filterBtn.addEventListener('click',()=>{
+            document.querySelector(".filter").classList.toggle("filter-display");
+        });
+
+        // card hover effect
+        const cards = document.querySelectorAll(".product-card");
+        cards.forEach(card => {
+            card.addEventListener("mouseover", () => {
+                card.querySelector(".checkout-product-btn").classList.add("show");
+            });
+        });
+
+        cards.forEach(card => {
+            card.addEventListener("mouseout", () => {
+                card.querySelector(".checkout-product-btn").classList.remove("show");
+            });
+        });
+    </script>
+
+</body>
+
+</html>

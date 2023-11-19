@@ -10,14 +10,9 @@ class RZPWebhookController {
     public function handle($request) {
 
         $data = file_get_contents("php://input");
-        $file = fopen('hook.txt', 'a+');
 
         $json_data = json_decode($data);
         
-        fwrite($file, $json_data->event . "\n");
-        fclose($file);
-
-
         // set up db connection
         $db = new DB();
 
@@ -58,7 +53,7 @@ class RZPWebhookController {
 
             $mail->Subject = "Order Payment Failed";
             $mail->Body = <<<DOC
-            <h2>The payment for the order $order_id has Failed</h2>
+            <h2>The payment for the order <em>$order_id</em> has Failed</h2>
             <p>Please, reorder and complete the payment for purchase.</p>
             DOC;
 
@@ -69,7 +64,6 @@ class RZPWebhookController {
                 echo("EXCEPTION");
             }
         }
-
         else if ($event == "order.paid") {
 
             // change payment status to done
@@ -119,6 +113,5 @@ class RZPWebhookController {
         }
     }
 }
-
 
 ?>

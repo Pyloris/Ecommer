@@ -8,12 +8,23 @@ require_once __DIR__ . "/../Models/models.php";
 class HomeController {
     public function show($request) {
 
+        $context = [];
+
+        // get footer and navbar
+        ob_start();
+        include(VIEW::$path . "/navbar.html");
+        $context["navbar"] = ob_get_clean();
+        include(VIEW::$path . "/footer.html");
+        $context["footer"] = ob_get_clean();
+
         $db = new DB();
 
         // grab all the products
-        $products = $db->getProducts(['%']);
+        $context["products"] = $db->getProducts(['%']);
+        
+        $context["categories"] = $db->getCategories();
 
-        VIEW::init("store/index.html", ['products' => $products]);
+        VIEW::init("home.html", $context);
     }
 
 }

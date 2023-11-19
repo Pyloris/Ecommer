@@ -72,7 +72,7 @@ class AdminController {
             // add product to database
             if ($db->addProduct($product_name, $product_sku, $product_description, $product_mrp, $product_sp, $imgs, $rating, $product_category)) {
                 // get the product
-                $product = $db->getProduct($product_name);
+                $product = $db->getProduct(NULL, $product_name);
 
                 // insert stock in stock table
                 if ($db->setStock($product['id'], $product_stock)) { 

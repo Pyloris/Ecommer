@@ -71,6 +71,26 @@ trait ProductDB {
             echo($e->getMessage());
         }
     }
+
+    public function getProductsByCategory($category_id) {
+        $query = "SELECT * FROM products WHERE category=:c_id";
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(":c_id", $category_id);
+
+            if ($stmt->execute()) {
+                return $stmt->fetchAll();
+            }
+            else {
+                return FALSE;
+            }
+        }
+        catch (PDOException $e) {
+            echo($e->getMessage());
+        }
+
+    }
 }
 
 ?>

@@ -11,47 +11,29 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- custom stylesheet link -->
-  <link rel="stylesheet" href="../static/css/product_listing.css">
-  <link rel="stylesheet" href="../static/css/home.css">
+  <link rel="stylesheet" href="<?= ROOT; ?>/static/css/product_listing.css">
+  <link rel="stylesheet" href="<?= ROOT; ?>/static/css/home.css">
   <!-- custom script file -->
-  <script src="../static/js/home.js" defer></script>
+  <script src="<?= ROOT; ?>/static/js/home.js" defer></script>
 </head>
 
 <body>
 
-
-  <!-- search and sort -->
-  <div class="heading">
-    <h1 class="title">ZephyrBay</h1>
-    <div class="searchbar">
-      <input type="text" placeholder="Seach Items here...">
-      <button><i class="fa-solid fa-magnifying-glass"></i></button>
-    </div>
-    <div class="header-links">
-      <a href="" class="style-anchor-tags"><i class="fa-regular fa-user"></i> <span>My Account</span></a>
-      <a href="" class="style-anchor-tags"><i class="fa-regular fa-heart"></i><span> Wishlist</span></a>
-      <a href="" class="style-anchor-tags"><i class="fa-solid fa-bag-shopping"></i> <span>My Cart</span></a>
-    </div>
-  </div>
+  <?= $navbar; ?>
 
   <!-- navbar -->
   <nav class="nav-bar">
-    <a href="" class="style-anchor-tags">Categories</a>
+    <a href="<?= ROOT; ?>/" class="style-anchor-tags">Home</a>
     <a href="" class="style-anchor-tags">Hot Offers</a>
     <a href="" class="style-anchor-tags">Gift Boxes</a>
-    <a href="" class="style-anchor-tags">Shop</a>
+    <a href="<?= ROOT; ?>/shop" class="style-anchor-tags">Shop</a>
   </nav>
 
   <!-- different categories listings -->
   <div class="catergories-listings">
-    <a href="" class="style-anchor-tags">Electronics</a>
-    <a href="" class="style-anchor-tags">Clothes And Wear</a>
-    <a href="" class="style-anchor-tags">Tools, Equipments</a>
-    <a href="" class="style-anchor-tags">Animal and Pets</a>
-    <a href="" class="style-anchor-tags">Home Interiors</a>
-    <a href="" class="style-anchor-tags">Computer and Tech</a>
-    <a href="" class="style-anchor-tags">Sports and outdoor</a>
-    <a href="" class="style-anchor-tags">Other products</a>
+    <?php foreach($categories as $category) { ?>
+    <a href="<?= ROOT; ?>/shop?category=<?= $category['id']; ?>" class="style-anchor-tags"><?= $category['name']; ?></a>
+    <?php } ?>
   </div>
 
 
@@ -131,76 +113,35 @@
   <!-- Featured section -->
   <h3 class="section-heading">Featured Products</h3>
   <div class="feature-container">
-
+    <?php
+    $count = 0;
+    foreach($products as $product) { ?>
+    <?php
+    if ($count == 7) {
+      break;
+    }
+    $count += 1;
+    $img = (explode(":", $product['imgs']))[0];
+    $t_category = '';
+    foreach($categories as $category) {
+        if ($category['id'] == $product['category']) {
+            $t_category = $category['name'];
+            break;
+        }
+    };
+    ?>
     <div class="feature-card">
-      <img
-        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4948095c2bd04bbcb5c2af1601154a02_9366/Stan_Smith_Lux_Shoes_White_HP2201_HM1.jpg"
-        alt="">
+      <img src="<?= ROOT; ?>/static/images/product_imgs/<?= $img; ?>">
       <div class="feature-card-details">
-        <p>product collection type</p>
-        <h5>product name</h5>
-        <h4>$345 - $467</h4>
+        <p><?= $t_category; ?></p>
+        <h5><?= $product['name']; ?></h5>
+        <h4>₹ <?= $product['SP']; ?></h4>
       </div>
       <div class="hover">
-        <a href="" class="style-anchor-tags">Checkout</a>
+        <a href="<?= ROOT; ?>/store/payment" class="style-anchor-tags">Checkout</a>
       </div>
     </div>
-
-    <div class="feature-card">
-      <img
-        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4948095c2bd04bbcb5c2af1601154a02_9366/Stan_Smith_Lux_Shoes_White_HP2201_HM1.jpg"
-        alt="">
-      <div class="feature-card-details">
-        <p>product collection type</p>
-        <h5>product name</h5>
-        <h4>$345 - $467</h4>
-      </div>
-      <div class="hover">
-        <a href="" class="style-anchor-tags">Checkout</a>
-      </div>
-    </div>
-
-    <div class="feature-card">
-      <img
-        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4948095c2bd04bbcb5c2af1601154a02_9366/Stan_Smith_Lux_Shoes_White_HP2201_HM1.jpg"
-        alt="">
-      <div class="feature-card-details">
-        <p>product collection type</p>
-        <h5>product name</h5>
-        <h4>$345 - $467</h4>
-      </div>
-      <div class="hover">
-        <a href="" class="style-anchor-tags">Checkout</a>
-      </div>
-    </div>
-
-    <div class="feature-card">
-      <img
-        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4948095c2bd04bbcb5c2af1601154a02_9366/Stan_Smith_Lux_Shoes_White_HP2201_HM1.jpg"
-        alt="">
-      <div class="feature-card-details">
-        <p>product collection type</p>
-        <h5>product name</h5>
-        <h4>$345 - $467</h4>
-      </div>
-      <div class="hover">
-        <a href="" class="style-anchor-tags">Checkout</a>
-      </div>
-    </div>
-
-    <div class="feature-card">
-      <img
-        src="https://assets.adidas.com/images/w_600,f_auto,q_auto/4948095c2bd04bbcb5c2af1601154a02_9366/Stan_Smith_Lux_Shoes_White_HP2201_HM1.jpg"
-        alt="">
-      <div class="feature-card-details">
-        <p>product collection type</p>
-        <h5>product name</h5>
-        <h4>$345 - $467</h4>
-      </div>
-      <div class="hover">
-        <a href="" class="style-anchor-tags">Checkout</a>
-      </div>
-    </div>
+    <?php } ?>
 
     <a href="" class="checkout-more">Load More <i class="fa-solid fa-arrow-right"></i></a>
   </div>
@@ -209,77 +150,14 @@
   <!-- shop by categories section -->
   <h3 class="section-heading">Shop By Categories</h3>
   <div class="shop-categories">
-
+    <?php foreach($categories as $category) { ?>
     <div class="category-item">
       <img
-        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
+        src="<?= ROOT; ?>/static/images/category_imgs/<?= $category['img']; ?>"
         alt="">
-      <a href="" class="style-anchor-tags">Category Name</a>
+      <a href="<?= ROOT; ?>/shop?category=<?= $category['id']; ?>" class="style-anchor-tags"><?= $category['name']; ?></a>
     </div>
-
-
-    <div class="category-item">
-      <img
-        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
-        alt="">
-      <a href="" class="style-anchor-tags">Category Name</a>
-    </div>
-
-    <div class="category-item">
-      <img
-        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
-        alt="">
-      <a href="" class="style-anchor-tags">Category Name</a>
-    </div>
-
-    <div class="category-item">
-      <img
-        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
-        alt="">
-      <a href="" class="style-anchor-tags">Category Name</a>
-    </div>
-
-    <div class="category-item">
-      <img
-        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
-        alt="">
-      <a href="" class="style-anchor-tags">Category Name</a>
-    </div>
-
-    <div class="category-item">
-      <img
-        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
-        alt="">
-      <a href="" class="style-anchor-tags">Category Name</a>
-    </div>
-
-    <div class="category-item">
-      <img
-        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
-        alt="">
-      <a href="" class="style-anchor-tags">Category Name</a>
-    </div>
-
-    <div class="category-item">
-      <img
-        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
-        alt="">
-      <a href="" class="style-anchor-tags">Category Name</a>
-    </div>
-
-    <div class="category-item">
-      <img
-        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
-        alt="">
-      <a href="" class="style-anchor-tags">Category Name</a>
-    </div>
-
-    <div class="category-item">
-      <img
-        src="https://rukminim2.flixcart.com/image/850/1000/ks99aq80/shoe/f/g/t/8-6616-active-man-footwear-black-original-imag5v3dsdnzhehd.jpeg?q=90"
-        alt="">
-      <a href="" class="style-anchor-tags">Category Name</a>
-    </div>
+    <?php } ?>
 
   </div>
 
@@ -287,70 +165,19 @@
   <!-- our best sellers -->
   <h3 class="section-heading">Our Best Sellers</h3>
   <div class="best-seller-container">
-
+      <?php foreach ($products as $product) { ?>
+      <?php
+        $img = (explode(":", $product['imgs']))[0];
+      ?>
       <div class="best-seller-card">
-        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
+        <img src="<?= ROOT; ?>/static/images/product_imgs/<?= $img; ?>" alt="">
         <div class="seller-card-content">
-          <p>product name</p>
-          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-      
-      <div class="best-seller-card">
-        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
-        <div class="seller-card-content">
-          <p>product name</p>
+          <p><?= $product['name']; ?></p>
           <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
 
-      <div class="best-seller-card">
-        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
-        <div class="seller-card-content">
-          <p>product name</p>
-          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="best-seller-card">
-        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
-        <div class="seller-card-content">
-          <p>product name</p>
-          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="best-seller-card">
-        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
-        <div class="seller-card-content">
-          <p>product name</p>
-          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="best-seller-card">
-        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
-        <div class="seller-card-content">
-          <p>product name</p>
-          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="best-seller-card">
-        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
-        <div class="seller-card-content">
-          <p>product name</p>
-          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
-
-      <div class="best-seller-card">
-        <img src="https://img.staticmb.com/mbcontent/images/uploads/2022/12/types-of-fridges.jpg" alt="">
-        <div class="seller-card-content">
-          <p>product name</p>
-          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </div>
+      <?php } ?>
 
       <a href="" class="checkout-more">Load More <i class="fa-solid fa-arrow-right"></i></a>
 
@@ -400,50 +227,7 @@
   </div>
 
 
-  <!-- footer section  -->
-  <footer>
-    <div class="box-1">
-      <h1 class="title">ZephyrBay</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo officiis sit reiciendis dignissimos. Quas laborum corrupti, magni error dolor incidunt esse consectetur quae obcaecati quos sit animi, expedita, sequi voluptas.</p>
-
-      <div class="links">
-        <a href=""><i class="fa-brands fa-facebook-f"></i></a>
-        <a href=""><i class="fa-brands fa-twitter"></i></a>
-        <a href=""><i class="fa-brands fa-instagram"></i></a>
-      </div>
-    </div>
-
-    <div class="box-2">
-
-      <div class="sub-box">
-        <h4>Pages</h4>
-        <a href="">Home</a>
-        <a href="">About</a>
-        <a href="">Store</a>
-        <a href="">Explore</a>
-        <a href="">Contact</a>
-      </div>
-
-      <div class="sub-box">
-        <h4>Features</h4>
-        <a href="">Shop</a>
-        <a href="">Cart</a>
-        <a href="">Notification</a>
-        <a href="">Sale</a>
-      </div>
-
-      <div class="sub-box">
-        <h4>Contact Us</h4>
-        <a href="">Privacy & Policy</a>
-        <a href="">+13937838447</a>
-      </div>
-
-    </div>
-
-  </footer>
-
-  <p class="ending-message">Made by Zahira Khawaja and Shoaib Wani</p>
-
+  <?= $footer; ?>
 
 
     <!-- <h1>Hey, you logged in finally ha!</h1>

@@ -1,8 +1,8 @@
 <?php
 
 trait ProductDB {
-    public function addProduct($name, $sku, $description, $mrp, $sp, $imgs, $rating=NULL, $category=NULL) {
-        $query = "INSERT INTO products (name, sku, description, MRP, SP, imgs, rating, category) VALUES (:name, :sku, :description, :mrp, :sp, :imgs, :rating, :category)";
+    public function addProduct($name, $sku, $description, $mrp, $sp, $imgs, $rating=NULL, $category=NULL, $collection=NULL, $flag=NULL) {
+        $query = "INSERT INTO products (name, sku, description, MRP, SP, imgs, rating, category, collection, flag) VALUES (:name, :sku, :description, :mrp, :sp, :imgs, :rating, :category, :collection, :flag)";
 
         try {
             $stmt = $this->db->prepare($query);
@@ -15,6 +15,8 @@ trait ProductDB {
             $stmt->bindParam(':imgs', $imgs);
             $stmt->bindParam(':rating', $rating);
             $stmt->bindParam(':category', $category);
+            $stmt->bindParam(':collection', $collection);
+            $stmt->bindParam(':flag', $flag);
 
             if ($stmt->execute()) {
                 return TRUE;
@@ -89,8 +91,27 @@ trait ProductDB {
         catch (PDOException $e) {
             echo($e->getMessage());
         }
-
     }
+
+    public function getProductsByCollection($collection_id) {
+        $query = "SELECT * FROM products WHERE collection=:c_id";
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(":c_id", $collection_id);
+
+            if ($stmt->execute()) {
+                return $stmt->fetchAll();
+            }
+            else {
+                return FALSE;
+            }
+        }
+        catch (PDOException $e) {
+            echo($e->getMessage());
+        }
+    }
+
 }
 
 ?>

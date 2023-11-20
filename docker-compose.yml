@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  php-apache:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecommer
+    depends_on:
+      - mysql
+    ports:
+      - "4000:80"  # Expose Apache port
+    volumes:
+      - ./:/var/www/html/Ecommer  # Mount your PHP files into the container
+    working_dir: /var/www/html  # Set working directory
+    command: ["apache2-foreground"]  # Start Apache
+    networks:
+      - my-network
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql-server-container
+    environment:
+      MYSQL_ROOT_PASSWORD: secret01
+      MYSQL_DATABASE: ecom
+      MYSQL_USER: shoaib 
+      MYSQL_PASSWORD: secret01
+    ports:
+      - "3307:3306"  # Expose MySQL port
+    volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/initdb.sql  # Correct the file name
+    networks:
+      - my-network
+
+networks:
+  my-network:

@@ -26,6 +26,9 @@ class ShopController {
         if ($request->queryData('category')) {
              $products = $db->getProductsByCategory($request->queryData('category'));
         } 
+        else if ($request->queryData('collection')) {
+            $products = $db->getProductsByCollection($request->queryData('collection'));
+        }
         else {
             $products = $db->getProducts(['%']);
         }

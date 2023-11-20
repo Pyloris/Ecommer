@@ -7,7 +7,6 @@
 
     "require": {
         "shoaib/sir-juni": "dev-master",
-        "abraham/twitteroauth": "^6.2",
         "phpmailer/phpmailer": "^6.8",
         "guzzlehttp/guzzle": "^7.8"
     },

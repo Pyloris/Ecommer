@@ -39,7 +39,24 @@
             <input type="text" name="MRP" placeholder="Enter MRP" required>
             <input type="text" name="SP" placeholder="Enter selling price" required>
             <input type="text" name="sku" placeholder="SKU of the product" required>
-            <input type="text" name="category" placeholder="Enter category of the product" required>
+            <select name="category">
+                <option value="">SELECT</option>
+                <?php foreach($categories as $category) { ?>
+                <option value="<?= $category['id']; ?>"><?= $category['name']; ?></option>
+                <?php } ?>
+            </select>
+            <select name="collection">
+                <option value="">SELECT</option>
+                <?php foreach($collections as $collection) { ?>
+                <option value="<?= $collection['id']; ?>"><?= $collection['name']; ?></option>
+                <?php } ?>
+            </select>
+            <select name="flag">
+                <option value="">SELECT</option>
+                <?php foreach($flags as $flag) { ?>
+                <option value="<?= $flag['id']; ?>"><?= $flag['name']; ?></option>
+                <?php } ?>
+            </select>
             <input type="text" name="stock" placeholder="No. of items in Stock" required>
             <input type="submit" value="submit">
         </pre>

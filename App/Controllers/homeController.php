@@ -24,6 +24,8 @@ class HomeController {
         
         $context["categories"] = $db->getCategories();
 
+        $context['collections'] = $db->getCollections();
+
         VIEW::init("home.html", $context);
     }
 

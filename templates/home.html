@@ -66,8 +66,25 @@
   <!-- collections -->
   <h3 class="section-heading">Our Collections</h3>
   <div class="collections-container">
-
+    <?php 
+    $count=0;
+    foreach($collections as $collection) { 
+      $count+=1;
+      if ($count == 5)
+        break;
+    ?>
     <div class="collection-card">
+      <img
+        src="<?= ROOT; ?>/static/images/collection_imgs/<?= $collection['img']; ?>"
+        alt="">
+      <div class="collection-content">
+        <p><?= $collection['name']; ?></p>
+        <a href="<?= ROOT; ?>/shop?collection=<?= $collection['id']; ?>" class="style-anchor-tags">Shop Now</a>
+      </div>
+    </div>
+    <?php } ?>
+
+    <!-- <div class="collection-card">
       <img
         src="https://products.shureweb.eu/shure_product_db/product_main_images/files/c25/16a/40-/original/ce632827adec4e1842caa762f10e643d.webp"
         alt="">
@@ -95,17 +112,7 @@
         <p>Collection Name</p>
         <a href="" class="style-anchor-tags">─ ─ Shop Now</a>
       </div>
-    </div>
-
-    <div class="collection-card">
-      <img
-        src="https://products.shureweb.eu/shure_product_db/product_main_images/files/c25/16a/40-/original/ce632827adec4e1842caa762f10e643d.webp"
-        alt="">
-      <div class="collection-content">
-        <p>Collection Name</p>
-        <a href="" class="style-anchor-tags">─ ─ Shop Now</a>
-      </div>
-    </div>
+    </div> -->
 
   </div>
 

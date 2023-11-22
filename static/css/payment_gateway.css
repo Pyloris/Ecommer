@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.payment-wrapper{
+    width: 80%;
+    margin: 3rem auto;
+    display: flex;
+}
+
+.user-details{
+    background-color: rgba(128, 128, 128, 0.173);
+    width: 60%;
+    padding: 1.5rem;
+}
+
+.user-details h1{
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.user-details form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.user-details input{
+    background:none;
+    border: 1px solid rgba(128, 128, 128, 0.782);
+    color: gray;
+    padding: .4rem;
+    font-size: 1.2rem;
+}
+
+.short,.long{
+    display: flex;
+    font-size: .85rem;
+    flex-direction: column;
+    gap:.3rem;
+    margin-bottom: 1rem;
+}
+
+.short{
+    width: 47%;
+}
+
+.long{
+    width: 100%;
+}
+
+.checkbox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap:.3rem;
+    font-size: .9rem;
+    margin:.5rem 0 1rem 0;
+}
+
+h2{
+    font-weight: 500;
+}
+
+.checkbox input[type="checkbox"]{
+    height: 17px;
+    accent-color: red;
+    width: 17px;
+}
+
+/* make responsive-------------------------------------------------- */
+@media screen and (max-width:960px) {
+    .payment-wrapper{
+        flex-direction: column;
+        width: 95%;
+        gap:1rem;
+    }
+
+    .user-details{
+        width: 100%;
+    }
+}
+/* ----------------------------------------------------------------- */
+
+
+/* right side starts from here */
+.payment-info{
+    width: 40%;
+    border: 1px solid rgba(128, 128, 128, 0.622);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#order-details{
+    border: 2px solid rgba(128, 128, 128, 0.377);
+    padding: .3rem .5rem;
+    display: flex;
+    justify-content: space-between;
+    border-left: none;
+    border-right: none;
+    height: 13vh;
+    margin-bottom: .5rem;
+}
+
+#order-details img{
+    height: 100%;
+    border: 1px solid rgba(128, 128, 128, 0.377);
+    width: 20%;
+}
+
+.pro-details ul{
+    list-style: none;
+    font-size: .8rem;
+}
+
+.pro-price,.pro-details{
+    align-self: center;
+}
+
+/* make order detaisl responsive------------------------- */
+
+@media screen and (max-width:960px) {
+    .payment-info{
+        width: 100%;
+    }
+
+    #order-details{
+        gap:.4rem;
+    }
+}
+
+/* ---------------------------------------------------------- */
+
+#cart-totals{
+    background-color: rgba(128, 128, 128, 0.173);
+    margin: 1rem 0;
+    padding: 1rem;
+}
+
+.inner{
+    border-bottom:2px solid rgba(128, 128, 128, 0.622);
+    margin: .5rem 0;
+    padding: .5rem 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: .85rem;
+}
+
+.inner:nth-child(3){
+    color: #DA8067;
+}
+
+.inner:last-child{
+    font-weight:bold;
+}
+
+/* payment methods */
+#payment-methods{
+    padding: .5rem;
+    margin:.5rem 0 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .9rem;
+    border: 1px solid rgba(128, 128, 128, 0.173);
+}
+
+.paymentMethod{
+    display: flex;
+    gap:.3rem;
+    align-items: center;
+}
+
+.paymentMethod input[type="radio"]{
+    accent-color: red;
+    height: 15px;
+    width: 15px;
+}
+
+#proceedToCheckout{
+    width: 100%;
+    padding: .5rem;
+    border: none;
+    background-color: #EBAF81;
+    color: rgb(67, 59, 59);
+    text-transform: uppercase;
+}
+
+#proceedToCheckout:hover{
+    background-color: #DA8067;
+    color: #fff;
+}
+

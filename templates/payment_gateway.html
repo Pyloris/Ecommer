@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <!-- custom style sheet -->
+    <link rel="stylesheet" href="../static/css/payment_gateway.css">
+</head>
+
+<body>
+
+    <div class="payment-wrapper">
+        <!-- user details -->
+        <div class="user-details">
+            <h1>Billing and Shipping Details</h1>
+            <form action="">
+                <label for="" class="short">
+                    First name
+                    <input type="text">
+                </label>
+
+                <label for="" class="short">
+                    Last Name
+                    <input type="text">
+                </label>
+
+                <label for="" class="long">
+                    Address
+                    <input type="text">
+                </label>
+
+                <label for="" class="long">
+                    Town/City
+                    <input type="text">
+                </label>
+
+                <label for="" class="short">
+                    Country
+                    <input type="text">
+                </label>
+
+                <label for="" class="short">
+                    Postcode
+                    <input type="text">
+                </label>
+
+                <label for="" class="short">
+                    Email
+                    <input type="text">
+                </label>
+
+                <label for="" class="short">
+                    Phone
+                    <input type="text">
+                </label>
+
+                <label for="" class="checkbox">
+                    <input type="checkbox" name="" id="">
+                    create an account?
+                </label>
+
+                <h2>Ship to a different address?</h2>
+                <label for="" class="checkbox">
+                    <input type="checkbox" name="" id="">
+                    ship to a different address?
+                </label>
+            </form>
+        </div>
+
+        <!-- payment info -->
+        <div class="payment-info">
+            <h2 style="color: #EBAF81; padding: 1rem .5rem;">YOUR ORDER</h2>
+
+            <div id="order-details">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKp8ke0pG7CPlAZsxDtq17H4YMr030x9VUIg&usqp=CAU" alt="">
+                <div class="pro-details">
+                    <h4>name of the product</h4>
+                    <ul>
+                        <li>category: <span>loremipsum</span></li>
+                        <li>Quantity: <span>loremipsum</span></li>
+                        <li>Size: <span>loremipsum</span></li>
+                    </ul>
+                </div>
+
+                <h3 class="pro-price">$233</h3>
+            </div>
+
+            <div id="cart-totals">
+                <h4>CART TOTAL</h4>
+                <div class="inner">
+                    <p>Cart Subtotal</p>
+                    <p>$399</p>
+                </div>
+                <div class="inner">
+                    <p>Shiiping Charges</p>
+                    <p>$23</p>
+                </div>
+                <div class="inner">
+                    <p>Order Total</p>
+                    <p>$338</p>
+                </div>
+            </div>
+
+            <div id="payment-methods">
+                <label for="payNow" id="payNowLabel" class="paymentMethod">
+                    <input type="radio" id="payNow" name="paymentMethod">
+                    Pay Now
+                </label>
+                
+                <label for="cashOnDelivery" id="cashOnDeliveryLabel" class="paymentMethod">
+                    <input type="radio" id="cashOnDelivery" name="paymentMethod">
+                    Cash On Delivery
+                </label>
+            </div>
+
+            <button id="proceedToCheckout">Proceed to checkout</button>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

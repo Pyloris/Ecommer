@@ -14,6 +14,7 @@ require_once __DIR__ . "/../Controllers/EmailOTPController.php";
 require_once __DIR__ . "/../Controllers/AdminController.php";
 require_once __DIR__ . "/../Controllers/OrderController.php";
 require_once __DIR__ . "/../Controllers/RZPWebhookController.php";
+require_once __DIR__ . "/../Controllers/ShopController.php";
 
 
 // bring in custom middleware
@@ -42,6 +43,10 @@ Router::add_route("GET", ROOT."/signup/otp", [EmailOTPController::class, 'send_o
 Router::add_route(["GET", "POST"], ROOT."/signup/verify", [EmailOTPController::class, 'verify_otp']);
 
 
+// handle shop
+Router::add_route("GET", ROOT . "/shop", [ShopController::class, 'show']);
+
+
 
 // handle ADmin routes
 Router::add_route("GET", ROOT . "/admin", [AdminController::class, 'show'])->middleware(Auth::class);
@@ -65,7 +70,7 @@ Router::add_route("POST", ROOT . "/rzp_webhook", [RZPWebhookController::class, '
 /*
     ROUTES WHICH HANDLE THE HOME PAGE
 */
-Router::add_route("GET", ROOT."/", [HomeController::class, 'show'])->middleware(Auth::class);
+Router::add_route("GET", ROOT."/", [HomeController::class, 'show']);
 Router::add_route(["GET", "POST"], ROOT. "/cart", [OrderController::class, 'cartHandler'])->middleware(Auth::class);
 Router::add_route("GET", ROOT. "/store/payment", [OrderController::class, 'createOrder'])->middleware(Auth::class)->middleware(PaymentFlow::class);
 ?> 

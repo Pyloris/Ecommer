@@ -22,12 +22,19 @@ class AdminController {
     }
 
     public function addProduct($request) {
+        $db = new DB();
         if ($request->method() == "GET") {
-            VIEW::init("admin/add_product.html");
+            // grab all the dynamic props of products
+            $context = [];
+
+            $context["categories"] = $db->getCategories();
+            $context["collections"] = $db->getCollections();
+            $context["flags"] = $db->getFlags();
+
+            VIEW::init("admin/add_product.html", $context);
         }
 
         else if ($request->method() == "POST") {
-            $db = new DB();
 
             // get the image names
             $allImgNames = $request->fileName('imgs');
@@ -67,12 +74,14 @@ class AdminController {
             $product_sp = $request->formData('SP');
             $product_sku = $request->formData('sku');
             $product_category = $request->formData('category');
+            $product_collection = $request->formData('collection');
+            $product_flag = $request->formData('flag');
             $product_stock = $request->formData('stock');
             $rating = NULL;
             // add product to database
-            if ($db->addProduct($product_name, $product_sku, $product_description, $product_mrp, $product_sp, $imgs, $rating, $product_category)) {
+            if ($db->addProduct($product_name, $product_sku, $product_description, $product_mrp, $product_sp, $imgs, $rating, $product_category, $product_collection, $product_flag)) {
                 // get the product
-                $product = $db->getProduct($product_name);
+                $product = $db->getProduct(NULL, $product_name);
 
                 // insert stock in stock table
                 if ($db->setStock($product['id'], $product_stock)) { 

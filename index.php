@@ -21,7 +21,6 @@ require_once __DIR__ . "/App/config.php";
 // set templates dir to load html files
 VIEW::set_path(__DIR__ . "/templates");
 
-
 // load all the routes
 require_once(__DIR__ . "/App/Routes/routes.php");
 

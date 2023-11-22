@@ -10,32 +10,20 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- custom stylesheet -->
-    <link rel="stylesheet" href="/static/css/product_listing.css">
-    <link rel="stylesheet" href="./css/your_cart.css">
+    <link rel="stylesheet" href="<?= ROOT; ?>/static/css/product_listing.css">
+    <link rel="stylesheet" href="<?= ROOT; ?>/templates/store/css/your_cart.css">
 </head>
 
 <body>
 
-    <!-- search and sort -->
-    <div class="heading">
-        <h1 class="title">ZephyrBay</h1>
-        <div class="searchbar">
-            <input type="text" placeholder="Seach Items here...">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
-        </div>
-        <div class="header-links">
-            <a href="" class="style-anchor-tags"><i class="fa-regular fa-user"></i> <span>My Account</span></a>
-            <a href="" class="style-anchor-tags"><i class="fa-regular fa-heart"></i><span> Wishlist</span></a>
-            <a href="" class="style-anchor-tags"><i class="fa-solid fa-bag-shopping"></i><span> My Cart</span></a>
-        </div>
-    </div>
+    <?= $navbar; ?>
 
     <!-- navbar -->
     <nav class="nav-bar">
-        <a href="" class="style-anchor-tags">Categories</a>
+        <a href="<?= ROOT; ?>/" class="style-anchor-tags">Home</a>
         <a href="" class="style-anchor-tags">Hot Offers</a>
         <a href="" class="style-anchor-tags">Gift Boxes</a>
-        <a href="" class="style-anchor-tags">Shop</a>
+        <a href="<?= ROOT; ?>/shop" class="style-anchor-tags">Shop</a>
         <button class="show-navbar"><i class="fa-solid fa-bars"></i></button>
     </nav>
 
@@ -45,13 +33,23 @@
 
         <!-- shopping cart  -->
         <div class="shopping-cart">
-
+            <?php foreach($products as $product) { ?>
+            <?php
+            $img = (explode(":", $product['imgs']))[0];
+            $t_category = '';
+            foreach($categories as $category) {
+                if ($category['id'] == $product['category']) {
+                    $t_category = $category['name'];
+                    break;
+                }
+            }
+            ?>
             <div class="cart-item-card">
                 <div class="cart-item-detail">
-                    <img src="https://cdn.pixabay.com/photo/2016/03/25/09/04/t-shirt-1278404_640.jpg" alt="">
+                    <img src="<?= ROOT; ?>/static/images/product_imgs/<?= $img; ?>" alt="">
                     <div>
-                        <p>Category</p>
-                        <h4>Item Name 1</h4>
+                        <p><?= $t_category; ?></p>
+                        <h4><?= $product['name']; ?></h4>
                     </div>
                 </div>
 
@@ -61,50 +59,11 @@
                         <input type="number" id="myNumber" value="1" readonly>
                         <button onclick="increment()"><i class="fa-solid fa-plus"></i></button>
                     </div>
-                    <h5>$34</h5>
+                    <h5><?= CURRENCY; ?> <?= $product['SP']; ?></h5>
                     <button class="delete-item"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-
-            <div class="cart-item-card">
-                <div class="cart-item-detail">
-                    <img src="https://cdn.pixabay.com/photo/2016/03/25/09/04/t-shirt-1278404_640.jpg" alt="">
-                    <div>
-                        <p>Category</p>
-                        <h4>Item Name 2</h4>
-                    </div>
-                </div>
-
-                <div class="item-other-details">
-                    <div>
-                        <button onclick="decrement()"><i class="fa-solid fa-minus"></i></button>
-                        <input type="number" id="myNumber" value="1" readonly>
-                        <button onclick="increment()"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                    <h5>$34</h5>
-                    <button class="delete-item"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            </div>
-
-            <div class="cart-item-card">
-                <div class="cart-item-detail">
-                    <img src="https://cdn.pixabay.com/photo/2016/03/25/09/04/t-shirt-1278404_640.jpg" alt="">
-                    <div>
-                        <p>Category</p>
-                        <h4>Item Name 3</h4>
-                    </div>
-                </div>
-
-                <div class="item-other-details">
-                    <div>
-                        <button onclick="decrement()"><i class="fa-solid fa-minus"></i></button>
-                        <input type="number" id="myNumber" value="1" readonly>
-                        <button onclick="increment()"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                    <h5>$34</h5>
-                    <button class="delete-item"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            </div>
+            <?php } ?>
 
         </div>
 
@@ -137,13 +96,13 @@
                 <p>$432</p>
             </div>
 
-            <button id="checkout-btn">Proceed To Checkout</button>
+            <a href="<?= ROOT; ?>/store/payment" style="text-decoration: none; color: black;"><button id="checkout-btn">Proceed To Checkout</button></a>
 
         </div>
     </div>
 
     <!-- link to go back -->
-    <a href="" class="link-to-go-back"><i class="fa-solid fa-arrow-left"></i> Continue shopping</a>
+    <a href="<?= ROOT; ?>/" class="link-to-go-back"><i class="fa-solid fa-arrow-left"></i> Continue shopping</a>
 
     <script>
         function increment() {

@@ -10,7 +10,16 @@ require_once __DIR__ . "/../Models/models.php";
 
 class OrderController {
     public function cartHandler($request) {
+        $context = [];
+
+
         $db = new DB();
+        ob_start();
+        include(VIEW::$path . "/navbar.html");
+        $context['navbar'] = ob_get_clean();
+        include(VIEW::$path . "/footer.html");
+        $context['footer'] = ob_get_clean();
+
 
         if ($request->method() == "GET") {
 
@@ -24,10 +33,15 @@ class OrderController {
                 $products[] = $db->getProduct($id['product_id']);
             }
 
+            $context["products"] = $products;
+    
+            // get all the categories
+            $context["categories"] = $db->getCategories(); 
+
             // set payment promise
             $_SESSION['payment_promise'] = TRUE;
 
-            VIEW::init("store/cart.html", ['products' => $products]);
+            VIEW::init("store/your_cart.html", $context);
         }
 
         else if ($request->method() == "POST") {
@@ -44,6 +58,13 @@ class OrderController {
 
 
     public function createOrder($request) {
+        $context = [];
+
+        ob_start();
+        include(VIEW::$path . "/navbar.html");
+        $context['navbar'] = ob_get_clean();
+        include(VIEW::$path . "/footer.html");
+        $context['footer'] = ob_get_clean();
 
         // unset the payment promise
         unset($_SESSION['payment_promise']);
@@ -65,6 +86,8 @@ class OrderController {
             $products[] = $product;
             $amount += (float) $product['SP'];
         }
+
+        $context["products"] = $products;
 
         $order_data = [
             'amount' => strval($amount) . '00', // in paise
@@ -89,7 +112,7 @@ class OrderController {
         }
 
         // SCRIPT CONTEXT 
-        $context = [
+        $data = [
             'API_KEY' => RZP_ID,
             'price' => $order['amount'],
             'COMPANY_NAME' => COMPANY_NAME,
@@ -102,10 +125,10 @@ class OrderController {
             'failure_callback_url' => "https://shoaibwani.serveo.net/Ecommer/payment_failed"
         ];
 
-        $code = $gateway->getIntegrationCode($context);
+        $context["code"] = $gateway->getIntegrationCode($data);
 
         // view the payment page
-        VIEW::init("store/payment.html", ['code' => $code, 'products' => $products]);
+        VIEW::init("store/payment.html", $context);
     }
 }
 

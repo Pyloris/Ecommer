@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order confirmed</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="../static/css/order_confirm.css">
+</head>
+
+<body>
+
+    <div class="order-confirm-wrapper">
+
+        <h2>Your Order Confirmed!</h2>
+
+        <div class="user-mesage">
+            <h4>Hello Chris,</h4>
+            <p>Your order has been confirmed and will be shipping within next two days.</p>
+        </div>
+
+        <div class="payment-details">
+            <div>
+                <p>Order Date</p>
+                <p>12 Jan, 2020</p>
+            </div>
+            <div>
+                <p>Order No</p>
+                <p>Ndhdieiufu</p>
+            </div>
+            <div>
+                <p>Payment</p>
+                <p>cash on delivery</p>
+            </div>
+            <div>
+                <p>Shipping Address</p>
+                <p>Lorem ipsum dolor sit</p>
+            </div>
+        </div>
+
+        <div class="product-purchased">
+            <div class="purchased-product-details">
+                <img src="https://manofmany.com/wp-content/uploads/2019/04/David-Gandy.jpg" alt="">
+                <div>
+                    <h3>name of the product</h3>
+                    <ul>
+                        <li>Quantity: <span>1</span></li>
+                        <li>Color: <span>Dark Blue</span></li>
+                    </ul>
+                </div>
+            </div>
+            <h3>$54.4</h3>
+        </div>
+
+        <div class="total-details">
+            <ul>
+                <li>Subtotal <span>$10.3</span></li>
+                <li>Shipping Fee <span>$10.3</span></li>
+                <li>Tax Fee <span>$10.3</span></li>
+                <li>Discount <span>$10.3</span></li>
+                <li id="total-price" style="color: rgba(0, 0, 0, 0.718); font-weight: 600;">Total<span>$200.3</span></li>
+            </ul>
+        </div>
+
+        <p id="shipment-msg">We'll be sending a shipping confirmation email whrn the items shipped successfully.</p>
+        <h4 class="center">Thank You for shopping with us!</h4>
+        <h5 class="center" style="color:#DA8067;">ZephyrBay Team</h5>
+    </div>
+
+    <!-- back to home-->
+    <a href="" id="continueShopping"><i class="fa-solid fa-arrow-left-long"></i> Continue shopping</a>
+
+</body>
+
+</html>

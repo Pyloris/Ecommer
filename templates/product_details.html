@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZephyrBay</title>
+  <!-- font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- custom stylesheet -->
+  <link rel="stylesheet" href="../static/css/product_listing.css">
+  <link rel="stylesheet" href="../static/css/product_detail.css">
+
+  <!-- script file -->
+  <script src="../static/js/product_details.js" defer></script>
+</head>
+
+<body>
+
+  <!-- search and sort -->
+  <div class="heading">
+    <h1 class="title">ZephyrBay</h1>
+    <div class="searchbar">
+      <input type="text" placeholder="Seach Items here...">
+      <button><i class="fa-solid fa-magnifying-glass"></i></button>
+    </div>
+    <div class="header-links">
+      <a href="" class="style-anchor-tags"><i class="fa-regular fa-user"></i> <span>My Account</span></a>
+      <a href="" class="style-anchor-tags"><i class="fa-regular fa-heart"></i><span> Wishlist</span></a>
+      <a href="" class="style-anchor-tags"><i class="fa-solid fa-bag-shopping"></i><span> My Cart</span></a>
+    </div>
+  </div>
+
+  <!-- navbar -->
+  <nav class="nav-bar">
+    <a href="" class="style-anchor-tags">Categories</a>
+    <a href="" class="style-anchor-tags">Hot Offers</a>
+    <a href="" class="style-anchor-tags">Gift Boxes</a>
+    <a href="" class="style-anchor-tags">Shop</a>
+    <button class="show-navbar"><i class="fa-solid fa-bars"></i></button>
+  </nav>
+
+  <!-- product description section starts -->
+  <div class="product-wrapper">
+
+    <!-- product img slide --------------------->
+    <div class="product-description-img">
+      <div class="img-display">
+        <div class="img-showcase">
+          <img
+            src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg"
+            alt="shoe image">
+          <img
+            src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg"
+            alt="shoe image">
+          <img
+            src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg"
+            alt="shoe image">
+          <img
+            src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
+            alt="shoe image">
+        </div>
+      </div>
+      <div class="img-select">
+        <div class="img-item">
+          <a href="#" data-id="1">
+            <img
+              src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg"
+              alt="shoe image">
+          </a>
+        </div>
+        <div class="img-item">
+          <a href="#" data-id="2">
+            <img
+              src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg"
+              alt="shoe image">
+          </a>
+        </div>
+        <div class="img-item">
+          <a href="#" data-id="3">
+            <img
+              src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg"
+              alt="shoe image">
+          </a>
+        </div>
+        <div class="img-item">
+          <a href="#" data-id="4">
+            <img
+              src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
+              alt="shoe image">
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <!-- ---------------------------------------------------------- -->
+
+    <!-- product description -------------------->
+    <div class="product-details">
+
+      <p>COLLECTION NAME</p>
+      <h1 id="productHeading">Specify Product Name</h1>
+      <div class="reviews-div">
+
+        <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+        <a href="#reviewsWrapper">8 Reviews</a>
+      </div>
+
+      <div class="price-quantity-div">
+
+        <div class="titles">
+          <p>Price</p>
+          <p>Quantity</p>
+        </div>
+
+        <div class="title-values">
+          <p>$599.3</p>
+          <div class="quantity">
+            <button id="dec"><i class="fa-solid fa-minus"></i></button>
+            <span id="quantity-value">1</span>
+            <button id="inc"><i class="fa-solid fa-plus"></i></button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="details">
+        <h4>Description</h4>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente possimus, tenetur eveniet quae quia dolor
+          magni numquam illo velit quas natus ut vero maiores, cupiditate quod corporis ipsa libero. Beatae!</p>
+          
+          <ul>
+          <li><span class="pro-head">heading</span> <span class="pro-des">discription here</span></li>
+          <li><span class="pro-head">heading</span> <span class="pro-des">discription here</span></li>
+          <li><span class="pro-head">heading</span> <span class="pro-des">discription here</span></li>
+        </ul>
+
+      </div>
+
+      <div class="product-details-total">
+        <p>Total Price: <span>$3234</span></p>
+        <div>
+          <button id="addToCart">Add To Cart</button>
+          <button id="buynow">Buy Now</button>
+        </div>
+      </div>
+
+    </div>
+    <!-- ---------------------------------------------------------- -->
+  </div>
+  
+
+  <!-- reviews view sectioooooon -->
+  <div id="reviewsWrapper">
+
+    <!-- heading -->
+    <div class="review-head">
+  
+        <div class="stars-div" id="starsHead"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+            class="fa-solid fa-star"></i>
+          </div>
+  
+        <p>8 Reviews</p>
+        <button id="sortReview">Sort <i class="fa-solid fa-sort"></i></button>
+    </div>
+
+    <!-- reviews card -->
+    <div class="review-card">
+  
+        <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i>
+        </div>
+  
+      <h3>Head line of review</h3>
+      <p>description of review. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus, sequi quae labore deleniti veritatis amet modi illum laudantium, nisi praesentium eaque necessitatibus nobis quo quia at. Atque inventore voluptatibus aperiam.</p>
+      <h4>By: name of user</h4>
+    </div>
+    
+    <div class="review-card">
+  
+        <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i>
+        </div>
+  
+      <h3>Head line of review</h3>
+      <p>description of review. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus, sequi quae labore deleniti veritatis amet modi illum laudantium, nisi praesentium eaque necessitatibus nobis quo quia at. Atque inventore voluptatibus aperiam.</p>
+      <h4>By: name of user</h4>
+    </div>
+
+    <!-- view more button -->
+    <button id="viewMore"><i class="fa-solid fa-plus"></i> View more</button>
+
+  </div>
+
+
+  <!-- write review section -->
+  <div id="writeReview">
+    <h4>Write a REview</h4>
+    <form action="">
+      <input type="text"  class="info" placeholder="Name">
+      <input type="Email" class="info" placeholder="Email">
+      <input type="text"  class="info" placeholder="Location">
+      <div class="reviews">
+        Rating: 
+        <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+      </div>
+      <input type="text" class="rtitle" placeholder="Title of your review">
+      <textarea name="" class="rcontent" id="" cols="20" rows="7" placeholder="Write your review..."></textarea>
+
+      <p>Please enter the word you see in the image below.</p>
+      <div class="captcha-wrapper">
+      <img src="https://c22blog.files.wordpress.com/2010/10/input-black.gif" alt="" id="captcha" class="captcha">
+      <input class="captcha" type="text" placeholder="Enter captcha" >
+    </div>
+      <button id="submitReview">Submit review</button>
+
+    </form>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- related products -->
+  <h3 id="relatedHeading">Related Products</h3>
+  <div class="related-products-wrapper" style="margin-bottom: 1rem;">
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+
+  </div>
+
+  <!-- sponsered products -->
+  <h3 id="relatedHeading" style="margin-top: 1rem;">Sponsered Products</h3>
+  <div class="related-products-wrapper">
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+    <a class="related-products-card">
+      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+
+      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+
+      <p>related product name</p>
+      <h4>$233</h4>
+    </a>
+
+
+  </div>
+
+
+  <script>
+
+  </script>
+
+</body>
+
+</html>

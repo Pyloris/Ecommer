@@ -1,0 +1,440 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+#goBack{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    color: rgba(44, 40, 40, 0.737);
+    z-index: 99999;
+    font-size: 1.5rem;
+}
+
+.user-details-container{
+    background-color: #EBAF81;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: .4rem;
+    font-size: .9rem;
+    color: #fff;
+    position: relative;
+}
+
+.user-details-container img{
+    margin-bottom: .5rem;
+    object-fit: cover;
+    display: block;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.user-links-container{
+    padding: .7rem;
+    width: 80%;
+    position: absolute;
+    bottom: -50px;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.anchor-tag{
+    text-decoration: none;
+    font-weight: 500;
+    color: rgba(61, 59, 59, 0.916);
+    padding: .5rem;
+    height: 10vh;
+}
+
+.anchor-tag:hover{
+    border-bottom: 2px solid rgba(128, 128, 128, 0.512);
+}
+
+.anchor-tag i{
+    color: rgba(128, 128, 128, 0.858);
+    font-size: 1.3rem;
+}
+
+.user-links{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1rem;
+    width: 20%;
+}
+
+.user-links div{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.item-present{
+    background-color: red;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    color: #fff;
+    font-size: .9rem;
+    text-align: center;
+    top: -10px;
+    left: 55%;
+    transform: translateX(-50%);
+}
+
+
+@media screen and (max-width:960px) {
+    .user-links-container{
+        width: 96%;
+        align-items: center;
+    }
+
+    .user-links{
+        width: fit-content;
+        justify-content: center;
+        
+    }
+
+    .item-present{
+        left: 60%;
+    }
+}
+
+
+/* order section starts------------------------------ */
+
+#your-orders-wrapper{
+    margin: 4.5rem 15%;
+    padding: 1rem;
+}
+
+#your-orders-wrapper h1{
+    color: #EBAF81;
+    margin-bottom: 1.6rem;
+    font-weight: 400;
+}
+
+.your-orders-card{
+    border: 2px solid rgba(128, 128, 128, 0.36);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    height: 14vh;
+    color: rgb(72, 69, 69);
+    font-size: .85rem;
+    line-height: 1.5;
+    border-left: none;
+    border-right: none;
+    margin-bottom: .7rem;
+    align-items: center;
+}
+
+.your-orders-card h2{
+    font-weight: 500;
+}
+
+.your-orders-card img{
+    width: auto;
+    height: 100%;
+}
+
+.order-info button{
+    margin: .5rem 0;
+    background:none;
+    border: 1px solid #EBAF81;
+    padding: .2rem .7rem;
+    color: #EBAF81;
+    font-weight: 500;
+}
+
+@media screen and (max-width:960px) {
+    #your-orders-wrapper{
+        margin: 4.5rem 3%;
+    }
+
+    #your-orders-wrapper h1{
+        text-align: center;
+    }
+
+    .your-orders-card{
+        height: fit-content;
+        gap: 1rem;
+    }
+
+    .your-orders-card img{
+        width: 40%;
+        object-fit: cover;
+    }
+}
+
+/* order section ends----------------------------------- */
+
+
+/* wishlist section starts----------------------------------- */
+
+#wishlist-section{
+    margin-top: 4.5rem;
+    padding: 1rem 0;
+}
+
+#wishlist-heading{
+    font-weight: 400;
+    letter-spacing: .1rem;
+    margin:1rem 0;
+    color: #EBAF81;
+    text-align: center;
+}
+
+#wishlist-wrapper{
+    flex-wrap: wrap;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap:1.5rem;
+}
+
+.wishlist-card{
+    width: 15%;
+    height: 35vh;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.above{
+    position: relative;
+    height: 65%;
+}
+
+.wishlist-card img{
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.wishlist-info{
+    display: flex;
+    flex-direction: column;
+    padding:0 .6rem;
+    /* align-items: center; */
+    font-size: .85rem;
+    gap:.4rem;
+}
+
+.wishlist-info p{
+    color: rgb(75, 70, 70);
+    font-weight: 500;
+}
+
+.removeBtn{
+    position: absolute;
+    right: 7px;
+    top:7px;
+    border: 1px solid rgb(72, 66, 66);
+    background-color: #ffffff9f;
+    color: rgb(72, 66, 66);
+    padding: .3rem .5rem;
+    border-radius: 50%;
+}
+
+.reviews-tag{
+    position: absolute;
+    background-color: #ffffffaf;
+    bottom: 7px;
+    left: 7px;
+    padding: .3rem .7rem;
+    border-radius: 30px;
+    border: none;
+    font-weight: 500;
+    font-size: .9rem;
+}
+
+.reviews-tag span{
+    display: flex;
+    align-items: center;
+    gap:.1rem;
+}
+
+.reviews-tag span i{
+    color:rgb(255, 132, 0);
+    font-size: .7rem;
+}
+
+#price{
+    color: rgba(129, 121, 121, 0.859);
+    font-weight: 500;
+}
+
+.addToBag{
+    background:none;
+    border: none;
+    border-top: 1px solid rgba(129, 121, 121, 0.527);
+    padding: .5rem;
+    color: #EBAF81;
+    font-weight: 500;
+}
+
+@media screen and (max-width:960px) {
+
+    #wishlist-wrapper{
+        padding: 0;
+        margin: auto .5rem;
+        margin-top: 2rem !important;
+        justify-content: center;
+        gap:.5rem;
+    }
+
+    .wishlist-card{
+        height: fit-content;
+        width: 48%;
+    }
+
+    .wishlist-card img{
+        height: 130px;
+    }
+}
+
+/* wishlist code ends--------------------- */
+
+
+
+/* notifications section starts-------------------------- */
+
+#noti-wrapper{
+    margin:2rem 15%;
+    padding: 1rem;
+    margin-top: 4.5rem;
+}
+
+#noti-wrapper h1{
+    font-weight: 400;
+    letter-spacing: .1rem;
+    margin: .5rem 0 1.8rem 0;
+    color: #EBAF81;
+}
+
+.noti-card{
+    border: 1px solid rgba(128, 128, 128, 0.389);
+    padding: 1rem;
+    font-size: .9rem;
+    line-height: 1.5;
+    color: rgb(72, 69, 69);
+    border-top-right-radius: 20px;
+    border-bottom-left-radius:20px;
+    margin-bottom: .7rem;
+}
+
+.noti-card button{
+    margin-top: .8rem;
+    background:none;
+    border: 1px solid #EBAF81;
+    padding: .3rem .7rem;
+    color: #EBAF81;
+    font-weight: 500;
+}
+
+@media screen and (max-width:960px) {
+    #noti-wrapper{
+        margin:4.5rem 3%
+    }
+
+    #noti-wrapper h1{
+        text-align: center;
+    }
+}
+/* notification section ends-------------------------- */
+
+
+/* -------------------------------------- user crendentials starts --------------------------------------------------------------------------------------- */
+
+.user-details{
+    margin:6rem auto;
+    background-color: rgba(128, 128, 128, 0.173);
+    width: 60%;
+    padding: 1.5rem;
+}
+
+.user-details h1{
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #EBAF81;
+}
+
+
+.user-details form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.user-details input{
+    background:none;
+    border: 1px solid rgba(128, 128, 128, 0.782);
+    color: gray;
+    padding: .4rem;
+    font-size: 1.2rem;
+}
+
+.user-info-btn{
+    background: none;
+    background-color: #EBAF81;
+    border: none;
+    color: rgb(72, 66, 66);
+    width: 25%;
+    margin: .5rem 0;
+    padding: .5rem;
+}
+
+.short,.long{
+    display: flex;
+    font-size: .85rem;
+    flex-direction: column;
+    gap:.3rem;
+    margin-bottom: 1rem;
+}
+
+.short{
+    width: 47%;
+}
+
+.long{
+    width: 100%;
+}
+
+@media screen and (max-width:960px) {
+    .user-details{
+        width:96%;
+    }
+
+    .user-info-btn{
+        width: 40%;
+    }
+}
+
+/* ------------------------------------------ends ------------------------------------------------------------------------------------- */
+
+
+
+.link-section {
+    display: none;
+}

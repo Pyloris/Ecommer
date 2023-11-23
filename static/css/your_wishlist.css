@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    overflow-x:hidden !important;
+}
+
+
+#wishlist-heading{
+    font-weight: 400;
+    letter-spacing: .1rem;
+    margin:2rem 0;
+    color: #EBAF81;
+    text-align: center;
+}
+
+#wishlist-wrapper{
+    flex-wrap: wrap;
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap:1.5rem;
+}
+
+.wishlist-card{
+    width: 15%;
+    height: 40vh;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    gap:.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.above{
+    position: relative;
+    height: 65%;
+}
+
+.wishlist-card img{
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+}
+
+.wishlist-info{
+    display: flex;
+    flex-direction: column;
+    padding:0 .6rem;
+    /* align-items: center; */
+    font-size: .85rem;
+    gap:.4rem;
+}
+
+.wishlist-info p{
+    color: rgb(75, 70, 70);
+    font-weight: 500;
+}
+
+.removeBtn{
+    position: absolute;
+    right: 7px;
+    top:7px;
+    border: 1px solid rgb(72, 66, 66);
+    background-color: #ffffff9f;
+    color: rgb(72, 66, 66);
+    padding: .3rem .5rem;
+    border-radius: 50%;
+}
+
+.reviews-tag{
+    position: absolute;
+    background-color: #ffffffaf;
+    bottom: 7px;
+    left: 7px;
+    padding: .3rem .7rem;
+    border-radius: 30px;
+    border: none;
+    font-weight: 500;
+    font-size: .9rem;
+}
+
+.reviews-tag span{
+    display: flex;
+    align-items: center;
+    gap:.1rem;
+}
+
+.reviews-tag span i{
+    color:rgb(255, 132, 0);
+    font-size: .7rem;
+}
+
+#price{
+    color: rgba(129, 121, 121, 0.859);
+    font-weight: 500;
+}
+
+.addToBag{
+    background:none;
+    border: none;
+    border-top: 1px solid rgba(129, 121, 121, 0.527);
+    padding: .5rem;
+    color: #EBAF81;
+    font-weight: 500;
+}
+
+.addToBagMessage{
+    position: absolute;
+    transform:translateX(-100%);
+    top: 1rem;
+    width: 30%;
+    background-color: #EBAF81;
+    letter-spacing: .1rem;
+    text-align: center;
+    padding: 1rem;
+    color: #fff;
+    opacity: 0;
+    z-index: 999;
+    transition: all 500ms ease-in-out;
+}
+
+.showAddToBagMessage{
+    transform: translateX(0%);
+    opacity: 1;
+}
+
+
+@media screen and (max-width:960px) {
+
+    #wishlist-wrapper{
+        padding: 0;
+        justify-content: center;
+    }
+
+    .wishlist-card{
+        height: fit-content;
+        width: 45%;
+    }
+
+    .wishlist-card img{
+        height: 130px;
+    }
+
+    .addToBagMessage{
+        width: 70%;
+    }
+}

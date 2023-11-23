@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="../static/css/user_profile.css">
+</head>
+
+<body>
+
+    <!-- go back link -->
+    <a href="" id="goBack"><i class="fa-solid fa-arrow-left-long"></i></a>
+
+    <!-- user info -->
+    <div class="user-details-container">
+        <img src="https://images.pexels.com/photos/899357/pexels-photo-899357.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            alt="">
+        <h4>Name of the user</h4>
+        <p>Email of the user</p>
+
+        <div class="user-links-container">
+            <a href="#" class="anchor-tag user-links" onclick="showContent('your-orders-wrapper')">
+                <div>
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </div>
+                Orders
+            </a>
+
+            <a href="#" class="anchor-tag user-links" onclick="showContent('wishlist-section')">
+                <div>
+                    <span class="item-present">2</span>
+                    <i class="fa-regular fa-heart"></i>
+                </div>
+                Wishlist
+            </a>
+
+            <a href="#" class="anchor-tag user-links" onclick="showContent('noti-wrapper')">
+                <div>
+                    <span class="item-present">3</span>
+                    <i class="fa-regular fa-bell"></i>
+                </div>
+                Notifications
+            </a>
+
+            <a href="#" class="anchor-tag user-links" onclick="showContent('credentials')">
+                <div>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                Credentials
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- orders section starts ------------------------>
+    <div id="your-orders-wrapper" class="link-section">
+        <h1>Your Orders</h1>
+
+
+        <div class="your-orders-card">
+            <div class="order-info">
+                <h2>name of the product</h2>
+                <p>status of the product(delivered or not)</p>
+                <button>Buy Again</button>
+            </div>
+            <img src="https://img.freepik.com/free-photo/portrait-handsome-confident-stylish-hipster-lambersexual-modelman-dressed-black-jacket-jeans-fashion-male-posing-studio-near-grey-wall_158538-24002.jpg"
+                alt="">
+        </div>
+
+    </div>
+
+    <!-- order section ends -------------------------->
+
+
+    <!-- wishlist section starts---------------------- -->
+
+    <div id="wishlist-section" class="link-section">
+        <h1 id="wishlist-heading">Your Wishlist <i class="fa-regular fa-heart"></i></h1>
+        <div id="wishlist-wrapper">
+            <!-- wishlist card below -->
+            <div class="wishlist-card">
+                <div class="above">
+                    <button class="removeBtn"><i class="fa-solid fa-xmark"></i></button>
+
+                    <div class="reviews-tag">
+                        <span>4.4 <i class="fa-solid fa-star"></i> | 675</span>
+                    </div>
+
+                    <img src="https://images.unsplash.com/photo-1627292441194-0280c19e74e4?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZhc2hpb24lMjBtb2RlbHxlbnwwfHwwfHx8MA%3D%3D"
+                        alt="">
+                </div>
+
+                <div class="wishlist-info">
+                    <h3 id="price">$344</h3>
+                    <p>name of the product</p>
+                </div>
+                <button class="addToBag">Move to bag</button>
+            </div>
+        </div>
+    </div>
+    <!-- wishlist section ends ---------------------- -->
+
+
+
+    <!-- notifications section -->
+
+    <div id="noti-wrapper" class="link-section">
+        <h1>Notifications <i class="fa-regular fa-bell"></i></h1>
+        <div class="noti-card">
+            <h2>title of the notification</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos officia aliquid dolores, quo eaque
+                corrupti dolor sint, quod ducimus nobis tempore laudantium, pariatur facere cupiditate eos. Fugiat
+                blanditiis voluptas necessitatibus.</p>
+            <button>Remove <i class="fa-regular fa-trash-can"></i></button>
+        </div>
+        <div class="noti-card">
+            <h2>title of the notification</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos officia aliquid dolores, quo eaque
+                corrupti dolor sint, quod ducimus nobis tempore laudantium, pariatur facere cupiditate eos. Fugiat
+                blanditiis voluptas necessitatibus.</p>
+            <button>Remove <i class="fa-regular fa-trash-can"></i></button>
+        </div>
+    </div>
+    <!-- notify section endssssss------------------------- -->
+
+
+
+    <!-- user credentials ----------------------------------------------------------------------------------------------------------->
+
+    <div id="credentials" class="user-details link-section">
+        <h1>Your Detials</h1>
+
+        <form action="">
+            <label for="" class="short">
+                First name
+                <input type="text">
+            </label>
+
+            <label for="" class="short">
+                Last Name
+                <input type="text">
+            </label>
+
+            <label for="" class="long">
+                Address
+                <input type="text">
+            </label>
+
+            <label for="" class="long">
+                Town/City
+                <input type="text">
+            </label>
+
+            <label for="" class="short">
+                Country
+                <input type="text">
+            </label>
+
+            <label for="" class="short">
+                Postcode
+                <input type="text">
+            </label>
+
+            <label for="" class="short">
+                Email
+                <input type="text">
+            </label>
+
+            <label for="" class="short">
+                Phone
+                <input type="text">
+            </label>
+
+                <button class="Edit Details user-info-btn">Edit Detials</button>
+                <button class="user-info-btn">Submit Details</button>
+        </form>
+
+    </div>
+
+    <!-- ---------------------------------------------------------ends ------------------------------------------------------- -->
+
+
+    <script>
+        function showContent(pageId) {
+            // Hide all content sections
+            let contentSections = document.querySelectorAll('.link-section');
+            contentSections.forEach(function (section) {
+                section.style.display = 'none';
+            });
+
+            // Show the selected content section
+            let selectedContent = document.getElementById(pageId);
+            if (selectedContent) {
+                selectedContent.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

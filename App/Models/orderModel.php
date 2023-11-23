@@ -23,6 +23,67 @@ trait OrderDB {
     }
 
 
+    public function addToBuyNowCart($user_id, $product_id) {
+        $query = "INSERT INTO buynow_cart VALUES (:u_id, :p_id)";
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(":u_id", $user_id);
+            $stmt->bindParam(":p_id", $product_id);
+
+            if ($stmt->execute()) {
+                return TRUE;
+            }
+            else {
+                return FALSE;
+            }
+        }
+        catch (PDOException $e) {
+            echo($e->getMessage());
+        }
+
+    }
+
+
+    public function getBuyNowCartItem($user_id) {
+        $query = "SELECT * FROM buynow_cart WHERE user_id=:u_id";
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(":u_id", $user_id);
+
+            if ($stmt->execute()) {
+                return $stmt->fetchAll(); 
+            }
+            else {
+                return FALSE;
+            }
+        }
+        catch (PDOException $e) {
+            echo($e->getMessage());
+        }
+    }
+
+    public function cleanBuyNowCart($user_id) {
+        $query = "DELETE FROM buynow_cart WHERE user_id=:u_id";
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(":u_id", $user_id);
+
+            if ($stmt->execute()) {
+                return TRUE;
+            }
+            else {
+                return FALSE;
+            }
+        }
+        catch (PDOException $e) {
+            echo($e->getMessage());
+        }
+
+    }
+
     public function getCartItems($user_id) {
         $query = "SELECT product_id FROM cart WHERE user_id=:u_id";
 

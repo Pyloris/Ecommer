@@ -12,6 +12,8 @@
   <!-- custom stylesheet -->
   <link rel="stylesheet" href="<?= ROOT; ?>/static/css/product_listing.css">
   <link rel="stylesheet" href="<?= ROOT; ?>/static/css/product_detail.css">
+  <link rel="stylesheet" href="<?= ROOT; ?>/static/css/home.css">
+  
 
   <!-- script file -->
   <script src="<?= ROOT; ?>/static/js/product_details.js" defer></script>
@@ -20,25 +22,14 @@
 <body>
 
   <!-- search and sort -->
-  <div class="heading">
-    <h1 class="title">ZephyrBay</h1>
-    <div class="searchbar">
-      <input type="text" placeholder="Seach Items here...">
-      <button><i class="fa-solid fa-magnifying-glass"></i></button>
-    </div>
-    <div class="header-links">
-      <a href="" class="style-anchor-tags"><i class="fa-regular fa-user"></i> <span>My Account</span></a>
-      <a href="" class="style-anchor-tags"><i class="fa-regular fa-heart"></i><span> Wishlist</span></a>
-      <a href="" class="style-anchor-tags"><i class="fa-solid fa-bag-shopping"></i><span> My Cart</span></a>
-    </div>
-  </div>
+  <?= $navbar; ?> 
 
   <!-- navbar -->
   <nav class="nav-bar">
-    <a href="" class="style-anchor-tags">Categories</a>
+    <a href="<?= ROOT; ?>/" class="style-anchor-tags">Home</a>
     <a href="" class="style-anchor-tags">Hot Offers</a>
     <a href="" class="style-anchor-tags">Gift Boxes</a>
-    <a href="" class="style-anchor-tags">Shop</a>
+    <a href="<?= ROOT; ?>/shop" class="style-anchor-tags">Shop</a>
     <button class="show-navbar"><i class="fa-solid fa-bars"></i></button>
   </nav>
 
@@ -120,9 +111,17 @@
       <div class="product-details-total">
         <p>Total Price: <span><?= CURRENCY; ?> <?= $product['SP']; ?></span></p>
         <div>
-          <form action="<?= ROOT; ?>/cart">
-          <button id="addToCart"><a href="<?= ROOT; ?>/cart?product_id=<?= $product['id']; ?>" style="text-decoration: none; color: black;">Add To Cart</a></button>
-          <button id="buynow"><a href="<?= ROOT; ?>/checkout?product_id=<?= $product['id']; ?>" style="text-decoration: none; color: black;">Buy Now</a></button>
+          <form action="<?= ROOT; ?>/cart" method="POST">
+            <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+            <input type="hidden" name="action" value="addToCart">
+            <button id="addToCart">Add To Cart</button>
+          </form>
+
+          <form action="<?= ROOT; ?>/cart" method="POST">
+            <input type="hidden" name="product_id" value="<?= $product['id']; ?>">
+            <input type="hidden" name="action" value="buyNow">
+            <button id="buynow">Buy Now</button>
+          </form>
         </form>
         </div>
       </div>
@@ -180,7 +179,7 @@
 
   <!-- write review section -->
   <div id="writeReview">
-    <h4>Write a REview</h4>
+    <h4>Write a Review</h4>
     <form action="">
       <input type="text"  class="info" placeholder="Name">
       <input type="Email" class="info" placeholder="Email">
@@ -252,107 +251,7 @@
     ?>
   </div>
 
-  <!-- sponsered products -->
-  <!-- <h3 id="relatedHeading" style="margin-top: 1rem;">Sponsered Products</h3>
-  <div class="related-products-wrapper">
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-
-  </div> -->
-
-
-  <script>
-
-  </script>
+  <?= $footer; ?>
 
 </body>
 

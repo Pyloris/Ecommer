@@ -11,6 +11,10 @@ require_once __DIR__ . "/../Models/models.php";
 
 class OrderController {
     public function cartHandler($request) {
+        // perform cleanup
+        require_once __DIR__ . "/../Helpers/dbCleanup.php";
+        cleanDB();
+
         $context = [];
 
 
@@ -53,11 +57,14 @@ class OrderController {
             }
 
             // add the product to the cart
-            if ($db->addToCart($_SESSION['id'], $request->formData('product_id'))) {
+            if ($request->formData('action') == "addToCart" and $db->addToCart($_SESSION['id'], $request->formData('product_id'))) {
                 echo("Added to cart successfullly");
             }
-            else {
-                echo("Failure adding to cart");
+            else if ($request->formData('action') == "buyNow") {
+                // add the product to buynow_cart
+                if ($db->addToBuyNowCart($_SESSION['id'], $request->formData('product_id'))) {
+                    HelperFuncs::redirect(ROOT . "/store/payment?action=buyNow");
+                }
             }
         }
     }
@@ -83,10 +90,15 @@ class OrderController {
 
         // get all the necessary order data
         // an order is always generated from the cart items
-        $items = $db->getCartItems($_SESSION['id']);
+        if ($request->queryData('action') == "buyNow")
+            $items = $db->getBuyNowCartItem($_SESSION['id']);
+        else
+            $items = $db->getCartItems($_SESSION['id']);
 
         $amount = 0.0;
         $products = [];
+
+        
         foreach($items as $item) {
             $product = $db->getProduct($item['product_id']);
             $products[] = $product;
@@ -101,7 +113,7 @@ class OrderController {
         ];
 
         // before creating another order, remove the pending orders from current user
-        $db->removePendingOrders($_SESSION['id']);
+        // $db->removePendingOrders($_SESSION['id']);
         
         // create an order with the details given
         $order = $gateway->order($order_data);

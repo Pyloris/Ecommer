@@ -12,6 +12,14 @@ class ProductController {
 
     public function show($request) {
 
+        // get footer and navbar
+        $context = [];
+        ob_start();
+        include(VIEW::$path . "/navbar.html");
+        $context["navbar"] = ob_get_clean();
+        include(VIEW::$path . "/footer.html");
+        $context["footer"] = ob_get_clean();
+
         // get the product id
         $id = $request->queryData('id');
 
@@ -30,7 +38,6 @@ class ProductController {
         $similarProducts = [];
         $similarProducts[] = $db->getRelatedProducts($product['id'], $product['name'], $product['category'], $product['collection']);
 
-        $context = [];
         $context['product'] = $product;
         $context['similar_products'] = $similarProducts;
         $context['collection'] = $db->getCollection($product['collection']);

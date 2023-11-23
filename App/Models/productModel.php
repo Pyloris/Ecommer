@@ -112,6 +112,68 @@ trait ProductDB {
         }
     }
 
+    public function getProductsByFlag($flag) {
+        $query = "SELECT * FROM products WHERE flag=:flag";
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(":flag", $flag);
+
+            if ($stmt->execute()) {
+                return $stmt->fetchAll();
+            }
+            else {
+                return FALSE;
+            }
+        }
+        catch (PDOException $e) {
+            echo($e->getMessage());
+        }
+    }
+
+    public function getRelatedProducts($subject_id, $name, $category, $collection) {
+        if ($category and $collection)
+            $query = "SELECT * FROM products WHERE id!=:t_id AND (category=:category OR collection=:collection)";
+        else {
+            $query = "SELECT * FROM products WHERE id!=:t_id";
+            // split name
+            $name = explode(" ", $name);
+            $holders = [];
+            foreach($name as $part) {
+                if (strlen($part) >= 3) {
+                    $query .= " AND ";
+                    $val = ':' . strtolower($part);
+                    $part = '%' . $part . '%';
+                    $holders[$val] = $part;
+                    $query .= " name LIKE " . $val . " ";
+                }
+            }
+        }
+
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':t_id', $subject_id);
+            if ($category and $collection) {
+                $stmt->bindParam(':category', $category);
+                $stmt->bindParam(':collection', $collection);
+            }
+            else {
+                foreach($holders as $key => $value) {
+                    $stmt->bindParam($key, $value);
+                }
+            }
+
+            if ($stmt->execute()) {
+                return $stmt->fetchAll();
+            }
+            else {
+                return FALSE;
+            }
+        }
+        catch (PDOException $e) {
+            echo($e);
+        }
+    }
 }
 
 ?>

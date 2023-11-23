@@ -33,26 +33,27 @@
 
     <form action="<?= ROOT; ?>/admin/add_product" method="POST" enctype="multipart/form-data">
         <pre>
+            Add Product Images: (.png, .jpg, .jpeg)
             <input type="file" name="imgs[]" multiple="multiple" accept=".png, .jpg, .jpeg" onchange="previewImage(event)" required>
             <input type="text" name="name" placeholder="Enter product name" required>
-            <textarea name="description" id="" cols="30" rows="10" required></textarea>
+            <textarea name="description" id="" cols="30" rows="10" placeholder="Description" required></textarea>
             <input type="text" name="MRP" placeholder="Enter MRP" required>
             <input type="text" name="SP" placeholder="Enter selling price" required>
             <input type="text" name="sku" placeholder="SKU of the product" required>
+            Category: 
             <select name="category">
-                <option value="">SELECT</option>
                 <?php foreach($categories as $category) { ?>
                 <option value="<?= $category['id']; ?>"><?= $category['name']; ?></option>
                 <?php } ?>
             </select>
+            Collection: 
             <select name="collection">
-                <option value="">SELECT</option>
                 <?php foreach($collections as $collection) { ?>
                 <option value="<?= $collection['id']; ?>"><?= $collection['name']; ?></option>
                 <?php } ?>
             </select>
+            Product Flag: 
             <select name="flag">
-                <option value="">SELECT</option>
                 <?php foreach($flags as $flag) { ?>
                 <option value="<?= $flag['id']; ?>"><?= $flag['name']; ?></option>
                 <?php } ?>

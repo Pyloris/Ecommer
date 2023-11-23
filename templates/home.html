@@ -67,11 +67,7 @@
   <h3 class="section-heading">Our Collections</h3>
   <div class="collections-container">
     <?php 
-    $count=0;
     foreach($collections as $collection) { 
-      $count+=1;
-      if ($count == 5)
-        break;
     ?>
     <div class="collection-card">
       <img
@@ -124,6 +120,9 @@
     $count = 0;
     foreach($products as $product) { ?>
     <?php
+    // only grab featured products : flag=7
+    if ($product['flag'] != 1)
+      continue;
     if ($count == 7) {
       break;
     }
@@ -172,15 +171,16 @@
   <!-- our best sellers -->
   <h3 class="section-heading">Our Best Sellers</h3>
   <div class="best-seller-container">
-      <?php foreach ($products as $product) { ?>
-      <?php
+      <?php foreach ($products as $product) {
+        if ($product['flag'] != 4)
+          continue;
         $img = (explode(":", $product['imgs']))[0];
       ?>
       <div class="best-seller-card">
         <img src="<?= ROOT; ?>/static/images/product_imgs/<?= $img; ?>" alt="">
         <div class="seller-card-content">
           <p><?= $product['name']; ?></p>
-          <a href="">Details <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="<?= ROOT; ?>/product?id=<?= $product['id']; ?>">Details <i class="fa-solid fa-arrow-right"></i></a>
         </div>
       </div>
 

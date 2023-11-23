@@ -14,7 +14,9 @@ require_once __DIR__ . "/../Controllers/EmailOTPController.php";
 require_once __DIR__ . "/../Controllers/AdminController.php";
 require_once __DIR__ . "/../Controllers/OrderController.php";
 require_once __DIR__ . "/../Controllers/RZPWebhookController.php";
+require_once __DIR__ . "/../Controllers/ProductController.php";
 require_once __DIR__ . "/../Controllers/ShopController.php";
+
 
 
 // bring in custom middleware
@@ -65,6 +67,10 @@ Router::add_route("POST", ROOT . "/rzp_webhook", [RZPWebhookController::class, '
 // handle oauth X
 // Router::add_route("GET", ROOT . "/oauth/X", [XOauthController::class, 'init']);
 // Router::add_route("GET", ROOT . "/oauth/X/callback", [XOauthController::class, 'callback']);
+
+
+// handle routes for products
+Router::add_route("GET", ROOT . "/product", [ProductController::class, 'show']);
 
 
 /*

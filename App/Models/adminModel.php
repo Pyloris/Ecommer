@@ -23,23 +23,6 @@ trait adminDB {
         }
     }
 
-    public function getCollections() {
-        $query = "SELECT * FROM collections";
-
-        try {
-            $stmt = $this->db->query($query);
-            if ($stmt) {
-                return $stmt->fetchAll();
-            }
-            else {
-                return FALSE;
-            }
-        }
-        catch (PDOException $e) {
-            echo($e->getMessage());
-        }
-    }
-
     public function getFlags() {
         $query = "SELECT * FROM flags";
 

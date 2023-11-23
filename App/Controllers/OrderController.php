@@ -2,6 +2,7 @@
 require_once __DIR__ . "/../../vendor/autoload.php";
 
 use sirJuni\Framework\View\VIEW;
+use sirJuni\Framework\Helper\HelperFuncs;
 use sirJuni\Framework\Components\PaymentGateway;
 
 
@@ -45,6 +46,11 @@ class OrderController {
         }
 
         else if ($request->method() == "POST") {
+
+            if (!$request->formData('product_id')) {
+                HelperFuncs::redirect(ROOT . "/?error=no product id provided");
+                exit();
+            }
 
             // add the product to the cart
             if ($db->addToCart($_SESSION['id'], $request->formData('product_id'))) {

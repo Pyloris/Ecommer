@@ -10,11 +10,11 @@
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- custom stylesheet -->
-  <link rel="stylesheet" href="../static/css/product_listing.css">
-  <link rel="stylesheet" href="../static/css/product_detail.css">
+  <link rel="stylesheet" href="<?= ROOT; ?>/static/css/product_listing.css">
+  <link rel="stylesheet" href="<?= ROOT; ?>/static/css/product_detail.css">
 
   <!-- script file -->
-  <script src="../static/js/product_details.js" defer></script>
+  <script src="<?= ROOT; ?>/static/js/product_details.js" defer></script>
 </head>
 
 <body>
@@ -49,49 +49,27 @@
     <div class="product-description-img">
       <div class="img-display">
         <div class="img-showcase">
+          <?php
+          $imgs = explode(":", $product['imgs']);
+
+          foreach($imgs as $img) { ?>
           <img
-            src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg"
+            src="<?= ROOT; ?>/static/images/product_imgs/<?= $img; ?>"
             alt="shoe image">
-          <img
-            src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg"
-            alt="shoe image">
-          <img
-            src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg"
-            alt="shoe image">
-          <img
-            src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
-            alt="shoe image">
+          <?php } ?>
         </div>
       </div>
       <div class="img-select">
-        <div class="img-item">
+        <?php
+        foreach($imgs as $img) { ?>
+        <!-- <div class="img-item">
           <a href="#" data-id="1">
             <img
-              src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_1.jpg"
+              src="<?= ROOT; ?>/static/images/product_imgs/<?= $img; ?>"
               alt="shoe image">
           </a>
-        </div>
-        <div class="img-item">
-          <a href="#" data-id="2">
-            <img
-              src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_2.jpg"
-              alt="shoe image">
-          </a>
-        </div>
-        <div class="img-item">
-          <a href="#" data-id="3">
-            <img
-              src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_3.jpg"
-              alt="shoe image">
-          </a>
-        </div>
-        <div class="img-item">
-          <a href="#" data-id="4">
-            <img
-              src="https://fadzrinmadu.github.io/hosted-assets/product-detail-page-design-with-image-slider-html-css-and-javascript/shoe_4.jpg"
-              alt="shoe image">
-          </a>
-        </div>
+        </div> -->
+        <?php } ?>
       </div>
 
     </div>
@@ -99,9 +77,8 @@
 
     <!-- product description -------------------->
     <div class="product-details">
-
-      <p>COLLECTION NAME</p>
-      <h1 id="productHeading">Specify Product Name</h1>
+      <p><?= $collection['name']; ?></p>
+      <h1 id="productHeading"><?= $product['name']; ?></h1>
       <div class="reviews-div">
 
         <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
@@ -118,7 +95,7 @@
         </div>
 
         <div class="title-values">
-          <p>$599.3</p>
+          <p><?= CURRENCY; ?> <?= $product['SP']; ?></p>
           <div class="quantity">
             <button id="dec"><i class="fa-solid fa-minus"></i></button>
             <span id="quantity-value">1</span>
@@ -130,8 +107,7 @@
 
       <div class="details">
         <h4>Description</h4>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente possimus, tenetur eveniet quae quia dolor
-          magni numquam illo velit quas natus ut vero maiores, cupiditate quod corporis ipsa libero. Beatae!</p>
+        <p><?= $product['description']; ?></p>
           
           <ul>
           <li><span class="pro-head">heading</span> <span class="pro-des">discription here</span></li>
@@ -142,10 +118,12 @@
       </div>
 
       <div class="product-details-total">
-        <p>Total Price: <span>$3234</span></p>
+        <p>Total Price: <span><?= CURRENCY; ?> <?= $product['SP']; ?></span></p>
         <div>
-          <button id="addToCart">Add To Cart</button>
-          <button id="buynow">Buy Now</button>
+          <form action="<?= ROOT; ?>/cart">
+          <button id="addToCart"><a href="<?= ROOT; ?>/cart?product_id=<?= $product['id']; ?>" style="text-decoration: none; color: black;">Add To Cart</a></button>
+          <button id="buynow"><a href="<?= ROOT; ?>/checkout?product_id=<?= $product['id']; ?>" style="text-decoration: none; color: black;">Buy Now</a></button>
+        </form>
         </div>
       </div>
 
@@ -253,102 +231,29 @@
   <!-- related products -->
   <h3 id="relatedHeading">Related Products</h3>
   <div class="related-products-wrapper" style="margin-bottom: 1rem;">
-
+    <?php
+    foreach($similar_products as $products) {
+      foreach($products as $product) {
+        $img = explode(":", $product['imgs']);
+        $img = $img[0];
+    ?>
     <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
+      <img src="<?= ROOT; ?>/static/images/product_imgs/<?= $img; ?>" alt="">
 
       <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
           class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
 
-      <p>related product name</p>
-      <h4>$233</h4>
+      <p><?= $product['name']; ?></p>
+      <h4><?= CURRENCY; ?> <?= $product['SP']; ?></h4>
     </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-    <a class="related-products-card">
-      <img src="https://cdn.pixabay.com/photo/2023/10/08/11/08/flowers-8301957_640.jpg" alt="">
-
-      <div class="stars-div"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-          class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-
-      <p>related product name</p>
-      <h4>$233</h4>
-    </a>
-
-
+    <?php
+      }
+    }
+    ?>
   </div>
 
   <!-- sponsered products -->
-  <h3 id="relatedHeading" style="margin-top: 1rem;">Sponsered Products</h3>
+  <!-- <h3 id="relatedHeading" style="margin-top: 1rem;">Sponsered Products</h3>
   <div class="related-products-wrapper">
 
     <a class="related-products-card">
@@ -442,7 +347,7 @@
     </a>
 
 
-  </div>
+  </div> -->
 
 
   <script>

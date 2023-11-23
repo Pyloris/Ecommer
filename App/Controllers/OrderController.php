@@ -58,7 +58,7 @@ class OrderController {
 
             // add the product to the cart
             if ($request->formData('action') == "addToCart" and $db->addToCart($_SESSION['id'], $request->formData('product_id'))) {
-                echo("Added to cart successfullly");
+                HelperFuncs::redirect(ROOT . "/product?id=" . $request->formData('product_id'));
             }
             else if ($request->formData('action') == "buyNow") {
                 // add the product to buynow_cart

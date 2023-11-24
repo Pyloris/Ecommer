@@ -24,6 +24,9 @@ class OrderController {
         $context['navbar'] = ob_get_clean();
         include(VIEW::$path . "/footer.html");
         $context['footer'] = ob_get_clean();
+        
+        
+        $_SESSION['payment_promise'] = TRUE;
 
 
         if ($request->method() == "GET") {
@@ -43,9 +46,6 @@ class OrderController {
             // get all the categories
             $context["categories"] = $db->getCategories(); 
 
-            // set payment promise
-            $_SESSION['payment_promise'] = TRUE;
-
             VIEW::init("store/your_cart.html", $context);
         }
 
@@ -60,11 +60,9 @@ class OrderController {
             if ($request->formData('action') == "addToCart" and $db->addToCart($_SESSION['id'], $request->formData('product_id'))) {
                 HelperFuncs::redirect(ROOT . "/product?id=" . $request->formData('product_id'));
             }
-            else if ($request->formData('action') == "buyNow") {
+            else if ($request->formData('action') == "buyNow" and $db->addToBuyNowCart($_SESSION['id'], $request->formData('product_id'))) {
                 // add the product to buynow_cart
-                if ($db->addToBuyNowCart($_SESSION['id'], $request->formData('product_id'))) {
-                    HelperFuncs::redirect(ROOT . "/store/payment?action=buyNow");
-                }
+                HelperFuncs::redirect(ROOT . "/store/payment?action=buyNow");
             }
         }
     }

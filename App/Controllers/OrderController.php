@@ -67,6 +67,33 @@ class OrderController {
         }
     }
 
+    public function deleteCart($request) {
+        if (!$request->formData('product_id')) {
+            HelperFuncs::redirect(ROOT . "/cart");
+            exit();
+        }
+
+        $product_id = $request->formData('product_id');
+
+        // check if it is an integer
+        if (preg_match("/^[0-9]+$/", $product_id)) {
+
+            // remove this product from the cart
+            $db = new DB();
+
+            if ($db->removeCartItem($_SESSION['id'], $product_id)) {
+                echo("success");
+            }
+            else {
+                echo("failure");
+            }
+            exit();
+        }
+        else {
+            echo("wrong product id");
+        }
+    }
+
 
     public function createOrder($request) {
         $context = [];
@@ -144,7 +171,16 @@ class OrderController {
         $context["code"] = $gateway->getIntegrationCode($data);
 
         // view the payment page
-        VIEW::init("store/payment.html", $context);
+        VIEW::init("payment_gateway.html", $context);
+    }
+
+
+    public function payment_success($request) {
+        VIEW::init("order_confirm.html");
+    }
+
+    public function payment_failure($request) {
+        VIEW::init("payment_fail.html");
     }
 }
 

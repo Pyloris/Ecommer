@@ -108,8 +108,8 @@ trait OrderDB {
 
         try {
             $stmt = $this->db->prepare($query);
-            $stmt->bindParam(":u_id", $user_id);
-            $stmt->bindParam(":p_id", $product_id);
+            $stmt->bindParam(":u_id", $user_id, PDO::PARAM_INT);
+            $stmt->bindParam(":p_id", $product_id, PDO::PARAM_INT);
 
             if ($stmt->execute()) {
                 return TRUE;
@@ -158,6 +158,27 @@ trait OrderDB {
 
             if ($stmt->execute()) {
                 return TRUE;
+            }
+            else {
+                return FALSE;
+            }
+        }
+        catch (PDOException $e) {
+            echo($e);
+        }
+    }
+
+
+    public function getOrders($user_id) {
+        $query = "SELECT * FROM orders WHERE customer_id=:u_id";
+
+        try {
+            $stmt = $this->db->prepare($query);
+
+            $stmt->bindParam(":u_id", $user_id);
+
+            if ($stmt->execute()) {
+                return $stmt->fetchAll();
             }
             else {
                 return FALSE;

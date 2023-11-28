@@ -10,22 +10,29 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- stylesheet -->
-    <link rel="stylesheet" href="../static/css/user_profile.css">
+    <link rel="stylesheet" href="<?= ROOT; ?>/static/css/user_profile.css">
 </head>
 
 <body>
 
     <!-- go back link -->
-    <a href="" id="goBack"><i class="fa-solid fa-arrow-left-long"></i></a>
+    <a href="<?= ROOT; ?>/" id="goBack"><i class="fa-solid fa-arrow-left-long"></i></a>
 
     <!-- user info -->
     <div class="user-details-container">
         <img src="https://images.pexels.com/photos/899357/pexels-photo-899357.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
             alt="">
-        <h4>Name of the user</h4>
-        <p>Email of the user</p>
+        <h4><?= $_SESSION['first_name'] . $_SESSION['last_name']; ?></h4>
+        <p><?= $_SESSION['email']; ?></p>
+
 
         <div class="user-links-container">
+            <a href="#" class="anchor-tag user-links" onclick="showContent('credentials')">
+                <div>
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                Credentials
+            </a>
             <a href="#" class="anchor-tag user-links" onclick="showContent('your-orders-wrapper')">
                 <div>
                     <i class="fa-solid fa-bag-shopping"></i>
@@ -48,14 +55,6 @@
                 </div>
                 Notifications
             </a>
-
-            <a href="#" class="anchor-tag user-links" onclick="showContent('credentials')">
-                <div>
-                    <i class="fa-solid fa-user"></i>
-                </div>
-                Credentials
-            </a>
-
         </div>
 
     </div>
@@ -65,17 +64,20 @@
     <div id="your-orders-wrapper" class="link-section">
         <h1>Your Orders</h1>
 
-
+        <?php
+        foreach($orders as $order) {
+        $img = explode(":", $order['imgs'])[0];
+        ?>
         <div class="your-orders-card">
             <div class="order-info">
-                <h2>name of the product</h2>
+                <h2><?= $order['name']; ?></h2>
                 <p>status of the product(delivered or not)</p>
                 <button>Buy Again</button>
             </div>
-            <img src="https://img.freepik.com/free-photo/portrait-handsome-confident-stylish-hipster-lambersexual-modelman-dressed-black-jacket-jeans-fashion-male-posing-studio-near-grey-wall_158538-24002.jpg"
+            <img src="<?= ROOT; ?>/static/images/product_imgs/<?= $img; ?>"
                 alt="">
         </div>
-
+        <?php } ?>
     </div>
 
     <!-- order section ends -------------------------->
@@ -142,17 +144,17 @@
         <form action="">
             <label for="" class="short">
                 First name
-                <input type="text">
+                <input type="text" value="<?= $_SESSION['first_name']; ?>">
             </label>
 
             <label for="" class="short">
                 Last Name
-                <input type="text">
+                <input type="text" value="<?= $_SESSION['last_name']; ?>">
             </label>
 
             <label for="" class="long">
                 Address
-                <input type="text">
+                <input type="text" >
             </label>
 
             <label for="" class="long">
@@ -172,16 +174,17 @@
 
             <label for="" class="short">
                 Email
-                <input type="text">
+                <input type="text" value="<?= $_SESSION['email']; ?>">
             </label>
 
             <label for="" class="short">
                 Phone
-                <input type="text">
+                <input type="text" value="<?= $_SESSION['phone']; ?>">
             </label>
 
                 <button class="Edit Details user-info-btn">Edit Detials</button>
                 <button class="user-info-btn">Submit Details</button>
+                <a href="<?= ROOT; ?>/logout" class="user-info-btn" style="text-align: center; text-decoration: none;">Logout</a>
         </form>
 
     </div>
@@ -203,6 +206,9 @@
                 selectedContent.style.display = 'block';
             }
         }
+
+        // load user details by default
+        showContent('credentials');
     </script>
 </body>
 

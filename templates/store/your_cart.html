@@ -60,7 +60,7 @@
                         <button onclick="increment()"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     <h5><?= CURRENCY; ?> <?= $product['SP']; ?></h5>
-                    <button class="delete-item"><i class="fa-solid fa-xmark"></i></button>
+                    <button class="delete-item" target="<?= $product['id']; ?>"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
             <?php } ?>
@@ -123,7 +123,20 @@
         const cartItem = document.querySelectorAll(".cart-item-card");
         deleteBtn.forEach(btn => {
             btn.addEventListener('click',()=>{
-                btn.parentElement.parentElement.style.display='none';
+
+                // delete the item
+                fetch("/Ecommer/deleteCart", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: `product_id=${btn.getAttribute('target')}`
+                }).then(res => {
+                    return res.text();
+                }).then(reslt => {
+                    if (reslt == " success") 
+                        btn.parentElement.parentElement.style.display='none';
+                })
             });
         });
     </script>

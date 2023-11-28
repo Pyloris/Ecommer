@@ -72,19 +72,22 @@
         <!-- payment info -->
         <div class="payment-info">
             <h2 style="color: #EBAF81; padding: 1rem .5rem;">YOUR ORDER</h2>
-
+            <?php foreach($products as $product)
+            $img = explode(':', $product['imgs']);
+            $img = $img[0];
+            ?>
             <div id="order-details">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKp8ke0pG7CPlAZsxDtq17H4YMr030x9VUIg&usqp=CAU" alt="">
+                <img src="<?= ROOT; ?>/static/images/product_imgs/<?= $img; ?>" alt="">
                 <div class="pro-details">
-                    <h4>name of the product</h4>
+                    <h4><?= $product['name']; ?></h4>
                     <ul>
-                        <li>category: <span>loremipsum</span></li>
-                        <li>Quantity: <span>loremipsum</span></li>
-                        <li>Size: <span>loremipsum</span></li>
+                        <!-- <li>category: <span>loremipsum</span></li> -->
+                        <!-- <li>Quantity: <span>loremipsum</span></li> -->
+                        <!-- <li>Size: <span>loremipsum</span></li> -->
                     </ul>
                 </div>
 
-                <h3 class="pro-price">$233</h3>
+                <h3 class="pro-price"><?= CURRENCY; ?> <?= $product['SP']; ?></h3>
             </div>
 
             <div id="cart-totals">
@@ -115,7 +118,8 @@
                 </label>
             </div>
 
-            <button id="proceedToCheckout">Proceed to checkout</button>
+            <button id="rzp-button1">Checkout</button>
+            <?= $code; ?>
         </div>
 
     </div>

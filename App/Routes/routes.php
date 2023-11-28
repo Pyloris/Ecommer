@@ -16,6 +16,7 @@ require_once __DIR__ . "/../Controllers/OrderController.php";
 require_once __DIR__ . "/../Controllers/RZPWebhookController.php";
 require_once __DIR__ . "/../Controllers/ProductController.php";
 require_once __DIR__ . "/../Controllers/ShopController.php";
+require_once __DIR__ . "/../Controllers/AccountController.php";
 
 
 
@@ -78,5 +79,12 @@ Router::add_route("GET", ROOT . "/product", [ProductController::class, 'show']);
 */
 Router::add_route("GET", ROOT."/", [HomeController::class, 'show']);
 Router::add_route(["GET", "POST"], ROOT. "/cart", [OrderController::class, 'cartHandler'])->middleware(Auth::class);
+Router::add_route("POST", ROOT . "/deleteCart", [OrderController::class, 'deleteCart'])->middleware(Auth::class);
 Router::add_route("GET", ROOT. "/store/payment", [OrderController::class, 'createOrder'])->middleware(Auth::class)->middleware(PaymentFlow::class);
+Router::add_route("GET", ROOT . "/payment_success", [OrderController::class, 'payment_success'])->middleware(Auth::class);
+Router::add_route("GET", ROOT . "/payment_failure", [OrderController::class, 'payment_failure'])->middleware(Auth::class);
+
+
+// show user profile page
+Router::add_route(["GET", "POST"], ROOT . "/account", [AccountController::class, 'show'])->middleware(Auth::class);
 ?> 

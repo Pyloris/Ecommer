@@ -22,7 +22,7 @@
     <div class="user-details-container">
         <img src="https://images.pexels.com/photos/899357/pexels-photo-899357.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
             alt="">
-        <h4><?= $_SESSION['first_name'] . $_SESSION['last_name']; ?></h4>
+        <h4><?= $_SESSION['first_name'] .  ' ' . $_SESSION['last_name']; ?></h4>
         <p><?= $_SESSION['email']; ?></p>
 
 
@@ -141,48 +141,53 @@
     <div id="credentials" class="user-details link-section">
         <h1>Your Detials</h1>
 
-        <form action="">
+        <form action="<?= ROOT; ?>/account" method="POST">
             <label for="" class="short">
                 First name
-                <input type="text" value="<?= $_SESSION['first_name']; ?>">
+                <input type="text" name="first_name" value="<?= $_SESSION['first_name']; ?>">
             </label>
 
             <label for="" class="short">
                 Last Name
-                <input type="text" value="<?= $_SESSION['last_name']; ?>">
-            </label>
-
-            <label for="" class="long">
-                Address
-                <input type="text" >
-            </label>
-
-            <label for="" class="long">
-                Town/City
-                <input type="text">
+                <input type="text" name="last_name" value="<?= $_SESSION['last_name']; ?>">
             </label>
 
             <label for="" class="short">
-                Country
-                <input type="text">
+                Address
+                <input type="text" name="street" value="<?= isset($user_details['street']) ? $user_details['street'] : ''; ?>">
+            </label>
+
+            <label for="" class="short">
+                Town/City
+                <input type="text" name="city" value="<?= isset($user_details['city']) ? $user_details['city'] : ''; ?>">
+            </label>
+
+            <label for="" class="short">
+                State
+                <input type="text" name="state" value="<?= isset($user_details['state']) ? $user_details['state'] : ''; ?>">
             </label>
 
             <label for="" class="short">
                 Postcode
-                <input type="text">
+                <input type="text" name="pin" value="<?= isset($user_details['pin']) ? $user_details['pin'] : ''; ?>">
             </label>
-
+            
             <label for="" class="short">
-                Email
-                <input type="text" value="<?= $_SESSION['email']; ?>">
+                Country
+                <input type="text" name="country" value="<?= isset($user_details['country']) ? $user_details['country'] : ''; ?>">
             </label>
 
             <label for="" class="short">
                 Phone
-                <input type="text" value="<?= $_SESSION['phone']; ?>">
+                <input type="text" name="phone" value="<?= $_SESSION['phone']; ?>">
             </label>
 
-                <button class="Edit Details user-info-btn">Edit Detials</button>
+            <label for="" class="long">
+                Email
+                <input type="text" name="email" value="<?= $_SESSION['email']; ?>">
+            </label>
+
+                <!-- <button class="Edit Details user-info-btn">Edit Detials</button> -->
                 <button class="user-info-btn">Submit Details</button>
                 <a href="<?= ROOT; ?>/logout" class="user-info-btn" style="text-align: center; text-decoration: none;">Logout</a>
         </form>

@@ -87,4 +87,4 @@ Router::add_route("GET", ROOT . "/payment_failure", [OrderController::class, 'pa
 
 // show user profile page
 Router::add_route(["GET", "POST"], ROOT . "/account", [AccountController::class, 'show'])->middleware(Auth::class);
-?> 
+?>

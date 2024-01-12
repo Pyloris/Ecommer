@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . "/vendor/autoload.php";
 
+error_reporting(0);
+
 use sirJuni\Framework\Application\Application;
 use sirJuni\Framework\View\VIEW;
 

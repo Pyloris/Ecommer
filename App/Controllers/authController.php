@@ -75,6 +75,7 @@ class AuthController {
                 else
                     $user = $db->getUser(NULL, $usernameOrEmail);
 
+
                 if ($user and $user['password'] == $passhash) {
                     Auth::login($user);
                     HelperFuncs::redirect(ROOT . "/");
@@ -145,8 +146,11 @@ class AuthController {
                     // redirect to home
                     if ($db->addUser($username, $first_name, $last_name, $email, $passhash, $phone)) {
                     
-                        // get user from db
+                        // get user from dd
                         $user = $db->getUser($email);
+
+                        // add address
+                        $db->addAddress($user['id']);
 
                         if ($user) {
                             Auth::login($user);

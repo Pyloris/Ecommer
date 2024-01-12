@@ -8,12 +8,13 @@ require_once __DIR__ . "/../Models/models.php";
 class HomeController {
     public function show($request) {
 
-        $context = [];
+        $context = []; 
 
-        // get footer and navbar
         ob_start();
         include(VIEW::$path . "/navbar.html");
         $context["navbar"] = ob_get_clean();
+
+        ob_start();
         include(VIEW::$path . "/footer.html");
         $context["footer"] = ob_get_clean();
 

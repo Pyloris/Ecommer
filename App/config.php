@@ -8,7 +8,7 @@ const DB_PASS = '';
 const DB_NAME = 'ecom';
 // const DB_HOST = 'mysql-server-container';
 const DB_HOST = 'localhost';
-const DB_PORT = '3306';
+// const DB_PORT = '3306';
 const DB_TYPE = "mysql";
 
 

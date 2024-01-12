@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../Coding"
+		},
+		{
+			"path": "../../docker"
+		}
+	],
+	"settings": {}
+}

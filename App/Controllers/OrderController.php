@@ -22,8 +22,10 @@ class OrderController {
         ob_start();
         include(VIEW::$path . "/navbar.html");
         $context['navbar'] = ob_get_clean();
+
+        ob_start();
         include(VIEW::$path . "/footer.html");
-        $context['footer'] = ob_get_clean();
+        $context['footer'] = ob_get_clean(); 
         
         
         $_SESSION['payment_promise'] = TRUE;
@@ -101,6 +103,8 @@ class OrderController {
         ob_start();
         include(VIEW::$path . "/navbar.html");
         $context['navbar'] = ob_get_clean();
+
+        ob_start();
         include(VIEW::$path . "/footer.html");
         $context['footer'] = ob_get_clean();
 

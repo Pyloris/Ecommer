@@ -17,6 +17,8 @@ class ShopController {
         ob_start();
         include(VIEW::$path . "/navbar.html");
         $context['navbar'] = ob_get_clean();
+
+        ob_start();
         include(VIEW::$path . "/footer.html");
         $context['footer'] = ob_get_clean();
 

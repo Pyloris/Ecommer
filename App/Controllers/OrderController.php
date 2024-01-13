@@ -84,7 +84,7 @@ class OrderController {
             $db = new DB();
 
             if ($db->removeCartItem($_SESSION['id'], $product_id)) {
-                echo("success");
+                echo(" success");
             }
             else {
                 echo("failure");

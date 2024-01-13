@@ -8,7 +8,6 @@
 <div class="header-links">
     <?php if (isset($_SESSION['id'])) { ?>
     <a href="<?= ROOT; ?>/account" class="style-anchor-tags"><i class="fa-regular fa-user"></i> <span>My Account</span></a>
-    <a href="<?= ROOT; ?>/wishlist" class="style-anchor-tags"><i class="fa-regular fa-heart"></i><span> Wishlist</span></a>
     <a href="<?= ROOT; ?>/cart" class="style-anchor-tags"><i class="fa-solid fa-bag-shopping"></i> <span>My Cart</span></a>
     <?php } else { ?>
     <a href="<?= ROOT; ?>/login" class="style-anchor-tags"><i class="fa-solid fa-arrow-right-to-bracket"></i> <span>Login</span></a>

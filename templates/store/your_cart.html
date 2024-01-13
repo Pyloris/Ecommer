@@ -59,7 +59,7 @@
                         <input type="number" id="myNumber" value="1" readonly>
                         <button onclick="increment()"><i class="fa-solid fa-plus"></i></button>
                     </div>
-                    <h5><?= CURRENCY; ?> <?= $product['SP']; ?></h5>
+                    <h5 class="item-price"><?= CURRENCY; ?> <?= $product['SP']; ?></h5>
                     <button class="delete-item" target="<?= $product['id']; ?>"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
@@ -75,12 +75,12 @@
 
                 <div class="format-div">
                     <p>Items</p>
-                    <p>3</p>
+                    <p class="no-of-items"></p>
                 </div>
 
                 <div class="format-div">
                     <p>Subtotal</p>
-                    <p>$432</p>
+                    <p class="total-amount"></p>
                 </div>
 
                 <div class="format-div">
@@ -93,7 +93,7 @@
 
             <div class="cart-total format-div">
                 <p>Total</p>
-                <p>$432</p>
+                <p class="cart-total"></p>
             </div>
 
             <a href="<?= ROOT; ?>/store/payment" style="text-decoration: none; color: black;"><button id="checkout-btn">Proceed To Checkout</button></a>
@@ -120,7 +120,29 @@
         }
         
         const deleteBtn = document.querySelectorAll(".delete-item");
-        const cartItem = document.querySelectorAll(".cart-item-card");
+        // const cartItem = document.querySelectorAll(".cart-item-card");
+
+        function update_cart() {
+            const cartItem = document.querySelectorAll(".cart-item-card");
+
+            // update no of items
+            document.querySelector(".no-of-items").textContent = cartItem.length;
+
+            // update cost of items
+            const price_items = document.querySelectorAll(".item-price");
+
+            const total_price ="₹ " + Array.from(price_items).reduce((total, current) => {
+                const item_price = current.textContent.replace("₹", "");
+                console.log(total + parseInt(item_price));
+                return total + parseInt(item_price);
+            }, 0);
+
+            document.querySelector(".total-amount").textContent = total_price;
+            document.querySelector(".cart-total").textContent = total_price;
+        }
+
+        update_cart();
+
         deleteBtn.forEach(btn => {
             btn.addEventListener('click',()=>{
 
@@ -134,9 +156,11 @@
                 }).then(res => {
                     return res.text();
                 }).then(reslt => {
-                    if (reslt == " success") 
-                        btn.parentElement.parentElement.style.display='none';
-                })
+                    if (reslt == " success"){ 
+                        btn.parentElement.parentElement.remove();
+                        update_cart();
+                    }
+                });
             });
         });
     </script>

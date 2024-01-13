@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2024 at 08:37 AM
+-- Generation Time: Jan 12, 2024 at 05:11 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,13 +31,6 @@ CREATE TABLE `buynow_cart` (
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `buynow_cart`
---
-
-INSERT INTO `buynow_cart` (`user_id`, `product_id`) VALUES
-(20, 19);
 
 -- --------------------------------------------------------
 
@@ -68,8 +61,8 @@ INSERT INTO `cart` (`user_id`, `product_id`) VALUES
 
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
-  `name` varchar(100)NOT NULL,
-  `img` varchar(100)DEFAULT NULL
+  `name` varchar(100) NOT NULL,
+  `img` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -96,7 +89,7 @@ INSERT INTO `categories` (`id`, `name`, `img`) VALUES
 
 CREATE TABLE `collections` (
   `id` int(11) NOT NULL,
-  `name` varchar(100)NOT NULL,
+  `name` varchar(100) NOT NULL,
   `img` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -146,17 +139,9 @@ CREATE TABLE `orders` (
   `id` varchar(100) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `total_price` float NOT NULL,
-  `payment_status` varchar(100)DEFAULT NULL,
-  `order_status` varchar(100)DEFAULT NULL
+  `payment_status` varchar(100) DEFAULT NULL,
+  `order_status` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `customer_id`, `total_price`, `payment_status`, `order_status`) VALUES
-('order_N0mSUHQObel2LV', 20, 1060000, 'DONE', 'PROCESSING'),
-('order_N5qkwEKZtdvpZZ', 20, 720000, 'PENDING', 'CREATED');
 
 -- --------------------------------------------------------
 
@@ -169,17 +154,6 @@ CREATE TABLE `order_items` (
   `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `order_items`
---
-
-INSERT INTO `order_items` (`order_id`, `product_id`) VALUES
-('order_N0mSUHQObel2LV', 10),
-('order_N0mSUHQObel2LV', 11),
-('order_N0mSUHQObel2LV', 12),
-('order_N0mSUHQObel2LV', 10),
-('order_N5qkwEKZtdvpZZ', 19);
-
 -- --------------------------------------------------------
 
 --
@@ -189,10 +163,10 @@ INSERT INTO `order_items` (`order_id`, `product_id`) VALUES
 CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `sku` varchar(100) NOT NULL,
-  `name` varchar(100)NOT NULL,
+  `name` varchar(100) NOT NULL,
   `SP` int(11) NOT NULL,
   `rating` float DEFAULT NULL,
-  `imgs` varchar(100)NOT NULL,
+  `imgs` varchar(100) NOT NULL,
   `MRP` int(11) DEFAULT NULL,
   `description` varchar(255) NOT NULL,
   `category` int(11) DEFAULT NULL,
@@ -272,12 +246,12 @@ INSERT INTO `stock` (`product_id`, `items`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `username` varchar(100)NOT NULL,
-  `first_name` varchar(100)NOT NULL,
-  `last_name` varchar(100)NOT NULL,
-  `email` varchar(100)NOT NULL,
-  `password` varchar(100)NOT NULL,
-  `phone` varchar(100)NOT NULL
+  `username` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `phone` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -290,8 +264,8 @@ INSERT INTO `users` (`id`, `username`, `first_name`, `last_name`, `email`, `pass
 (4, 'shoaibwani23', 'shoaib', 'wani', 'wani@g.c', '2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824', '7711111111'),
 (6, 'Rbi', '', '', 'rbiachiever01@gmail.com', '', ''),
 (14, 'Alladin', 'Saqlain', 'Mushtaq', 'saqlaincosmo@gmail.com', 'd4f9fa4d8f6e89df0143e60efb7645b14dd1447b0b60d107a627e19bd7158a03', '9797798232'),
-(20, 'admin', '11111112222', '11111112222', '11111112222', '9afea1f1c0c5c232b8c922f8dee2bfaae37de077ac32a549ad85a6c7111ced7b', '11111112222'),
-(21, 'hackerobito', 'shoaib', 'wani', 'nikagi6927@newnime.com', 'c82a9175fa69b71f32c309cf3e165111715b5647b5919162944acc4ab277cd6e', '1212121212');
+(21, 'hackerobito', 'shoaib', 'wani', 'nikagi6927@newnime.com', 'c82a9175fa69b71f32c309cf3e165111715b5647b5919162944acc4ab277cd6e', '1212121212'),
+(23, 'admin', 'shoaib', 'hassan', 'shoaibwani010@gmail.com', '9afea1f1c0c5c232b8c922f8dee2bfaae37de077ac32a549ad85a6c7111ced7b', '990611100111');
 
 -- --------------------------------------------------------
 
@@ -307,6 +281,13 @@ CREATE TABLE `user_details` (
   `country` varchar(30) DEFAULT NULL,
   `pin` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_details`
+--
+
+INSERT INTO `user_details` (`id`, `street`, `city`, `state`, `country`, `pin`) VALUES
+(23, 'Yangoora', 'Ganderbal', 'Kashmir', 'India', 191131);
 
 --
 -- Indexes for dumped tables
@@ -419,7 +400,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables

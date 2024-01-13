@@ -17,49 +17,54 @@
             <h1>Billing and Shipping Details</h1>
             <form action="">
                 <label for="" class="short">
-                    First name
-                    <input type="text">
-                </label>
+                First name
+                <input disabled type="text" name="first_name" value="<?= $_SESSION['first_name']; ?>">
+            </label>
 
-                <label for="" class="short">
-                    Last Name
-                    <input type="text">
-                </label>
+            <label for="" class="short">
+                Last Name
+                <input disabled type="text" name="last_name" value="<?= $_SESSION['last_name']; ?>">
+            </label>
 
-                <label for="" class="long">
-                    Address
-                    <input type="text">
-                </label>
+            <label for="" class="short">
+                Address
+                <input disabled type="text" name="street" value="<?= isset($user_details['street']) ? $user_details['street'] : ''; ?>">
+            </label>
 
-                <label for="" class="long">
-                    Town/City
-                    <input type="text">
-                </label>
+            <label for="" class="short">
+                Town/City
+                <input disabled type="text" name="city" value="<?= isset($user_details['city']) ? $user_details['city'] : ''; ?>">
+            </label>
 
-                <label for="" class="short">
-                    Country
-                    <input type="text">
-                </label>
+            <label for="" class="short">
+                State
+                <input disabled type="text" name="state" value="<?= isset($user_details['state']) ? $user_details['state'] : ''; ?>">
+            </label>
 
-                <label for="" class="short">
-                    Postcode
-                    <input type="text">
-                </label>
+            <label for="" class="short">
+                Postcode
+                <input disabled type="text" name="pin" value="<?= isset($user_details['pin']) ? $user_details['pin'] : ''; ?>">
+            </label>
+            
+            <label for="" class="short">
+                Country
+                <input disabled type="text" name="country" value="<?= isset($user_details['country']) ? $user_details['country'] : ''; ?>">
+            </label>
 
-                <label for="" class="short">
-                    Email
-                    <input type="text">
-                </label>
+            <label for="" class="short">
+                Phone
+                <input disabled type="text" name="phone" value="<?= $_SESSION['phone']; ?>">
+            </label>
 
-                <label for="" class="short">
-                    Phone
-                    <input type="text">
-                </label>
+            <label for="" class="long">
+                Email
+                <input disabled type="text" name="email" value="<?= $_SESSION['email']; ?>">
+            </label> 
 
-                <label for="" class="checkbox">
-                    <input type="checkbox" name="" id="">
-                    create an account?
-                </label>
+                <!-- <label for="" class="checkbox">
+                    <input disabled type="checkbox" name="" id="">
+                    ship to different address? 
+                </label> -->
 
                 <h2>Ship to a different address?</h2>
                 <label for="" class="checkbox">
@@ -72,7 +77,7 @@
         <!-- payment info -->
         <div class="payment-info">
             <h2 style="color: #EBAF81; padding: 1rem .5rem;">YOUR ORDER</h2>
-            <?php foreach($products as $product)
+            <?php foreach($products as $product) {
             $img = explode(':', $product['imgs']);
             $img = $img[0];
             ?>
@@ -87,33 +92,34 @@
                     </ul>
                 </div>
 
-                <h3 class="pro-price"><?= CURRENCY; ?> <?= $product['SP']; ?></h3>
+                <h3 class="item-price"><?= CURRENCY; ?> <?= $product['SP']; ?></h3>
             </div>
+            <?php } ?>
 
             <div id="cart-totals">
                 <h4>CART TOTAL</h4>
                 <div class="inner">
                     <p>Cart Subtotal</p>
-                    <p>$399</p>
+                    <p class="cart-total"></p>
                 </div>
                 <div class="inner">
                     <p>Shiiping Charges</p>
-                    <p>$23</p>
+                    <p class="shipping-charges"><?= CURRENCY; ?> 0</p>
                 </div>
                 <div class="inner">
                     <p>Order Total</p>
-                    <p>$338</p>
+                    <p class="total-amount"></p>
                 </div>
             </div>
 
             <div id="payment-methods">
                 <label for="payNow" id="payNowLabel" class="paymentMethod">
-                    <input type="radio" id="payNow" name="paymentMethod">
+                    <input type="radio" id="payNow" name="paymentMethod" class="cod"  >
                     Pay Now
                 </label>
                 
                 <label for="cashOnDelivery" id="cashOnDeliveryLabel" class="paymentMethod">
-                    <input type="radio" id="cashOnDelivery" name="paymentMethod">
+                    <input type="radio" id="cashOnDelivery" name="paymentMethod" disabled>
                     Cash On Delivery
                 </label>
             </div>
@@ -123,6 +129,38 @@
         </div>
 
     </div>
+
+
+    <script>
+        function update_cart() {
+            const cartItem = Array.from(document.querySelectorAll(".cart-item-card"))
+
+            // update cost of items
+            const price_items = Array.from(document.querySelectorAll(".item-price"));
+
+            const total_price ="₹ " + price_items.reduce((total, current) => {
+                const item_price = current.textContent.replace("₹", "");
+                console.log(total + parseInt(item_price));
+                return total + parseInt(item_price);
+            }, 0);
+
+            document.querySelector(".total-amount").textContent = total_price;
+            document.querySelector(".cart-total").textContent = total_price;
+        }
+
+        update_cart();
+
+        // disable checkout unless payment method is selected.
+        // disable the payon deliver.
+        document.querySelector("#rzp-button1").setAttribute("disabled", "");
+
+        document.querySelector(".cod").onclick = function () {
+            document.querySelector("#rzp-button1").removeAttribute("disabled");
+        }
+
+
+
+    </script>
 
 </body>
 

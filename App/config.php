@@ -29,6 +29,9 @@ const APP_PASSWORD = "rfea ztmd dmpc dqof";
 const RZP_ID = 'rzp_test_cXWEjxO84Cp4iR';
 const RZP_SECRET = 'wA9IYa8rSCU2kw8TAqbXre4o';
 
+const SUCCESS_CALLBK = "httpss://localhost/Ecommer/payment_success";
+const FAILURE_CALLBK = "http://localhost/Ecommer/payment_failure";
+
 
 // company details
 const COMPANY_NAME = "Ecommer";

@@ -123,15 +123,23 @@
         // const cartItem = document.querySelectorAll(".cart-item-card");
 
         function update_cart() {
-            const cartItem = document.querySelectorAll(".cart-item-card");
+            const cartItem = Array.from(document.querySelectorAll(".cart-item-card"))
+
+            // disable checkout btn
+            if (cartItem.length == 0) {
+                document.querySelector("#checkout-btn").setAttribute("disabled", "");
+            }
+            else {
+                document.querySelector("#checkout-btn").removeAttribute("disabled");
+            }
 
             // update no of items
             document.querySelector(".no-of-items").textContent = cartItem.length;
 
             // update cost of items
-            const price_items = document.querySelectorAll(".item-price");
+            const price_items = Array.from(document.querySelectorAll(".item-price"));
 
-            const total_price ="₹ " + Array.from(price_items).reduce((total, current) => {
+            const total_price ="₹ " + price_items.reduce((total, current) => {
                 const item_price = current.textContent.replace("₹", "");
                 console.log(total + parseInt(item_price));
                 return total + parseInt(item_price);

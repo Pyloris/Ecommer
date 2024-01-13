@@ -151,7 +151,7 @@ class OrderController {
         $_SESSION['order_id'] = $order['id'];
 
         // insert the order into the database
-        $db->storeOrder($_SESSION['id'], $order['id'], $order['amount']);
+        $db->storeOrder($_SESSION['id'], $order['id'], $amount);
 
         // insert order items
         foreach($items as $item) {
@@ -165,15 +165,18 @@ class OrderController {
             'COMPANY_NAME' => COMPANY_NAME,
             'COMPANY_LOGO_URL' => COMPANY_LOGO_URL,
             'order_id' => $order['id'],
-            'success_callback_url' => "https://shoaibwani.serveo.net/Ecommer/payment_success",
+            'success_callback_url' => SUCCESS_CALLBK,
             'username' => $_SESSION['first_name'] . ' ' . $_SESSION['last_name'],
             'email' => $_SESSION['email'],
             'phone' => $_SESSION['phone'],
-            'failure_callback_url' => "https://shoaibwani.serveo.net/Ecommer/payment_failed"
+            'failure_callback_url' => FAILURE_CALLBK
         ];
 
         $context["code"] = $gateway->getIntegrationCode($data);
 
+        // get user details (address, pin etc)
+        $context["user_details"] = $db->getUserDetails($_SESSION['id']);
+    
         // view the payment page
         VIEW::init("payment_gateway.html", $context);
     }
